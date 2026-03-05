@@ -116,14 +116,14 @@
             z-index: 100;
         }
 
-        .footer-nav-wrapper {
-            width: 1000px;       
-            margin-bottom: 30px; 
-            display: flex;
-            justify-content: flex-start;
-            gap: 20px; 
+        .footer-nav-wrapper{
+            width:1080px;
+            margin-bottom:30px;
+            padding: 0 40px; 
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
         }
-
         .btn-kiosk {
             height: 85px;
             padding: 0 40px;
@@ -144,7 +144,7 @@
         .btn-red { background: #B51016; }
         .btn-gray { background: #6c757d; }
 
-        .btn-beranda {
+        .btn-nav {
             width: 250px;  
             height: 75px;
             background: #B51016;
@@ -157,11 +157,12 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            text-decoration: none;
         }
 
         .footer-bottom-bar {
             width: 1080px;
-            height: 115px; 
+            height: 100px; 
             background: #ffffff;
             display: flex;
             align-items: center;
@@ -221,12 +222,13 @@
             @yield('content')
         </div>
 
-        <div class="footer-section">
-            <div class="footer-nav-wrapper">
-                <button class="btn-beranda">
-                    <i class="bi bi-house-door-fill"></i> BERANDA
-                </button>
-            </div>
+        <div class="footer-nav-wrapper">
+            <button class="btn-nav">
+                <i class="bi bi-house-door-fill"></i> BERANDA
+            </button>
+
+            @yield('bottom_navigation')
+        </div>
 
             <div class="footer-bottom-bar">
                 <div class="welcome-msg">
