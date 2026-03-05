@@ -9,6 +9,7 @@
     align-items: center;
     padding: 40px 80px;
     gap: 20px;
+    animation: fadeInRight 0.8s ease-out;
 }
 
 .evaluasi-icon {
@@ -19,17 +20,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 15px rgba(231, 33, 40, 0.3);
 }
 
 .evaluasi-title {
     font-size: 35px;
     font-weight: 780;
+    letter-spacing: 1px;
+        color: #333;
 }
 
 .hero-wrapper {
     position: relative;
     width: 100%;
     text-align: center;
+    perspective: 1000px;
 }
 
 .hero-img {
@@ -62,7 +67,14 @@
     grid-template-columns: repeat(4, 235px);
     gap: 20px;
     z-index: 20;
+    padding-bottom: 50px;
 }
+
+.kategori-link {
+        text-decoration: none !important;
+        display: block;
+        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
 .kategori-card {
     width: 235px;
@@ -73,6 +85,23 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;   
+}
+
+.kategori-link:active {
+    transform: scale(0.92);
+}
+
+.kategori-card::after {
+    position: absolute;
+    bottom: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #B51016;
+    width: 100%;
+    text-align: center;
+    opacity: 0.6;
 }
 
 .kategori-header {
@@ -88,6 +117,7 @@
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .kategori-card img {
@@ -104,9 +134,10 @@
     color: #333;
     flex-grow: 1; 
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
 }
+
 </style>
 
 <div class="evaluasi-section">
@@ -130,7 +161,7 @@
     ] as $item)
     
     {{-- Sekarang $item[3] sudah ada isinya (infrastruktur, sarana, dll) --}}
-    <a href="{{ url('/evaluasi-pembangunan/'.$item[3]) }}" class="text-decoration-none text-dark">
+    <a href="{{ url('/evaluasi-pembangunan/'.$item[3]) }}" class="kategori-link">
         <div class="kategori-card">
             <div class="kategori-header">{{ $item[0] }}</div>
             <img src="https://images.unsplash.com/photo-{{ $item[2] }}">

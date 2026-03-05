@@ -2,14 +2,12 @@
 
 @section('content')
 <style>
-    /* =========================================
-       1. CSS ASLI KAMU (RAPID & CLEAN)
-       ========================================= */
     .infra-header-container {
         padding: 40px 80px 20px 80px; 
         position: relative;
         display: flex;
-        flex-direction: column; 
+        flex-direction: column;
+        animation: fadeInRight 0.8s ease-out; 
     }
 
     .evaluasi-section {
@@ -47,7 +45,9 @@
         color: #000;
         margin: 0;
         align-self: flex-start; 
-        margin-top: 10px; 
+        margin-top: 10px;
+        text-transform: uppercase; /* Memaksa CAPSLOCK */
+        letter-spacing: 1px; 
     }
 
     .stats-container {
@@ -123,6 +123,10 @@
         transition: all 0.3s ease;
         outline: none;
         min-width: 200px;
+    }
+
+    .select-modern:active {
+        transform: scale(0.95);
     }
 
     .filter-wrapper::after {
@@ -231,6 +235,11 @@
         border: none;
     }
 
+    .btn-detail-card:active {
+        transform: scale(0.9);
+        background: #8e0d11;
+    }
+
     .pagination-wrapper {
         display: flex;
         justify-content: center;
@@ -252,21 +261,16 @@
         background: #F4A7A9;
     }
 
-    /* =========================================
-       2. MODAL DETAIL & BLUR SYSTEM (BARU)
-       ========================================= */
-    
-    /* Overlay yang bikin background BLUR TOTAL */
     .modal-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.1); /* Tipis saja karena kita butuh blur */
-        backdrop-filter: blur(15px); /* EFEK BLUR TOTAL */
+        background: rgba(255, 255, 255, 0.1); 
+        backdrop-filter: blur(15px); 
         -webkit-backdrop-filter: blur(15px);
-        display: none; /* Hidden by default */
+        display: none; 
         justify-content: center;
         align-items: center;
         z-index: 9999;
@@ -347,7 +351,6 @@
         line-height: 1.6;
     }
 
-    /* Timeline di Modal */
     .modal-timeline {
         background: #F8F9FA;
         padding: 25px;
@@ -405,7 +408,6 @@
         color: #333;
     }
 
-    /* Tombol Navigasi Bawah Sejajar */
     .bottom-nav-fixed {
         padding: 0 80px 40px 80px;
         display: flex;
@@ -514,11 +516,11 @@
 
 {{-- Pagination --}}
 <div class="pagination-wrapper">
-    <button class="page-btn"> < Kembali </button>
+    <button class="page-btn"> < </button>
     <button class="page-btn"> 1 </button>
     <button class="page-btn inactive"> 2 </button>
     <button class="page-btn inactive"> 3 </button>
-    <button class="page-btn"> Lanjut > </button>
+    <button class="page-btn"> > </button>
 </div>
 
 {{-- MODAL DETAIL (EFEK BLUR TOTAL) --}}
@@ -573,7 +575,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // --- Chart JS (Bawaan Kodingan Mas) ---
     const ctx = document.getElementById('infraPieChart').getContext('2d');
     new Chart(ctx, {
         type: 'pie',
@@ -591,7 +592,6 @@
         }
     });
 
-    // --- Logika Detail Modal ---
     function openDetail(title, loc, prog, img, desc) {
         document.getElementById('m-title').innerText = title;
         document.getElementById('m-loc').innerText = "Lokasi : " + loc;
@@ -599,7 +599,6 @@
         document.getElementById('m-img').src = img;
         document.getElementById('m-perc').innerText = prog;
         
-        // Animasi Progress Bar
         setTimeout(() => {
             document.getElementById('m-bar').style.width = prog;
             if(prog === '100%') {
@@ -617,12 +616,10 @@
         document.getElementById('m-bar').style.width = '0%';
     }
 
-    // Klik di luar modal untuk tutup
     window.onclick = function(e) {
         if (e.target == document.getElementById('modalDetail')) closeDetail();
     }
 
-     // --- FILTER LOGIKA ---
     const statusFilter = document.getElementById('statusFilter');
     const tahunFilter = document.getElementById('tahunFilter');
     const projectCards = document.querySelectorAll('.project-card');
@@ -646,19 +643,14 @@
         });
     }
 
-    // Event Listener ketika dropdown berubah
     statusFilter.addEventListener('change', applyFilter);
     tahunFilter.addEventListener('change', applyFilter);
 
-    // ==============================
     // GLOBAL STATE
-    // ==============================
     let currentData = [];
     let pieChart;
 
-    // ==============================
     // DUMMY DATA (SIMULASI API)
-    // ==============================
     const projectsData = [
         {
             kategori: "infrastruktur",
@@ -692,9 +684,7 @@
         }
     ];
 
-    // ==============================
     // LOADING & STATE
-    // ==============================
     function showLoading() {
         document.getElementById('loadingState').style.display = 'block';
         document.getElementById('projectContainer').style.display = 'none';
@@ -705,9 +695,7 @@
         document.getElementById('projectContainer').style.display = 'block';
     }
 
-    // ==============================
     // SIMULASI FETCH API
-    // ==============================
     function fetchProjects() {
         showLoading();
         return new Promise((resolve) => {
@@ -717,9 +705,7 @@
         });
     }
 
-    // ==============================
     // UPDATE JUDUL KATEGORI
-    // ==============================
     function updateKategoriTitle() {
         const urlParts = window.location.pathname.split('/');
         const kategoriAktif = urlParts[urlParts.length - 1];
@@ -728,9 +714,7 @@
             kategoriAktif.charAt(0).toUpperCase() + kategoriAktif.slice(1);
     }
 
-    // ==============================
     // RENDER PROJECT
-    // ==============================
     async function renderProjects() {
         const data = await fetchProjects();
 
@@ -743,9 +727,7 @@
         applyFilter();
     }
 
-    // ==============================
     // FILTER LOGIKA
-    // ==============================
     function applyFilter() {
         const container = document.getElementById('projectContainer');
         container.innerHTML = "";
@@ -801,9 +783,7 @@
         updateStats(filtered);
     }
 
-    // ==============================
     // UPDATE STATISTIK
-    // ==============================
     function updateStats(data) {
         const total = data.length;
         const selesai = data.filter(d => d.status === "Selesai").length;
@@ -820,9 +800,7 @@
         updateChart(selesai, proses, belum);
     }
 
-    // ==============================
     // UPDATE CHART
-    // ==============================
     function updateChart(selesai, proses, belum) {
         if (pieChart) pieChart.destroy();
 
@@ -845,16 +823,19 @@
         });
     }
 
-    // ==============================
     // EVENT LISTENER
-    // ==============================
     document.getElementById('statusFilter').addEventListener('change', applyFilter);
     document.getElementById('tahunFilter').addEventListener('change', applyFilter);
 
-    // ==============================
     // INIT
-    // ==============================
     updateKategoriTitle();
     renderProjects();
 </script>
+@endsection
+
+@section('bottom_navigation')
+<a href="{{ url('/evaluasi-pembangunan') }}" class="btn-nav">
+    <i class="bi bi-arrow-left"></i>
+    KEMBALI
+</a>
 @endsection
