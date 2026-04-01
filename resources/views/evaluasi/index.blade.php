@@ -2,54 +2,154 @@
 
 @section('content')
 
-<h2 class="mb-4 text-center">Evaluasi Pembangunan Desa</h2>
+<style>
+.evaluasi-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 40px 80px;
+    gap: 20px;
+    animation: fadeInRight 0.8s ease-out;
+}
 
-<div class="row g-4">
+.evaluasi-icon {
+    width: 65px;
+    height: 65px;
+    background: #E72128;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(231, 33, 40, 0.3);
+}
 
-    <div class="col-md-6 col-lg-3">
-        <a href="/evaluasi-pembangunan/infrastruktur" class="text-decoration-none">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5>Infrastruktur</h5>
-                    <p class="text-muted">Jalan, jembatan, drainase, dll</p>
-                </div>
-            </div>
-        </a>
+.evaluasi-title {
+    font-size: 35px;
+    font-weight: 780;
+    letter-spacing: 1px;
+        color: #333;
+}
+
+.hero-wrapper {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    perspective: 1000px;
+}
+
+.hero-img {
+    width: 1081px;
+    height: 608px;
+    object-fit: cover;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-accent {
+    width: 1000px;
+    height: 424px;
+    background: #4B0003;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.kategori-icon-section {
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    text-align: center;
+}
+
+.kategori-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    justify-content: center;
+    text-decoration: none;
+    color: #000;
+    font-weight: 800;
+    width: 160px;
+}
+
+.icon-circle {
+    width: 150px;
+    height: 150px;
+    background: #E72128;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+.icon-circle i {
+    font-size: 70px;
+    color: white;
+}
+
+.kategori-icon-item span {
+    font-size: 25px;
+    text-align: center;
+    line-height: 1.25;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+}
+
+.kategori-icon-item:active {
+    transform: scale(0.9);
+}
+</style>
+
+<div class="evaluasi-section">
+    <div class="evaluasi-icon">
+        <i class="bi bi-clipboard-data text-white fs-3"></i>
     </div>
+    <div class="evaluasi-title">EVALUASI</div>
+</div>
 
-    <div class="col-md-6 col-lg-3">
-        <a href="/evaluasi-pembangunan/sarana" class="text-decoration-none">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5>Sarana & Prasarana</h5>
-                    <p class="text-muted">Sekolah, lapangan, dll</p>
-                </div>
-            </div>
-        </a>
-    </div>
+<div class="hero-wrapper">
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef" class="hero-img">
+    <div class="hero-accent"></div>
+</div>
 
-    <div class="col-md-6 col-lg-3">
-        <a href="/evaluasi-pembangunan/ekonomi" class="text-decoration-none">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5>Ekonomi</h5>
-                    <p class="text-muted">BUMDes, UMKM, dll</p>
-                </div>
-            </div>
-        </a>
-    </div>
+<div class="kategori-icon-section">
+    <a href="{{ url('/evaluasi-pembangunan/infrastruktur') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-bar-chart"></i>
+        </div>
+        <span>PEMBANGUNAN<br>INFRASTRUKTUR</span>
+    </a>
 
-    <div class="col-md-6 col-lg-3">
-        <a href="/evaluasi-pembangunan/sosial" class="text-decoration-none">
-            <div class="card shadow-sm h-100">
-                <div class="card-body text-center">
-                    <h5>Sosial</h5>
-                    <p class="text-muted">Pelatihan & pemberdayaan</p>
-                </div>
-            </div>
-        </a>
-    </div>
+    <a href="{{ url('/evaluasi-pembangunan/sarana') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-building"></i>
+        </div>
+        <span>SARANA DAN<br>PRASARANA</span>
+    </a>
 
+    <a href="{{ url('/evaluasi-pembangunan/ekonomi') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-cash-coin"></i>
+        </div>
+        <span>EKONOMI</span>
+    </a>
+
+    <a href="{{ url('/evaluasi-pembangunan/sosial') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-people"></i>
+        </div>
+        <span>SOSIAL</span>
+    </a>
 </div>
 
 @endsection
