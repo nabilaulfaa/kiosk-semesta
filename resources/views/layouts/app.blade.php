@@ -121,8 +121,7 @@
             margin-bottom:30px;
             padding: 0 40px; 
             display:flex;
-            justify-content:space-between;
-            align-items:center;
+            justify-content:center;
         }
         .btn-kiosk {
             height: 85px;
@@ -145,13 +144,13 @@
         .btn-gray { background: #6c757d; }
 
         .btn-nav {
-            width: 250px;  
-            height: 75px;
+            width: 934px;  
+            height: 85px;
             background: #B51016;
             color: white;
             border-radius: 22px;
-            font-size: 25px;
-            font-weight: 650;
+            font-size: 28px;
+            font-weight: 750;
             border: none;
             display: flex;
             align-items: center;
@@ -223,11 +222,14 @@
         </div>
 
         <div class="footer-nav-wrapper">
-            <button class="btn-nav">
-                <i class="bi bi-house-door-fill"></i> BERANDA
-            </button>
-
-            @yield('bottom_navigation')
+            @hasSection('bottom_navigation')
+                @yield('bottom_navigation')
+            @else
+                <a href="{{ url('/') }}" class="btn-nav">
+                    <i class="bi bi-house-door-fill"></i>
+                    BERANDA
+                </a>
+            @endif
         </div>
 
             <div class="footer-bottom-bar">

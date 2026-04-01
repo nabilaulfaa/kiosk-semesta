@@ -57,87 +57,57 @@
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.kategori-section {
-    margin-top: 100px;
-    width: 1000px;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 235px);
-    gap: 20px;
-    z-index: 20;
-    padding-bottom: 50px;
+.kategori-icon-section {
+    margin-top: 120px;
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    text-align: center;
 }
 
-.kategori-link {
-        text-decoration: none !important;
-        display: block;
-        transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-.kategori-card {
-    width: 235px;
-    height: 450px;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+.kategori-icon-item {
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(0,0,0,0.05);
-    position: relative;   
+    align-items: center;  
+    justify-content: center;
+    text-decoration: none;
+    color: #000;
+    font-weight: 800;
+    width: 160px;
 }
 
-.kategori-link:active {
-    transform: scale(0.92);
-}
-
-.kategori-card::after {
-    position: absolute;
-    bottom: 15px;
-    font-size: 12px;
-    font-weight: bold;
-    color: #B51016;
-    width: 100%;
-    text-align: center;
-    opacity: 0.6;
-}
-
-.kategori-header {
-    width: 235px;
-    height: 82px;
-    background: #B51016;
-    color: white;
-    text-align: center;
-    padding: 0 10px;
-    font-weight: 700;
-    font-size: 18px;
+.icon-circle {
+    width: 150px;
+    height: 150px;
+    background: #E72128;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+    transition: 0.2s;
+    flex-shrink: 0;
 }
 
-.kategori-card img {
-    width: 235px;
-    height: 200px;
-    object-fit: cover;
+.icon-circle i {
+    font-size: 70px;
+    color: white;
 }
 
-.kategori-body {
-    padding: 20px 15px;
-    font-size: 16px;
+.kategori-icon-item span {
+    font-size: 25px;
     text-align: center;
-    line-height: 1.4;
-    color: #333;
-    flex-grow: 1; 
+    line-height: 1.25;
+    height: 120px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    width: 120px;
 }
 
+.kategori-icon-item:active {
+    transform: scale(0.9);
+}
 </style>
 
 <div class="evaluasi-section">
@@ -152,23 +122,34 @@
     <div class="hero-accent"></div>
 </div>
 
-<div class="kategori-section">
-    @foreach([
-        ['INFRASTRUKTUR','Peningkatan fasilitas umum.','1568605114967-8130f3a36994', 'infrastruktur'],
-        ['SARANA & PRASARANA','Pengadaan balai desa & fasilitas.','1577896851231-70ef18881754', 'sarana'],
-        ['EKONOMI','Pelatihan & bantuan UMKM.','1500595046743-cd271d694d30', 'ekonomi'],
-        ['SOSIAL','Program pemberdayaan masyarakat.','1582213782179-e0d53f98f2ca', 'sosial']
-    ] as $item)
-    
-    {{-- Sekarang $item[3] sudah ada isinya (infrastruktur, sarana, dll) --}}
-    <a href="{{ url('/evaluasi-pembangunan/'.$item[3]) }}" class="kategori-link">
-        <div class="kategori-card">
-            <div class="kategori-header">{{ $item[0] }}</div>
-            <img src="https://images.unsplash.com/photo-{{ $item[2] }}">
-            <div class="kategori-body">{{ $item[1] }}</div>
+<div class="kategori-icon-section">
+    <a href="{{ url('/evaluasi-pembangunan/infrastruktur') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-bar-chart"></i>
         </div>
+        <span>PEMBANGUNAN<br>INFRASTRUKTUR</span>
     </a>
-    @endforeach
+
+    <a href="{{ url('/evaluasi-pembangunan/sarana') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-building"></i>
+        </div>
+        <span>SARANA DAN<br>PRASARANA</span>
+    </a>
+
+    <a href="{{ url('/evaluasi-pembangunan/ekonomi') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-cash-coin"></i>
+        </div>
+        <span>EKONOMI</span>
+    </a>
+
+    <a href="{{ url('/evaluasi-pembangunan/sosial') }}" class="kategori-icon-item">
+        <div class="icon-circle">
+            <i class="bi bi-people"></i>
+        </div>
+        <span>SOSIAL</span>
+    </a>
 </div>
 
 @endsection
