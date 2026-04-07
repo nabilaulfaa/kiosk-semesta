@@ -83,4 +83,21 @@ Route::prefix('kiosk')->group(function () {
         })->name('evaluasi.detail');
     });
 
+    // PKK & Posyandu Utama
+    Route::get('/kiosk/pkk-posyandu', function () { 
+        return view('pkk_posyandu.index'); 
+    })->name('pkk.posyandu');
+
+    // Sub-Menu PKK
+    Route::get('/kiosk/pkk-posyandu/pkk', function () {
+        // Karena filenya pkk_posyandu/pkk.blade.php
+        return view('pkk_posyandu.pkk'); 
+    })->name('pkk.index');
+
+    // Sub-Menu Posyandu
+    Route::get('/kiosk/pkk-posyandu/posyandu', function () {
+        // Karena filenya pkk_posyandu/posyandu.blade.php
+        return view('pkk_posyandu.posyandu'); 
+    })->name('posyandu.index');
+
 });
