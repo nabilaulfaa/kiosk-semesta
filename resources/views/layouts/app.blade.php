@@ -123,25 +123,6 @@
             display:flex;
             justify-content:center;
         }
-        .btn-kiosk {
-            height: 85px;
-            padding: 0 40px;
-            color: white;
-            border-radius: 25px;
-            font-size: 26px;
-            font-weight: 700;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-            text-decoration: none;
-            transition: transform 0.2s;
-        }
-
-        .btn-red { background: #B51016; }
-        .btn-gray { background: #6c757d; }
 
         .btn-nav {
             width: 934px;  
@@ -203,57 +184,95 @@
             display: block; 
             line-height: 1; 
         }
+
+        .blur-all {
+            filter: blur(8px);
+            pointer-events: none;
+            user-select: none;
+            transition: .25s;
+        }
+
+        #main-layout-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+        }
+
     </style>
 </head>
+
 <body>
-    <div class="kiosk-wrapper">
-        <div class="header-top">
-            <div class="header-left-content">
-                <img src="{{ asset('images/logo-malang.png') }}" class="header-logo">
-                <div class="header-text-wrapper">
-                    <div class="text-dark-blue">PEMERINTAH KOTA MALANG</div>
-                    <div class="text-blue">JATIMULYO</div>
-                </div>
-            </div>
-        </div>
 
-        <div class="page-content">
-            @yield('content')
-        </div>
+<div class="kiosk-wrapper">
+        
+<div id="main-layout-content">
 
-        <div class="footer-nav-wrapper">
-            @hasSection('bottom_navigation')
-                @yield('bottom_navigation')
-            @else
-                <a href="{{ url('/') }}" class="btn-nav">
-                    <i class="bi bi-house-door-fill"></i>
-                    BERANDA
-                </a>
-            @endif
-        </div>
-
-            <div class="footer-bottom-bar">
-                <div class="welcome-msg">
-                    SELAMAT DATANG DI DESA JATIMULYO KECAMATAN LOWOKWARU
-                </div>
-                
-                <div class="time-widget">
-                    <span class="date-val">{{ date('d-m-Y') }}</span>
-                    <span class="hour-val" id="clock">--:--</span>
-                </div>
+    <div class="header-top">
+        <div class="header-left-content">
+            <img src="{{ asset('images/logo-malang.png') }}" class="header-logo">
+            <div class="header-text-wrapper">
+                <div class="text-dark-blue">PEMERINTAH KOTA MALANG</div>
+                <div class="text-blue">JATIMULYO</div>
             </div>
         </div>
     </div>
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            document.getElementById('clock').textContent = hours + ':' + minutes;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
+    <div class="page-content">
+        @yield('content')
+    </div>
+
+    <div class="footer-nav-wrapper">
+        @hasSection('bottom_navigation')
+            @yield('bottom_navigation')
+        @else
+            <a href="{{ route('beranda') }}" class="btn-nav">
+                <i class="bi bi-house-door-fill"></i>
+                BERANDA
+            </a>
+        @endif
+    </div>
+
+    <div class="footer-bottom-bar">
+        <div class="welcome-msg">
+            SELAMAT DATANG DI DESA JATIMULYO KECAMATAN LOWOKWARU
+        </div>
+
+        <div class="time-widget">
+            <span class="date-val">{{ date('d-m-Y') }}</span>
+            <span class="hour-val" id="clock">--:--</span>
+        </div>
+    </div>
+
+</div>
+
+@yield('modal_content')
+
+</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const clockElement = document.getElementById('clock');
+    if(clockElement) {
+        clockElement.textContent = hours + ':' + minutes;
+    }
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+function blurBackground(){
+    document.getElementById('main-layout-content')
+    .classList.add('blur-all');
+}
+
+function unblurBackground(){
+    document.getElementById('main-layout-content')
+    .classList.remove('blur-all');
+}
+</script>
+
 </body>
 </html>
