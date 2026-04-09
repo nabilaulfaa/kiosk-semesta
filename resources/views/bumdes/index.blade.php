@@ -337,28 +337,28 @@
 
         <div class="section-title mt-5">Unit Usaha</div>
         <div class="row g-3">
-            <div class="col-3" onclick="updateChartByUnit('air')">
+            <div class="col-3" onclick="updateChartByUnit('air');openStatistik('air')">
                 <div class="card-unit blue">
                     <div class="unit-label">AIR BERSIH</div>
                     <div class="unit-icon"><i class="bi bi-droplet-fill"></i></div>
                     <button class="btn-detail">Detail</button>
                 </div>
             </div>
-            <div class="col-3" onclick="updateChartByUnit('ternak')">
+            <div class="col-3" onclick="updateChartByUnit('ternak');openStatistik('ternak')">
                 <div class="card-unit red">
                     <div class="unit-label">PETERNAKAN</div>
                     <div class="unit-icon"><i class="bi bi-tencent-qq"></i></div>
                     <button class="btn-detail">Detail</button>
                 </div>
             </div>
-            <div class="col-3" onclick="updateChartByUnit('tani')">
+            <div class="col-3" onclick="updateChartByUnit('tani');openStatistik('tani')">
                 <div class="card-unit green">
                     <div class="unit-label">PERTANIAN</div>
                     <div class="unit-icon"><i class="bi bi-tree-fill"></i></div>
                     <button class="btn-detail">Detail</button>
                 </div>
             </div>
-            <div class="col-3" onclick="updateChartByUnit('sembako')">
+            <div class="col-3" onclick="updateChartByUnit('sembako');openStatistik('sembako')">
                 <div class="card-unit yellow">
                     <div class="unit-label">SEMBAKO</div>
                     <div class="unit-icon"><i class="bi bi-basket2-fill"></i></div>
@@ -437,6 +437,54 @@
     </div>
 </div>
 
+<div id="modalStatistik" class="modal-overlay">
+    <div class="modal-content-box" style="width:800px">
+
+        <div class="modal-header-custom">
+            <span id="modalStatTitle">AIR BERSIH</span>
+            <button class="close-modal-btn" onclick="closeStatModal()">&times;</button>
+        </div>
+
+        <div style="padding:25px">
+
+            <div style="margin-bottom:15px">
+                <select id="filterTahun" class="select-jenis" 
+                style="padding:8px 20px;font-size:16px"
+                onchange="updateStatistik()">
+                    <option value="2024">Tahun 2024</option>
+                    <option value="2025">Tahun 2025</option>
+                    <option value="2026" selected>Tahun 2026</option>
+                </select>
+            </div>
+
+            <div style="height:250px;background:#f5f5f5;border-radius:15px;padding:10px">
+                <canvas id="chartStatistik"></canvas>
+            </div>
+
+            <div style="margin-top:15px">
+                <b>Info Keuangan :</b>
+
+                <table class="detail-table" style="margin-top:10px;width:350px">
+                    <tr>
+                        <td class="lbl">Income</td>
+                        <td id="statIncome"></td>
+                    </tr>
+                    <tr>
+                        <td class="lbl">Pengeluaran</td>
+                        <td id="statExpense"></td>
+                    </tr>
+                    <tr>
+                        <td class="lbl">Keuntungan</td>
+                        <td id="statProfit"></td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @endsection
 @endsection
 
@@ -449,6 +497,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     let myChart;
+    let statChart;
+    let currentUnitStat = "air";
 
     const dataUnit = {
         air: [30, 65, 95],
@@ -471,11 +521,33 @@
         'Bendahara': { lahir: 'Malang, 05-03-1988', agama: 'Islam', pendidikan: 'D3', periode: '2022-2026', sk: '666.999' }
     };
 
+    const mockStatistik = {
+        air: {
+            2026: { bulanan: [20, 40, 60, 80, 70, 90, 50, 60, 75, 85, 95, 100], income: "25 JT", expense: "10 JT", profit: "15 JT" },
+            2025: { bulanan: [15, 30, 50, 70, 60, 75, 45, 55, 65, 70, 80, 85], income: "20 JT", expense: "8 JT", profit: "12 JT" },
+            2024: { bulanan: [10, 20, 30, 40, 50, 60, 40, 30, 20, 50, 60, 70], income: "15 JT", expense: "5 JT", profit: "10 JT" }
+        },
+        ternak: {
+            2026: { bulanan: [10, 25, 40, 60, 75, 85, 65, 70, 80, 85, 90, 95], income: "40 JT", expense: "15 JT", profit: "25 JT" },
+            2025: { bulanan: [8, 15, 20, 30, 40, 50, 45, 50, 55, 60, 70, 80], income: "30 JT", expense: "10 JT", profit: "20 JT" },
+            2024: { bulanan: [5, 10, 15, 20, 25, 30, 20, 25, 30, 40, 50, 60], income: "20 JT", expense: "8 JT", profit: "12 JT" }
+        },
+        tani: {
+            2026: { bulanan: [5, 20, 35, 55, 70, 80, 60, 65, 75, 85, 90, 100], income: "30 JT", expense: "12 JT", profit: "18 JT" },
+            2025: { bulanan: [10, 15, 25, 40, 50, 60, 55, 60, 65, 70, 75, 80], income: "25 JT", expense: "10 JT", profit: "15 JT" },
+            2024: { bulanan: [5, 10, 20, 30, 40, 50, 45, 40, 35, 45, 50, 55], income: "15 JT", expense: "7 JT", profit: "8 JT" }
+        },
+        sembako: {
+            2026: { bulanan: [30, 45, 60, 75, 80, 85, 75, 80, 90, 95, 100, 100], income: "50 JT", expense: "20 JT", profit: "30 JT" },
+            2025: { bulanan: [25, 35, 45, 55, 65, 70, 60, 65, 70, 80, 85, 90], income: "45 JT", expense: "18 JT", profit: "27 JT" },
+            2024: { bulanan: [20, 30, 40, 50, 55, 60, 50, 55, 60, 65, 70, 75], income: "35 JT", expense: "15 JT", profit: "20 JT" }
+        }
+    };
+
     document.addEventListener("DOMContentLoaded", function() {
         const canvas = document.getElementById('chartBumdes');
         const ctx = canvas.getContext('2d');
 
-        Chart.defaults.devicePixelRatio = 3;
         const dpr = window.devicePixelRatio || 3;
 
         myChart = new Chart(ctx, {
@@ -493,61 +565,94 @@
                 }]
             },
             options: {
-                devicePixelRatio: dpr,
+                devicePixelRatio: window.devicePixelRatio,
                 responsive: true,
                 maintainAspectRatio: false,
-                layout: { padding: 10 },
-                animation: { duration: 1000, easing: 'easeOutQuart' },
                 plugins: {
                     legend: { display: false },
                     tooltip: {
                         backgroundColor: '#1a1a1a',
-                        titleFont: { size: 18, weight: 'bold' },
-                        bodyFont: { size: 16 },
                         padding: 15,
-                        cornerRadius: 10,
-                        displayColors: false,
                         callbacks: { label: (ctx) => `${ctx.raw}%` }
                     }
                 },
                 scales: {
-                    y: { 
-                        beginAtZero: true, 
-                        max: 100,
-                        grid: { color: '#f5f5f5', drawBorder: false },
-                        ticks: { 
-                            font: { size: 15, weight: '600' }, 
-                            color: '#bbb',
-                            callback: v => v + "%" 
-                        } 
-                    },
-                    x: { 
-                        grid: { display: false },
-                        ticks: { 
-                            font: { size: 20, weight: '800' }, 
-                            color: '#333' 
-                        } 
-                    }
+                    y: { beginAtZero: true, max: 100, ticks: { callback: v => v + "%" } },
+                    x: { grid: { display: false } }
                 }
             }
         });
     });
 
+    function openStatistik(unit) {
+        currentUnitStat = unit;
+        const title = { air: "AIR BERSIH", ternak: "PETERNAKAN", tani: "PERTANIAN", sembako: "SEMBAKO" };
+        document.getElementById("modalStatTitle").innerText = title[unit];
+        document.getElementById("modalStatistik").classList.add("show");
+        updateStatistik();
+    }
+
+    function closeStatModal() {
+        document.getElementById("modalStatistik").classList.remove("show");
+    }
+
+    function updateStatistik() {
+
+        const tahun = document.getElementById("filterTahun").value;
+
+        const data = mockStatistik[currentUnitStat][tahun];
+        if(!data) return;
+
+        document.getElementById("statIncome").innerText = data.income;
+        document.getElementById("statExpense").innerText = data.expense;
+        document.getElementById("statProfit").innerText = data.profit;
+
+        const ctx = document
+            .getElementById("chartStatistik")
+            .getContext("2d");
+
+        if (statChart) statChart.destroy();
+
+        statChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    "Jan","Feb","Mar","Apr","Mei","Jun",
+                    "Jul","Agu","Sep","Okt","Nov","Des"
+                ],
+                datasets: [{
+                    data: data.bulanan,
+                    backgroundColor: colorsUnit[currentUnitStat],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio:false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+    }
+
     function showDetail(jabatan, nama, fotoUrl) {
         const data = detailData[jabatan];
-        
         document.getElementById('modalTitle').innerText = `DETAIL ${jabatan.toUpperCase()}`;
         document.getElementById('modalFoto').src = fotoUrl;
         document.getElementById('modalNamaLabel').innerText = nama;
         document.getElementById('modalJabatanLabel').innerText = jabatan;
-        
         document.getElementById('dNama').innerText = nama;
         document.getElementById('dLahir').innerText = data.lahir;
         document.getElementById('dAgama').innerText = data.agama;
         document.getElementById('dPendidikan').innerText = data.pendidikan;
         document.getElementById('dPeriode').innerText = data.periode;
         document.getElementById('dSK').innerText = data.sk;
-
         document.getElementById('modalPengurus').classList.add('show');
     }
 
@@ -556,10 +661,10 @@
     }
 
     window.onclick = function(event) {
-        const modal = document.getElementById('modalPengurus');
-        if (event.target == modal) {
-            closeModal();
-        }
+        const modalPengurus = document.getElementById('modalPengurus');
+        const modalStat = document.getElementById('modalStatistik');
+        if (event.target == modalPengurus) closeModal();
+        if (event.target == modalStat) closeStatModal();
     }
 
     function updateChartFromSelect() {
@@ -572,7 +677,7 @@
     }
 
     function updateChartData(key) {
-        if(!myChart) return;
+        if (!myChart) return;
         myChart.data.datasets[0].data = dataUnit[key];
         myChart.data.datasets[0].backgroundColor = colorsUnit[key];
         myChart.update();

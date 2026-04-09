@@ -1,5 +1,3 @@
-POSYANDU 
-
 @extends('layouts.app')
 
 @section('content')
