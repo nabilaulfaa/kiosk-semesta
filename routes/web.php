@@ -52,6 +52,10 @@ Route::prefix('kiosk')->group(function () {
         return view('layanan_surat.index'); 
     })->name('layanan.surat');
 
+    Route::get('/cek-surat', function () { 
+        return view('layanan_surat.cek_surat'); 
+    })->name('cek.surat');
+
     // 3. GROUP EVALUASI (DENGAN SUB-KATEGORI)
     Route::prefix('evaluasi')->group(function () {
         
