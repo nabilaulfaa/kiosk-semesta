@@ -51,6 +51,7 @@
         gap: 25px; 
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         border: 2px solid transparent;
+        cursor: pointer;
     }
     .card-pengurus:hover { 
         transform: scale(1.03); 
@@ -88,6 +89,7 @@
         color: #555; 
     }
 
+    /* Unit Usaha */
     .card-unit { 
         border-radius: 25px; 
         overflow: hidden; 
@@ -133,6 +135,7 @@
     .blue .unit-icon { 
         color: #007bff; 
     }
+    
     .red { 
         background: #F8B4B4; 
     } 
@@ -142,6 +145,7 @@
     .red .unit-icon { 
         color: #ff4d4d; 
     }
+    
     .green { 
         background: #C1E1C1; 
     } 
@@ -151,6 +155,7 @@
     .green .unit-icon { 
         color: #28a745; 
     }
+    
     .yellow { 
         background: #FFE4B5; 
     } 
@@ -185,6 +190,113 @@
         width: 100% !important;
         height: 100% !important;
     }
+
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(5px);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content-box {
+        background: white;
+        width: 750px;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header-custom {
+        background: #B51016;
+        color: white;
+        padding: 15px 25px;
+        font-weight: 800;
+        font-size: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-modal-btn {
+        background: none; 
+        border: 1px solid white; 
+        color: white;
+        width: 35px; 
+        height: 35px; 
+        border-radius: 5px;
+        font-size: 24px; 
+        cursor: pointer; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+    }
+
+    .modal-body-custom {
+        display: flex;
+        padding: 30px;
+        gap: 20px;
+    }
+
+    .profile-side { 
+        width: 30%; 
+        text-align: center; 
+    }
+    .photo-box-modal { 
+        width: 100%; 
+        height: 220px; 
+        background: #333; 
+        border-radius: 15px; 
+        overflow: hidden; 
+        margin-bottom: 10px;
+    }
+    .photo-box-modal img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+    }
+    .profile-label-modal { 
+        font-size: 16px; 
+        color: #333; 
+        line-height: 1.4; 
+    }
+
+    .info-side { 
+        width: 70%; 
+    }
+    .detail-table { 
+        width: 100%; 
+        border-collapse: separate; 
+        border-spacing: 0 8px; 
+    }
+    .detail-table td { 
+        padding: 12px 15px; 
+        font-size: 18px; 
+        background: #ececec; 
+        color: #333; 
+        font-weight: 600; 
+    }
+    .detail-table td.lbl { 
+        background: #B51016; 
+        color: white; 
+        width: 30%; 
+        border-top-left-radius: 5px; 
+        border-bottom-left-radius: 5px; 
+    }
+    .detail-table td:last-child { 
+        border-top-right-radius: 5px; 
+        border-bottom-right-radius: 5px; 
+    }
 </style>
 
 @section('content')
@@ -210,7 +322,7 @@
             @endphp
             @foreach($pengurus as $p)
             <div class="col-6">
-                <div class="card-pengurus">
+                <div class="card-pengurus" onclick="showDetail('{{ $p['jabatan'] }}', '{{ $p['nama'] }}', '{{ asset('img/pengurus/' . $p['foto']) }}')">
                     <div class="photo-container">
                         <img src="{{ asset('img/pengurus/' . $p['foto']) }}" alt="{{ $p['nama'] }}" class="photo-img">
                     </div>
@@ -221,8 +333,8 @@
                 </div>
             </div>
             @endforeach
-
         </div>
+
         <div class="section-title mt-5">Unit Usaha</div>
         <div class="row g-3">
             <div class="col-3" onclick="updateChartByUnit('air')">
@@ -266,10 +378,72 @@
         </div>
         
         <div class="chart-wrapper">
-            <canvas id="chartBumdes" width="1200" height="500"></canvas>
+            <canvas id="chartBumdes"></canvas>
         </div>
     </div>
 </div>
+
+ @section('modal_content')
+
+<style>
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(8px); 
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .modal-overlay.show {
+        display: flex;
+    }
+</style>
+
+<div id="modalPengurus" class="modal-overlay">
+    <div class="modal-content-box">
+        <div class="modal-header-custom">
+            <span id="modalTitle">DETAIL</span>
+            <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+        </div>
+
+        <div class="modal-body-custom">
+            <div class="profile-side">
+                <div class="photo-box-modal">
+                    <img id="modalFoto">
+                </div>
+                <div class="profile-label-modal">
+                    <strong id="modalNamaLabel"></strong><br>
+                    <span id="modalJabatanLabel"></span>
+                </div>
+            </div>
+
+            <div class="info-side">
+                <table class="detail-table">
+                    <tr><td class="lbl">Nama</td><td id="dNama"></td></tr>
+                    <tr><td class="lbl">Lahir</td><td id="dLahir"></td></tr>
+                    <tr><td class="lbl">Agama</td><td id="dAgama"></td></tr>
+                    <tr><td class="lbl">Pendidikan</td><td id="dPendidikan"></td></tr>
+                    <tr><td class="lbl">Periode</td><td id="dPeriode"></td></tr>
+                    <tr><td class="lbl">No. SK</td><td id="dSK"></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+@endsection
+
+@section('bottom_navigation')
+<a href="{{ route('beranda') }}" class="btn-nav">
+    <i class="bi bi-arrow-left"></i> KEMBALI
+</a>
 @endsection
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -288,6 +462,13 @@
         ternak: '#ff4d4d',
         tani: '#28a745',
         sembako: '#ffa500'
+    };
+
+    const detailData = {
+        'Kepala BUMDES': { lahir: 'Malang, 10-06-1979', agama: 'Islam', pendidikan: 'S2', periode: '2022-2026', sk: '666.999' },
+        'Wakil Kepala': { lahir: 'Malang, 15-08-1982', agama: 'Islam', pendidikan: 'S1', periode: '2022-2026', sk: '666.999' },
+        'Sekretaris': { lahir: 'Malang, 20-01-1985', agama: 'Islam', pendidikan: 'S1', periode: '2022-2026', sk: '666.999' },
+        'Bendahara': { lahir: 'Malang, 05-03-1988', agama: 'Islam', pendidikan: 'D3', periode: '2022-2026', sk: '666.999' }
     };
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -312,6 +493,7 @@
                 }]
             },
             options: {
+                devicePixelRatio: dpr,
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: { padding: 10 },
@@ -351,6 +533,35 @@
         });
     });
 
+    function showDetail(jabatan, nama, fotoUrl) {
+        const data = detailData[jabatan];
+        
+        document.getElementById('modalTitle').innerText = `DETAIL ${jabatan.toUpperCase()}`;
+        document.getElementById('modalFoto').src = fotoUrl;
+        document.getElementById('modalNamaLabel').innerText = nama;
+        document.getElementById('modalJabatanLabel').innerText = jabatan;
+        
+        document.getElementById('dNama').innerText = nama;
+        document.getElementById('dLahir').innerText = data.lahir;
+        document.getElementById('dAgama').innerText = data.agama;
+        document.getElementById('dPendidikan').innerText = data.pendidikan;
+        document.getElementById('dPeriode').innerText = data.periode;
+        document.getElementById('dSK').innerText = data.sk;
+
+        document.getElementById('modalPengurus').classList.add('show');
+    }
+
+    function closeModal() {
+        document.getElementById('modalPengurus').classList.remove('show');
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('modalPengurus');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
     function updateChartFromSelect() {
         updateChartData(document.getElementById('unitSelector').value);
     }
@@ -367,9 +578,3 @@
         myChart.update();
     }
 </script>
-
-@section('bottom_navigation')
-<a href="{{ route('beranda') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
-@endsection
