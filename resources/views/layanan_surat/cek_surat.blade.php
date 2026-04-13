@@ -7,19 +7,58 @@ $jenis = request('jenis');
 @endphp
 
 <style>
+    .header-top-style {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        padding: 40px 80px 0 80px; /* atas aja biar ga tabrakan */
+        gap: 20px;
+    }
+
+    .header-icon-circle {
+        width: 65px;
+        height: 65px;
+        background: #E72128;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(231, 33, 40, 0.3);
+    }
+
+    .header-icon-circle i {
+        font-size: 30px;
+        color: white;
+    }
+
+    .header-text-title {
+        font-size: 35px;
+        font-weight: 800;
+        color: #333;
+        text-transform: uppercase;
+    }
+
     .container-surat {
-        padding: 40px 80px;
+        padding: 20px 80px 40px 80px;
     }
 
     .judul-surat {
-        font-size: 22px;
+        font-size: 28px;
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+    }
+
+    label {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        display: block;
     }
 
     .input-surat {
         width: 100%;
-        padding: 15px;
+        font-size: 18px;
+        padding: 16px;
         border-radius: 10px;
         border: none;
         background: #ddd;
@@ -28,13 +67,20 @@ $jenis = request('jenis');
 
     .btn-cek {
         width: 100%;
-        padding: 15px;
+        font-size: 20px;
+        padding: 16px;
         background: #E72128;
         color: white;
         border: none;
         border-radius: 10px;
         font-weight: 700;
         margin-bottom: 30px;
+    }
+
+    .label-blanko {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
     }
 
     .preview-blanko {
@@ -51,6 +97,7 @@ $jenis = request('jenis');
 
     .btn-merah {
         flex: 1;
+        font-size: 18px;
         padding: 15px;
         background: #E72128;
         color: white;
@@ -60,7 +107,7 @@ $jenis = request('jenis');
     }
 
     .container-surat {
-        padding:40px 80px;
+        padding:20px 80px 60px 80px;
         animation: fadeSlide .5s ease;
     }
 
@@ -116,6 +163,13 @@ $jenis = request('jenis');
         box-shadow:0 6px 15px rgba(231,33,40,.25);
     }
 </style>
+
+<div class="header-top-style">
+    <div class="header-text-title">LAYANAN SURAT</div>
+    <div class="header-icon-circle">
+        <i class="bi bi-file-earmark-text"></i>
+    </div>
+</div>
 
 <div class="container-surat">
     <div class="judul-surat">

@@ -2,7 +2,6 @@
 
 @section('content')
 <style>
-    /* Kontainer Utama */
     .main-page-container {
         display: flex;
         flex-direction: column;
@@ -10,10 +9,9 @@
         background-color: #ffffff;
     }
 
-    /* Header Section (Meniru gaya Evaluasi: Kanan Atas) */
     .header-top-style {
         display: flex;
-        justify-content: flex-end; /* Mentok Kanan */
+        justify-content: flex-end; 
         align-items: center;
         padding: 40px 80px;
         gap: 20px;
@@ -43,12 +41,11 @@
         text-transform: uppercase;
     }
 
-    /* Container untuk Judul Kiri & Card yang ditengahkan */
     .content-centered-area {
-        flex-grow: 1; /* Mengambil sisa ruang */
+        flex-grow: 1; 
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Tengahkan Vertikal */
+        justify-content: center; 
         padding: 0 80px 100px 80px; 
     }
 

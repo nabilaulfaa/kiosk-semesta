@@ -16,21 +16,27 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
     }
 
     .sosial-title { 
-        font-size: 28px; 
-        font-weight: 800; }
+        font-size: 35px; 
+        font-weight: 800; 
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #222;
+    }
 
     .evaluasi-badge {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 20px;
+        justify-content: flex-end;
     }
 
     .icon-circle {
-        width: 55px;
-        height: 55px;
+        width: 65px;
+        height: 65px;
         background: #E72128;
         border-radius: 50%;
         display: flex;
@@ -41,8 +47,10 @@
     }
 
     .evaluasi-text { 
-        font-size: 24px; 
-        font-weight: 800; 
+        font-size: 35px; 
+        font-weight: 700; 
+        letter-spacing: 1px;
+        color: #222;
     }
 
     .tahun-wrapper {
@@ -119,7 +127,9 @@
 
     .stat-title { 
         font-size: 18px; 
-        color: #000000; }
+        font-weight: 600;
+        color: #333;
+    }
 
     .stat-value {
         font-size: 25px;
@@ -150,20 +160,22 @@
 
     </style>
         <div class="header-container">
-            <div class="top-section">
-                <div class="sosial-title">Sosial</div>
+            <div class="top-section" style="justify-content: flex-end; margin-bottom: 20px;">
                 <div class="evaluasi-badge">
                     <div class="icon-circle"><i class="bi bi-clipboard-data"></i></div>
                     <div class="evaluasi-text">EVALUASI</div>
                 </div>
             </div>
 
-            <div class="tahun-wrapper">
-                <select class="btn-tahun" id="tahunFilter">
-                    <option value="2026">Tahun 2026</option>
-                    <option value="2025">Tahun 2025</option>
-                    <option value="2024">Tahun 2024</option>
-                </select>
+            <div class="top-section">
+                <div class="sosial-title">Sosial</div>
+                <div class="tahun-wrapper" style="margin-top: 0;">
+                    <select class="btn-tahun" id="tahunFilter">
+                        <option value="2026">Tahun 2026</option>
+                        <option value="2025">Tahun 2025</option>
+                        <option value="2024">Tahun 2024</option>
+                    </select>
+                </div>
             </div>
         </div>
 

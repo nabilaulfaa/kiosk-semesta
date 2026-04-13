@@ -3,7 +3,6 @@
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-    /* CSS ORIGINAL */
     html, body { 
         margin: 0; 
         padding: 0; 
@@ -38,12 +37,13 @@
 
     .evaluasi-title { 
         font-size: 35px; 
-        font-weight: 800; 
+        font-weight: 700;
+        letter-spacing: 1px;
     }
 
     .infra-title { 
         font-size: 35px; 
-        font-weight: 900; 
+        font-weight: 800; 
         text-transform: uppercase; 
     }
 
@@ -63,8 +63,8 @@
         display: flex; 
         align-items: center; 
         gap: 10px; 
-        font-size: 22px; 
-        font-weight: 700; 
+        font-size: 20px; 
+        font-weight: 600; 
         margin-bottom: 10px; 
     }
 
@@ -81,8 +81,8 @@
     }
 
     .stats-numbers { 
-        font-size: 24px; 
-        font-weight: 800; 
+        font-size: 22px; 
+        font-weight: 700; 
         line-height: 1.6; 
     }
 
@@ -101,7 +101,7 @@
         padding: 12px 20px; 
         border-radius: 10px; 
         font-size: 18px; 
-        font-weight: 700; 
+        font-weight: 600; 
         cursor: pointer; 
     }
 
@@ -120,6 +120,7 @@
         gap: 25px; 
         box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
         transition: 0.3s; 
+        transform: translateZ(0);
     }
 
     .project-card:hover { 
@@ -143,13 +144,13 @@
     .project-info h3 { 
         color: #B51016; 
         font-size: 28px; 
-        font-weight: 900; 
+        font-weight: 700; 
         margin-bottom: 10px; 
     }
 
     .info-row { 
         font-size: 18px; 
-        font-weight: 600; 
+        font-weight: 500; 
         margin-bottom: 3px; 
     }
 
@@ -181,6 +182,7 @@
         border-radius: 10px; 
         border: none; 
         font-weight: 700; 
+        font-size: 16px;
         cursor: pointer; 
         transition: 0.2s; 
     }
@@ -414,13 +416,11 @@ function applyFilter() {
 
 function openModalFull() {
     document.getElementById("modalDetail").classList.add("show");
-    if (typeof blurBackground === 'function') blurBackground();
 }
 
 function closeModalFull() {
     document.getElementById("modalDetail").classList.remove("show");
     document.getElementById('m-bar').style.width = '0%';
-    if (typeof unblurBackground === 'function') unblurBackground();
 }
 
 document.getElementById('modalDetail').addEventListener('click', function(e) {
@@ -437,8 +437,7 @@ document.getElementById('modalDetail').addEventListener('click', function(e) {
         left: 0; 
         width: 100%; 
         height: 100%; 
-        background: rgba(0,0,0,0.25); 
-        backdrop-filter: blur(8px); 
+        background: rgba(0,0,0,0.7);
         display: none; 
         justify-content: center; 
         align-items: center; 

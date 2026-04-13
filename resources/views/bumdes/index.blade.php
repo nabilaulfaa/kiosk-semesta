@@ -1,21 +1,56 @@
 @extends('layouts.app')
 
 <style>
+    .bumdes-header-container {
+        padding: 40px 80px 20px;
+    }
+
+    .bumdes-header-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .bumdes-icon {
+        width: 65px;
+        height: 65px;
+        background: #E72128;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(231, 33, 40, 0.3);
+    }
+
+    .bumdes-icon i {
+        font-size: 30px;
+        color: #fff;
+    }
+
+    .bumdes-title-top {
+        font-size: 35px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
     .bumdes-page { 
         padding-top: 20px; 
         padding-bottom: 50px; 
     }
+
     .main-title { 
-        font-weight: 900; 
-        font-size: 40px; 
+        font-weight: 800; 
+        font-size: 35px; 
         color: #1a1a1a; 
-        letter-spacing: -1px; 
+        letter-spacing: -1px;
     }
+
     .section-title { 
         color: #B51016; 
-        font-weight: 800; 
-        font-size: 34px; 
-        margin-bottom: 25px; 
+        font-weight: 700; 
+        font-size: 28px; 
+        margin-bottom: 25px;
     }
 
     .bumdes-badge { 
@@ -24,6 +59,7 @@
         align-items: center; 
         justify-content: center;
     }
+
     .badge-icon { 
         background: #B51016; 
         color: white; 
@@ -37,10 +73,11 @@
         box-shadow: 0 4px 10px rgba(181, 16, 22, 0.3);
         margin-bottom: 5px;
     }
+
     .badge-text { 
         color: #1a1a1a; 
         line-height: 1;
-     }
+    }
 
     .card-pengurus { 
         background: #ececec; 
@@ -53,6 +90,7 @@
         border: 2px solid transparent;
         cursor: pointer;
     }
+
     .card-pengurus:hover { 
         transform: scale(1.03); 
         background: #fff; 
@@ -79,17 +117,18 @@
     }
     
     .jabatan { 
-        font-weight: 800; 
-        font-size: 26px; 
+        font-weight: 700; 
+        font-size: 22px; 
         color: #111; 
         line-height: 1.2; 
     }
+
     .nama { 
-        font-size: 22px; 
+        font-size: 18px; 
+        font-weight: 500;
         color: #555; 
     }
 
-    /* Unit Usaha */
     .card-unit { 
         border-radius: 25px; 
         overflow: hidden; 
@@ -98,10 +137,12 @@
         transition: 0.3s; 
         cursor: pointer; 
     }
+
     .card-unit:hover { 
         transform: translateY(-12px); 
         box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
     }
+
     .unit-label { 
         color: white; 
         padding: 15px; 
@@ -109,6 +150,7 @@
         font-size: 22px; 
         margin-bottom: 10px; 
     }
+
     .unit-icon { 
         height: 160px; 
         display: flex; 
@@ -116,6 +158,7 @@
         justify-content: center; 
         font-size: 80px; 
     }
+
     .btn-detail { 
         background: white; 
         border: none; 
@@ -129,9 +172,11 @@
     .blue { 
         background: #C5E1FF; 
     } 
+
     .blue .unit-label { 
         background: #007bff; 
     } 
+
     .blue .unit-icon { 
         color: #007bff; 
     }
@@ -139,9 +184,11 @@
     .red { 
         background: #F8B4B4; 
     } 
+
     .red .unit-label { 
         background: #ff4d4d; 
     } 
+
     .red .unit-icon { 
         color: #ff4d4d; 
     }
@@ -149,9 +196,11 @@
     .green { 
         background: #C1E1C1; 
     } 
+
     .green .unit-label { 
         background: #28a745; 
     } 
+
     .green .unit-icon { 
         color: #28a745; 
     }
@@ -159,9 +208,11 @@
     .yellow { 
         background: #FFE4B5; 
     } 
+
     .yellow .unit-label { 
         background: #ffa500; 
     } 
+
     .yellow .unit-icon { 
         color: #ffa500; 
     }
@@ -176,6 +227,7 @@
         font-weight: 800; 
         cursor: pointer;
     }
+
     .chart-wrapper { 
         background: #ffffff; 
         padding: 40px; 
@@ -195,8 +247,7 @@
         display: none;
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.6);
-        backdrop-filter: blur(5px);
+        background: rgba(0,0,0,0.7);
         z-index: 9999;
         justify-content: center;
         align-items: center;
@@ -252,6 +303,7 @@
         width: 30%; 
         text-align: center; 
     }
+
     .photo-box-modal { 
         width: 100%; 
         height: 220px; 
@@ -260,11 +312,13 @@
         overflow: hidden; 
         margin-bottom: 10px;
     }
+
     .photo-box-modal img { 
         width: 100%; 
         height: 100%; 
         object-fit: cover; 
     }
+
     .profile-label-modal { 
         font-size: 16px; 
         color: #333; 
@@ -274,11 +328,13 @@
     .info-side { 
         width: 70%; 
     }
+
     .detail-table { 
         width: 100%; 
         border-collapse: separate; 
         border-spacing: 0 8px; 
     }
+
     .detail-table td { 
         padding: 12px 15px; 
         font-size: 18px; 
@@ -286,6 +342,7 @@
         color: #333; 
         font-weight: 600; 
     }
+
     .detail-table td.lbl { 
         background: #B51016; 
         color: white; 
@@ -293,6 +350,7 @@
         border-top-left-radius: 5px; 
         border-bottom-left-radius: 5px; 
     }
+
     .detail-table td:last-child { 
         border-top-right-radius: 5px; 
         border-bottom-right-radius: 5px; 
@@ -302,14 +360,17 @@
 @section('content')
 <div class="bumdes-page">
     <div class="container-fluid px-5">
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <h2 class="main-title m-0">BADAN USAHA MILIK DESA</h2>
-            <div class="bumdes-badge">
-                <div class="badge-icon"><i class="bi bi-people-fill"></i></div>
-                <span class="badge-text fw-bold fs-3">BUMDES</span>
+        <div class="bumdes-header-container">
+            <div class="bumdes-header-right">
+                <div class="bumdes-icon">
+                    <i class="bi bi-building"></i>
+                </div>
+                <div class="bumdes-title-top">BUMDES</div>
             </div>
         </div>
 
+        <h2 class="main-title mb-5">BADAN USAHA MILIK DESA</h2>
+        
         <div class="section-title">Struktur Pengurus</div>
         <div class="row g-4">
             @php
@@ -383,7 +444,7 @@
     </div>
 </div>
 
- @section('modal_content')
+@section('modal_content')
 
 <style>
     .modal-overlay {
@@ -392,8 +453,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0,0,0,0.4);
-        backdrop-filter: blur(8px); 
+        background: rgba(0,0,0,0.7);
         display: none;
         justify-content: center;
         align-items: center;
