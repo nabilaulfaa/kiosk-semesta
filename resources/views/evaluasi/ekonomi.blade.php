@@ -10,23 +10,65 @@
 
     .evaluasi-header {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
         margin-bottom: 30px;
     }
 
-    .evaluasi-title {
-        font-size: 40px;
-        font-weight: 800;
+    .evaluasi-section { 
+        display: flex; 
+        justify-content: flex-end; 
+        align-items: center; 
+        gap: 20px; 
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .evaluasi-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 0px;
+    }
+
+    .evaluasi-icon { 
+        width: 65px; 
+        height: 65px; 
+        background: #E72128; 
+        border-radius: 50%; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+    }
+
+    .evaluasi-icon i { 
+        font-size: 30px; 
+        color: #fff; 
+    }
+
+    .evaluasi-title { 
+        font-size: 35px; 
+        font-weight: 800; 
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #222;
+        margin: 0;
+    }
+
+    .evaluasi-title-main {
+        font-size: 35px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #222;
+        margin: 0;
     }
 
     .filter-tahun {
         background: #B51016;
         color: white;
-        padding: 14px 26px;
-        border-radius: 20px;
-        font-size: 22px;
-        font-weight: 700;
+        padding: 12px 20px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 600;
         border: none;
         cursor: pointer;
         transition: background 0.3s ease;
@@ -49,7 +91,7 @@
 
     @media (min-width: 1024px) {
         .summary-grid { grid-template-columns: repeat(2, 1fr); }
-        .evaluasi-wrapper { padding: 40px; } 
+        .evaluasi-wrapper { padding: 40px 80px; } 
     }
 
     .summary-card {
@@ -99,7 +141,7 @@
     }
 
     .summary-value {
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 800;
         color: #B51016;
     }
@@ -124,9 +166,9 @@
 
     .chart-title {
         text-align: center;
+        font-size: 18px;
         font-weight: 700;
         margin-bottom: 10px;
-        font-size: 18px;
         padding-left: 10px;
         border-left: 5px solid #B51016;
     }
@@ -142,7 +184,9 @@
     }
 
     @media (max-width: 1024px) {
-        .evaluasi-wrapper { padding: 40px; }
+        .evaluasi-wrapper { 
+            padding: 40px 80px; 
+        }
     }
 
     @media (max-width: 600px) {
@@ -153,14 +197,25 @@
 </style>
 
 <div class="evaluasi-wrapper">
+
     <div class="evaluasi-header">
-        <div class="evaluasi-title">Ekonomi</div>
+    <div class="evaluasi-section">
+        <div class="evaluasi-icon">
+            <i class="bi bi-clipboard-data"></i>
+        </div>
+        <div class="evaluasi-title-main">EVALUASI</div>
+    </div>
+
+    <div class="evaluasi-bottom">
+        <h1 class="evaluasi-title">EKONOMI</h1>
+
         <select id="filterTahun" class="filter-tahun" onchange="loadData()">
             <option value="2026">Tahun 2026</option>
             <option value="2025">Tahun 2025</option>
             <option value="2024">Tahun 2024</option>
         </select>
     </div>
+</div>
 
     <div class="summary-grid">
         <div class="summary-card">

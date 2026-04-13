@@ -43,7 +43,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 15px;
+        gap: 20px;
         transition: all 0.3s ease;
     }
 
@@ -61,8 +61,8 @@
     }
 
     .icon-circle {
-        width: 140px;
-        height: 140px;
+        width: 161px;
+        height: 161px;
         background: #E72128;
         border-radius: 50%;
         display: flex;
@@ -75,21 +75,22 @@
     .icon-circle img {
         width: 70px;
         height: 70px;
-        filter: brightness(0) invert(1); /* Membuat icon putih */
+        filter: brightness(0) invert(1); 
     }
 
     .icon-circle i {
-        font-size: 60px;
+        font-size: 70px;
         color: white;
     }
 
     .menu-label {
         color: #333;
-        font-size: 22px;
+        font-size: 28px;
         font-weight: 800;
         text-align: center;
         text-transform: uppercase;
-        line-height: 1.2;
+        line-height: 1.3;
+        font-family: 'Poppins', sans-serif;
     }
 </style>
 

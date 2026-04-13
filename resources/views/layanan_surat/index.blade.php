@@ -45,10 +45,10 @@
     }
 
     .left-section-title {
-        font-size: 32px;
-        font-weight: 800;
-        color: #333;
-        margin-bottom: 30px;
+        font-size: 28px;
+        font-weight: 700;
+        color: #B51016;
+        margin-bottom: 25px;
         text-align: left; 
     }
 
@@ -62,13 +62,13 @@
     .surat-item {
         background: #E72128;
         color: white;
-        height: 90px;
-        border-radius: 12px;
+        height: 80px;
+        border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 35px;
-        font-size: 32px;
+        padding: 0 30px;
+        font-size: 20px;
         font-weight: 700;
         text-decoration: none;
         transition: .3s ease;
@@ -76,13 +76,14 @@
 
     .surat-item:hover {
         background: #c9181f;
-        transform: scale(1.01);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         color: white;
         text-decoration: none;
     }
 
     .arrow {
-        font-size: 45px;
+        font-size: 28px;
         font-weight: 900;
     }
 </style>

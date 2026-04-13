@@ -3,222 +3,265 @@
 @section('content')
 
 <style>
-.container-pkk { 
-    padding: 0 80px; 
-}
-.menu-title { 
-    font-size: 32px; 
-    font-weight: 800; 
-    margin-bottom: 15px; 
-}
-.section { 
-    margin-top: 30px; 
-}
-.section h3 { 
-    color: #B51016; 
-    font-size: 30px; 
-    font-weight: 800; 
-    margin-bottom: 15px; 
-}
-.section-header { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 15px; 
-}
+    .pkk-header-container {
+        padding: 40px 80px 20px;
+    }
 
-.btn-tahun { 
-    background: #B51016; 
-    color: white; 
-    border: none; 
-    padding: 12px 25px; 
-    border-radius: 25px; 
-    font-size: 20px; 
-    font-weight: bold; 
-    cursor: pointer;
-    appearance: none; 
-    outline: none;
-}
+    .pkk-header-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 20px;
+    }
 
-.table-pkk { 
-    width: 100%; 
-    border-collapse: separate; 
-    border-spacing: 10px; 
-    margin-top: 15px; 
-}
-.table-pkk th { 
-    background: #B51016; 
-    color: white; 
-    padding: 15px; 
-    border-radius: 10px; 
-    font-size: 20px; 
-    text-align: center; 
-}
-.table-pkk td { 
-    background: #dcdcdc; 
-    height: 50px; 
-    border-radius: 10px; 
-}
-.sub-title { 
-    color: #B51016; 
-    font-size: 18px; 
-    margin-bottom: 10px; 
-    font-weight: bold; 
-}
+    .pkk-icon {
+        width: 65px;
+        height: 65px;
+        background: #E72128;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.grid-data { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px; 
-}
+    .pkk-icon i {
+        font-size: 30px;
+        color: #fff;
+    }
 
+    .pkk-title-top {
+        font-size: 35px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
-.card { 
-    background: #f0f0f0; 
-    padding: 20px; 
-    border-radius: 15px; 
-    position: relative; 
-    overflow: hidden; 
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    cursor: pointer;
-    border: 1px solid transparent;
-}
+    .container-pkk { 
+        padding: 0 80px; 
+    }
 
+    .menu-title { 
+        font-size: 32px; 
+        font-weight: 800; 
+        margin-bottom: 15px; 
+    }
 
-.card:hover { 
-    transform: translateY(-10px);
-    background: #ffffff;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    border-color: #B51016;
-}
+    .section { 
+        margin-top: 30px; 
+    }
 
+    .section h3 { 
+        color: #B51016; 
+        font-size: 30px; 
+        font-weight: 800; 
+        margin-bottom: 15px; 
+    }
 
-.card::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 4px;
-    background: #B51016;
-    transition: width 0.3s ease;
-}
-
-.card:hover::after {
-    width: 100%;
-}
-
-/* 4. Efek saat diklik */
-.card:active {
-    transform: scale(0.95);
-    transition: 0.1s;
-}
-
-
-.card p { 
-    font-size: 20px; 
-    margin-left: 35px; 
-    margin-bottom: 5px; 
-    transition: color 0.3s ease;
-}
-
-.card h2 { 
-    font-size: 32px; 
-    font-weight: bold; 
-    margin-left: 35px;
-    color: #B51016; 
-}
-
-
-.card::before { 
-    content: ''; 
-    width: 18px; 
-    height: 18px; 
-    border-radius: 50%; 
-    position: absolute; 
-    left: 15px; 
-    top: 28px; 
-    z-index: 1;
-}
-
-.card.orange::before { 
-    background: orange; 
-}
-.card.blue::before { 
-    background: blue; 
-}
-.card.green::before { 
-    background: green; 
-}
-.card.red::before { 
-    background: red; 
-}
-.chart-row {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr; 
-    gap: 30px;
-    margin-top: 20px;
-    align-items: start;
-}
-
-.chart-card {
-    background: #f0f0f0;
-    border-radius: 20px;
-    padding: 0;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.chart-header {
-    padding: 10px;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.chart-body {
-    padding: 20px;
-    height: 350px; 
-    position: relative; 
-}
-
-.legend-custom {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.legend-color {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-right: 15px;
-}
-
-@media (max-width: 992px) {
-    .container-pkk { padding: 0 20px; }
-    .grid-data, .chart-row { grid-template-columns: 1fr; }
     .section-header { 
-        flex-direction: column; 
-        align-items: flex-start; 
-        gap: 10px; }
-    .chart-body { height: 300px; }
-}
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        margin-bottom: 15px; 
+    }
+
+    .btn-tahun { 
+        background: #B51016; 
+        color: white; 
+        border: none; 
+        padding: 12px 25px; 
+        border-radius: 25px; 
+        font-size: 20px; 
+        font-weight: bold; 
+        cursor: pointer;
+        appearance: none; 
+        outline: none;
+    }
+
+    .table-pkk { 
+        width: 100%; 
+        border-collapse: separate; 
+        border-spacing: 10px; 
+        margin-top: 15px; 
+    }
+
+    .table-pkk th { 
+        background: #B51016; 
+        color: white; 
+        padding: 15px; 
+        border-radius: 10px; 
+        font-size: 20px; 
+        text-align: center; 
+    }
+
+    .table-pkk td { 
+        background: #dcdcdc; 
+        height: 50px; 
+        border-radius: 10px; 
+    }
+
+    .sub-title { 
+        color: #B51016; 
+        font-size: 18px; 
+        margin-bottom: 10px; 
+        font-weight: bold; 
+    }
+
+    .grid-data { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 20px; 
+    }
+
+    .card { 
+        background: #f0f0f0; 
+        padding: 20px; 
+        border-radius: 15px; 
+        position: relative; 
+        overflow: hidden; 
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+
+    .card:hover { 
+        transform: translateY(-10px);
+        background: #ffffff;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        border-color: #B51016;
+    }
+
+    .card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background: #B51016;
+        transition: width 0.3s ease;
+    }
+
+    .card:hover::after {
+        width: 100%;
+    }
+
+    .card:active {
+        transform: scale(0.95);
+        transition: 0.1s;
+    }
+
+    .card p { 
+        font-size: 20px; 
+        margin-left: 35px; 
+        margin-bottom: 5px; 
+        transition: color 0.3s ease;
+    }
+
+    .card h2 { 
+        font-size: 32px; 
+        font-weight: bold; 
+        margin-left: 35px;
+        color: #B51016; 
+    }
+
+    .card::before { 
+        content: ''; 
+        width: 18px; 
+        height: 18px; 
+        border-radius: 50%; 
+        position: absolute; 
+        left: 15px; 
+        top: 28px; 
+        z-index: 1;
+    }
+
+    .card.orange::before { 
+        background: orange; 
+    }
+
+    .card.blue::before { 
+        background: blue; 
+    }
+
+    .card.green::before { 
+        background: green; 
+    }
+
+    .card.red::before { 
+        background: red; 
+    }
+
+    .chart-row {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr; 
+        gap: 30px;
+        margin-top: 20px;
+        align-items: start;
+    }
+
+    .chart-card {
+        background: #f0f0f0;
+        border-radius: 20px;
+        padding: 0;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .chart-header {
+        padding: 10px;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .chart-body {
+        padding: 20px;
+        height: 350px; 
+        position: relative; 
+    }
+
+    .legend-custom {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    @media (max-width: 992px) {
+        .container-pkk { padding: 0 20px; }
+        .grid-data, .chart-row { grid-template-columns: 1fr; }
+        .section-header { 
+            flex-direction: column; 
+            align-items: flex-start; 
+            gap: 10px; }
+        .chart-body { height: 300px; }
+    }
 </style>
 
+<div class="pkk-header-container">
+    <div class="pkk-header-right">
+        <div class="pkk-icon">
+            <i class="bi bi-people-fill"></i>
+        </div>
+        <div class="pkk-title-top">PKK POSYANDU</div>
+    </div>
+</div>
 <div class="container-pkk">
-
     <div class="menu-title">MENU PKK</div>
-    
     <div class="section">
         <div class="section-header">
             <h3>KEGIATAN POKJA PKK</h3>

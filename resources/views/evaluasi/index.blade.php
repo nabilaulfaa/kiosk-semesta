@@ -25,9 +25,10 @@
 
     .evaluasi-title {
         font-size: 35px;
-        font-weight: 780;
+        font-weight: 700;
         letter-spacing: 1px;
         color: #333;
+        font-family: 'Poppins', sans-serif;
     }
 
     .hero-wrapper {
@@ -61,7 +62,7 @@
         margin-top: 120px;
         display: flex;
         justify-content: center;
-        gap: 70px;
+        gap: 80px;
         text-align: center;
     }
 
@@ -77,8 +78,8 @@
     }
 
     .icon-circle {
-        width: 150px;
-        height: 150px;
+        width: 161px;
+        height: 161px;
         background: #E72128;
         border-radius: 50%;
         display: flex;
@@ -86,12 +87,16 @@
         justify-content: center;
         margin-bottom: 15px;
         transition: 0.2s;
-        flex-shrink: 0;
+        overflow: hidden;
     }
 
     .icon-circle i {
         font-size: 70px;
         color: white;
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        display: block;
     }
 
     .kategori-icon-item:hover {
@@ -109,15 +114,18 @@
     }
 
     .kategori-icon-item span {
-        font-size: 22px;
-        font-weight: 760;
+        font-size: 28px;
+        font-weight: 700;
         text-align: center;
-        line-height: 1.25;
+        line-height: 1.3;
         height: 120px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 120px;
+        width: 140px;
+        font-family: 'Poppins', sans-serif;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        transform: translateZ(0);
     }
 
     .kategori-icon-item:active {

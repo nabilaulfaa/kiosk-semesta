@@ -4,15 +4,49 @@
 
 <style>
     .sarana-header {
-        padding: 40px 80px 10px 80px;
+        padding: 40px 80px 20px 80px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .evaluasi-section-top { 
+        display: flex; 
+        justify-content: flex-end; 
+        align-items: center; 
+        gap: 20px; 
+        margin-bottom: 20px;
+    }
+
+    .evaluasi-icon-box { 
+        width: 65px; 
+        height: 65px; 
+        background: #E72128; 
+        border-radius: 50%; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+    }
+
+    .evaluasi-icon-box i { 
+        font-size: 30px; 
+        color: #fff; 
+    }
+
+    .evaluasi-title-text { 
+        font-size: 35px; 
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #222;
+        margin: 0;
     }
 
     .sarana-title {
-        font-size: 34px;
-        font-weight: 900;
-        margin-bottom: 20px;
+        font-size: 35px;
+        font-weight: 800;
         color: #222;
         text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0px;
     }
 
     .kategori-wrapper {
@@ -30,7 +64,7 @@
         padding: 12px 20px;
         border-radius: 12px;
         font-size: 18px;
-        font-weight: 800;
+        font-weight: 600;
         display: flex;
         gap: 10px;
         align-items: center;
@@ -46,7 +80,8 @@
         background: #0d6efd;
         padding: 3px 10px;
         border-radius: 10px;
-        font-size: 14px;
+        font-size: 13px;
+        font-weight: 700;
     }
 
     .kategori-btn.active {
@@ -111,14 +146,14 @@
 
     .sarana-info h3 {
         color: #B51016;
-        font-size: 24px;
-        font-weight: 900;
+        font-size: 26px;
+        font-weight: 700;
         margin-bottom: 5px;
     }
 
     .jumlah {
         font-size: 17px;
-        font-weight: 700;
+        font-weight: 600;
         color: #444;
     }
 
@@ -132,14 +167,22 @@
         padding: 5px 12px;
         border-radius: 8px;
         font-size: 13px;
-        font-weight: 800;
+        font-weight: 700;
         color: white;
         text-transform: capitalize;
     }
 
-    .baik { background: #16a34a; }
-    .cukup { background: #f59e0b; }
-    .buruk { background: #dc2626; }
+    .baik { 
+        background: #16a34a; 
+    }
+
+    .cukup { 
+        background: #f59e0b; 
+    }
+
+    .buruk { 
+        background: #dc2626; 
+    }
 
     .btn-detail {
         background: #B51016;
@@ -147,8 +190,8 @@
         border: none;
         padding: 7px 16px;
         border-radius: 8px;
-        font-size: 14px;
-        font-weight: 700;
+        font-size: 15px;
+        font-weight: 600;
         cursor: pointer;
     }
 
@@ -159,9 +202,7 @@
         width: 100%;
         height: 100%;
         background: #f2f2f2;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        z-index: 999999 !important;
+        z-index: 999999;
         display: none;
         flex-direction: column;
         animation: popupFade .25s ease;
@@ -176,8 +217,8 @@
         background: #B51016;
         color: white;
         padding: 25px 40px;
-        font-size: 26px;
-        font-weight: 900;
+        font-size: 28px;
+        font-weight: 800;
         display: flex;
         align-items: center;
         gap: 20px;
@@ -227,7 +268,7 @@
 
     .detail-item h3 {
         font-size: 22px;
-        font-weight: 900;
+        font-weight: 800;
         margin-bottom: 10px;
     }
 
@@ -247,6 +288,7 @@
 
     .detail-text {
         font-size: 17px;
+        font-weight: 500;
         line-height: 1.6;
         margin-bottom: 8px;
         color: #333;
@@ -254,8 +296,15 @@
 </style>
 
 <div class="sarana-header">
+    <div class="evaluasi-section-top">
+        <div class="evaluasi-icon-box">
+            <i class="bi bi-clipboard-data"></i>
+        </div>
+        <div class="evaluasi-title-text">EVALUASI</div>
+    </div>
+
     <div class="sarana-title">
-        SARANA DAN PRASARANA DESA
+        SARANA DAN PRASARANA
     </div>
 </div>
 
