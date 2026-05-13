@@ -1,496 +1,239 @@
 @extends('layouts.app')
 
-@section('content')
-
-<style>
-    .posyandu-header-container {
-        padding: 40px 80px 20px;
-    }
-
-    .posyandu-header-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .posyandu-icon {
-        width: 65px;
-        height: 65px;
-        background: #E72128;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .posyandu-icon i {
-        font-size: 30px;
-        color: #fff;
-    }
-
-    .posyandu-title-top {
-        font-size: 35px;
-        font-weight: 700;
-        letter-spacing: 1px;
-    }
-
-    .container-posyandu { 
-        padding: 0 80px; 
-        background-color: #fff; 
-    }
-
-    .menu-title { 
-        font-size: 32px; 
-        font-weight: 800; 
-        margin-bottom: 15px; 
-        display: flex; 
-        align-items: center; 
-        gap: 15px; 
-    }
-
-    .section { 
-        margin-top: 30px; 
-    }
-
-    .section h3 { 
-        color: #B51016; 
-        font-size: 28px; 
-        font-weight: 700; 
-        margin-bottom: 20px; 
-    }
-
-    .section-header { 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center; 
-        margin-bottom: 15px; 
-    }
-
-    .btn-tahun { 
-        background: #B51016; 
-        color: white; 
-        border: none; 
-        padding: 10px 20px; 
-        border-radius: 8px; 
-        font-size: 16px; 
-        font-weight: 700; 
-        cursor: pointer;
-    }
-
-    .table-posyandu { 
-        width: 100%; 
-        border-collapse: separate; 
-        border-spacing: 10px; 
-    }
-
-    .table-posyandu th { 
-        background: #B51016; 
-        color: white; 
-        padding: 14px; 
-        border-radius: 10px; 
-        font-size: 18px; 
-        text-align: left; 
-    }
-
-    .table-posyandu td { 
-        background: #dcdcdc; 
-        height: 60px; 
-        border-radius: 10px; 
-    }
-
-    .grid-layanan { 
-        display: grid; 
-        grid-template-columns: 1.2fr 0.8fr; 
-        gap: 30px; 
-        margin-top: 20px; 
-    }
-
-    .grid-2-col { 
-        display: grid; 
-        grid-template-columns: 1fr 1fr; 
-        gap: 20px; 
-        margin-top: 20px; 
-    }
-
-    .card-stat { 
-        background: #f0f0f0; 
-        padding: 15px 25px; 
-        border-radius: 15px; 
-        display: flex; 
-        align-items: center; 
-        gap: 15px; 
-        position: relative; 
-        overflow: hidden;   
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        cursor: pointer;
-        border: 1px solid transparent;
-    }
-
-    .card-stat:hover { 
-        transform: translateY(-8px);
-        background: #ffffff;
-        box-shadow: 0 12px 25px rgba(0,0,0,0.1);
-        border-color: #B51016;
-    }
-
-    .card-stat::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 4px;
-        background: #B51016;
-        transition: width 0.3s ease;
-    }
-
-    .card-stat:hover::after {
-        width: 100%;
-    }
-
-    .card-stat:active {
-        transform: scale(0.96);
-        transition: 0.1s;
-    }
-
-    .card-stat .dot { 
-        width: 25px; 
-        height: 25px; 
-        border-radius: 50%; 
-        flex-shrink: 0; 
-    }
-
-    .card-stat .info { 
-        font-size: 18px; 
-        font-weight: 600; 
-        color: #333;
-    }
-
-    .card-stat .value { 
-        font-size: 26px; 
-        font-weight: 800; 
-        margin-left: auto; 
-        color: #B51016; 
-        transition: transform 0.3s ease;
-    }
-
-    .card-stat:hover .value {
-        transform: scale(1.1); 
-    }
-
-    .chart-card { 
-        background: #f0f0f0; 
-        border-radius: 20px; 
-        overflow: hidden; 
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-    }
-
-    .chart-header { 
-        background: #B51016; 
-        padding: 10px; 
-        color: white; 
-        text-align: center; 
-        font-weight: 700; 
-        font-size: 18px; 
-    }
-
-    .chart-body { 
-        padding: 20px; 
-        height: 320px; 
-        position: relative; 
-    }
-
-    .rincian-item { 
-        display: flex; 
-        justify-content: space-between; 
-        background: #dcdcdc; 
-        margin-bottom: 8px; 
-        padding: 10px 15px; 
-        border-radius: 5px; 
-        font-weight: bold; 
-    }
-
-    .vital-header { 
-        background: #B51016; 
-        color: white; 
-        text-align: center; 
-        padding: 12px; 
-        border-radius: 15px 15px 0 0; 
-        font-weight: bold; 
-        font-size: 18px; 
-    }
-
-    .vital-total-box { 
-        background: #DCDCDC; 
-        text-align: center; 
-        padding: 15px; 
-        font-size: 22px; 
-        font-weight: 900; 
-        border-radius: 0 0 15px 15px; 
-        margin-bottom: 10px; 
-        box-shadow: 0 4px 4px rgba(0,0,0,0.1); 
-    }
-
-    .vital-table { 
-        width: 100%; 
-        border-collapse: separate; 
-        border-spacing: 0 8px; 
-    }
-
-    .vital-table td { 
-        padding: 8px 12px; 
-        font-weight: bold; 
-    }
-
-    .v-label { 
-        background: #B51016; 
-        color: white; 
-        width: 40%; 
-        border-radius: 5px 0 0 5px; 
-        font-size: 16px; 
-    }
-
-    .v-value { 
-        background: #DCDCDC; 
-        color: #000; 
-        order-radius: 0 5px 5px 0; 
-        border-left: 3px solid #fff; 
-        font-size: 18px; 
-    }
-
-    @media (max-width: 992px) {
-        .container-posyandu { padding: 0 20px; }
-        .grid-layanan, .grid-2-col { grid-template-columns: 1fr; }
-    }
-</style>
-
-<div class="posyandu-header-container">
-    <div class="posyandu-header-right">
-        <div class="posyandu-icon">
-            <i class="bi bi-people-fill"></i>
-        </div>
-        <div class="posyandu-title-top">PKK POSYANDU</div>
-    </div>
-</div>
-<div class="container-posyandu">
-    <div class="menu-title">MENU POSYANDU</div>
-    <div class="section">
-        <div class="section-header">
-            <h3>Jadwal Posyandu</h3>
-            <select class="btn-tahun">
-                <option value="2026">Tahun 2026</option>
-                <option value="2025">Tahun 2025</option>
-            </select>
-        </div>
-        <table class="table-posyandu">
-            <thead>
-                <tr>
-                    <th style="width: 35%;">Nama Posyandu</th>
-                    <th style="width: 30%;">Tanggal</th>
-                    <th style="width: 35%;">Lokasi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td></tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="section">
-        <h3>Jumlah Layanan Posyandu</h3>
-        <div class="grid-layanan">
-            <div class="chart-card">
-                <div class="chart-header">Statistik Pengunjung</div>
-                <div class="chart-body"><canvas id="chartLayanan"></canvas></div>
-            </div>
-            <div>
-                <p style="font-weight: bold; font-size: 20px; margin-bottom: 15px;">Rincian Pengunjung :</p>
-                <div class="rincian-list">
-                    <div class="rincian-item"><span>Jumlah Balita :</span> 60 Orang</div>
-                    <div class="rincian-item"><span>Jumlah Lansia :</span> 40 Orang</div>
-                    <div class="rincian-item"><span>Jumlah Ibu Hamil :</span> 20 Orang</div>
-                    <div class="rincian-item"><span>Sudah Imunisasi :</span> 180 Orang</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid-2-col">
-            <div class="card-stat">
-                <div class="dot" style="background: #109688;"></div>
-                <div class="info">Indikasi Stunting</div><div class="value">30</div>
-            </div>
-            <div class="card-stat">
-                <div class="dot" style="background: #FF5252;"></div>
-                <div class="info">Gizi Buruk</div><div class="value">20</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div class="grid-2-col">
-            <div>
-                <h3 style="font-size: 24px;">Data Kelahiran</h3>
-                <div class="vital-header">Data Kelahiran</div>
-                <div class="vital-total-box">850 Jiwa</div>
-                <div style="height: 250px; margin-bottom: 15px;"><canvas id="chartKelahiran"></canvas></div>
-                <table class="vital-table">
-                    <tr><td class="v-label">Jumlah Laki-Laki</td><td class="v-value">250 Jiwa</td></tr>
-                    <tr><td class="v-label">Jumlah Perempuan</td><td class="v-value">600 Jiwa</td></tr>
-                </table>
-            </div>
-            <div>
-                <h3 style="font-size: 24px;">Data Kematian</h3>
-                <div class="vital-header">Data Kematian</div>
-                <div class="vital-total-box">850 Jiwa</div>
-                <div style="height: 250px; margin-bottom: 15px;"><canvas id="chartKematian"></canvas></div>
-                <table class="vital-table">
-                    <tr><td class="v-label">Jumlah Laki-Laki</td><td class="v-value">250 Jiwa</td></tr>
-                    <tr><td class="v-label">Jumlah Perempuan</td><td class="v-value">600 Jiwa</td></tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="section" style="margin-bottom: 50px;">
-        <h3>Data Kesehatan</h3>
-        <div class="grid-layanan">
-            <div class="chart-card">
-                <div class="chart-header">Statistik Imunisasi Balita</div>
-                <div class="chart-body"><canvas id="chartImunisasi"></canvas></div>
-            </div>
-            <div>
-                <p style="font-weight: bold; font-size: 18px; margin-bottom: 10px;">Status Gizi Balita</p>
-                <div style="height: 300px; position: relative;">
-                    <canvas id="chartGizi"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+@endpush
 
-<script>
+@section('content')
 
-    Chart.register(ChartDataLabels);
+<div style="padding: 0 5vw;">
 
-    const labels12Bulan = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    <div class="modul-header" style="padding: 3vh 0 1vh;">
+        <div class="modul-icon"><i class="bi bi-people"></i></div>
+        <div class="modul-title">PKK POSYANDU</div>
+    </div>
 
-    
-    const commonOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        devicePixelRatio: 2, 
-        plugins: {
-            datalabels: {
-                color: '#fff',
-                font: { weight: 'bold', size: 11 },
-                formatter: (value) => value
-            }
-        }
-    };
+    <div style="font-size:clamp(18px,2vw,32px);font-weight:800;margin-bottom:2vh;">MENU POSYANDU</div>
 
-    window.onload = function() {
-        
-        new Chart(document.getElementById('chartLayanan'), {
-            type: 'bar',
-            data: {
-                labels: labels12Bulan,
-                datasets: [{ 
-                    data: [10, 20, 15, 25, 30, 35, 40, 45, 50, 55, 60, 65], 
-                    backgroundColor: '#FF7676',
-                    borderRadius: 5
-                }]
-            },
-            options: {
-                ...commonOptions,
-                plugins: { 
-                    legend: { display: false },
-                    datalabels: { anchor: 'end', align: 'top', color: '#B51016' }
-                },
-                scales: { y: { beginAtZero: true, grid: { display: false } } }
-            }
-        });
+    {{-- Filter Jadwal Posyandu --}}
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5vh;">
+        <div style="color:var(--merah-tua);font-size:clamp(16px,1.6vw,28px);font-weight:700;">Jadwal Posyandu</div>
+        <form action="{{ route('posyandu.index') }}" method="GET">
+            <select name="tahun" class="select-merah" onchange="this.form.submit()">
+                <option value="all" {{ $tahun === 'all' ? 'selected' : '' }}>Semua Tahun</option>
+                @foreach($tahunTersedia as $th)
+                    <option value="{{ $th }}" {{ $tahun == $th ? 'selected' : '' }}>Tahun {{ $th }}</option>
+                @endforeach
+            </select>
+        </form>
+    </div>
 
-        
-        new Chart(document.getElementById('chartKelahiran'), {
-            type: 'pie',
-            data: { 
-                labels: ['Laki-laki', 'Perempuan'], 
-                datasets: [{ data: [250, 600], backgroundColor: ['#B51016', '#FF7676'], borderWidth: 2 }] 
-            },
-            options: {
-                ...commonOptions,
-                plugins: { legend: { position: 'bottom' }, datalabels: { formatter: (val) => val + ' Jiwa' } }
-            }
-        });
+    {{-- Tabel: thead stay, tbody scroll jika > 5 baris --}}
+    <div style="margin-bottom:2vh;border-radius:12px;overflow:hidden;">
+        <table class="tabel-kiosk" style="margin-bottom:0;">
+            <thead>
+                <tr>
+                    <th style="width:40%;">Nama Posyandu</th>
+                    <th style="width:30%;">Tanggal</th>
+                    <th style="width:30%;">Lokasi</th>
+                </tr>
+            </thead>
+        </table>
+        <div class="{{ count($jadwalPosyandu) > 5 ? 'tabel-scroll-wrapper' : 'tabel-scroll-wrapper no-scroll' }}">
+            <table class="tabel-kiosk" style="margin-top:0;">
+                <tbody>
+                    @forelse($jadwalPosyandu as $j)
+                    <tr>
+                        <td>{{ $j['nama'] }}</td>
+                        <td style="text-align:center;">{{ $j['tanggal'] }}</td>
+                        <td>{{ $j['lokasi'] }}</td>
+                    </tr>
+                    @empty
+                    <tr><td colspan="3" style="text-align:center;color:#666;">Tidak ada jadwal.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        
-        new Chart(document.getElementById('chartKematian'), {
-            type: 'pie',
-            data: { 
-                labels: ['Laki-laki', 'Perempuan'], 
-                datasets: [{ data: [300, 550], backgroundColor: ['#B51016', '#FF7676'], borderWidth: 2 }] 
-            },
-            options: {
-                ...commonOptions,
-                plugins: { legend: { position: 'bottom' }, datalabels: { formatter: (val) => val + ' Jiwa' } }
-            }
-        });
+    {{-- Jumlah Layanan Posyandu --}}
+    <div style="color:var(--merah-tua);font-size:clamp(16px,1.6vw,28px);font-weight:700;margin-bottom:1.5vh;">Jumlah Layanan Posyandu</div>
 
-        new Chart(document.getElementById('chartImunisasi'), {
-            type: 'line', 
-            data: {
-                labels: labels12Bulan,
-                datasets: [{ 
-                    data: [15, 25, 20, 35, 45, 40, 50, 55, 60, 65, 70, 75], 
-                    borderColor: '#42A5F5', 
-                    backgroundColor: 'rgba(66, 165, 245, 0.2)',
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 5
-                }]
-            },
-            options: {
-                ...commonOptions,
-                plugins: { 
-                    legend: { display: false },
-                    datalabels: { backgroundColor: '#42A5F5', borderRadius: 4, padding: 4 }
-                }
-            }
-        });
+    <div class="row g-3 mb-3">
+        <div class="col-7">
+            <div style="background:#f0f0f0;border-radius:20px;overflow:hidden;">
+                <div style="background:var(--merah-tua);color:white;text-align:center;padding:1vh;font-weight:700;font-size:clamp(13px,1.2vw,18px);">Statistik Pengunjung</div>
+                <div style="padding:2vh;height:clamp(160px,20vh,260px);position:relative;">
+                    <canvas id="chartLayanan"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div style="font-weight:700;font-size:clamp(14px,1.3vw,20px);margin-bottom:1.5vh;">Rincian Pengunjung :</div>
+            @php
+            $rincian = [
+                ['label'=>'Jumlah Balita',    'val'=>$rincianPengunjung['balita'],    'dot'=>'#109688'],
+                ['label'=>'Jumlah Lansia',    'val'=>$rincianPengunjung['lansia'],    'dot'=>'#FFB74D'],
+                ['label'=>'Jumlah Ibu Hamil', 'val'=>$rincianPengunjung['ibu_hamil'],'dot'=>'#B51016'],
+                ['label'=>'Sudah Imunisasi',  'val'=>$rincianPengunjung['imunisasi'],'dot'=>'#42A5F5'],
+            ];
+            @endphp
+            @foreach($rincian as $r)
+            <div style="display:flex;align-items:center;gap:1vw;background:var(--abu);margin-bottom:0.8vh;padding:1vh 1.5vw;border-radius:5px;font-weight:700;font-size:clamp(12px,1.1vw,17px);">
+                <div style="width:14px;height:14px;border-radius:50%;background:{{ $r['dot'] }};flex-shrink:0;"></div>
+                <span style="flex:1;">{{ $r['label'] }} :</span>
+                <span>{{ $r['val'] }} Orang</span>
+            </div>
+            @endforeach
+        </div>
+    </div>
 
+    <div class="row g-3 mb-3">
+        <div class="col-6">
+            <div class="kiosk-card d-flex align-items-center gap-3">
+                <div style="width:22px;height:22px;border-radius:50%;background:#109688;flex-shrink:0;"></div>
+                <div style="font-size:clamp(13px,1.2vw,18px);font-weight:600;">Indikasi Stunting</div>
+                <div style="margin-left:auto;font-size:clamp(18px,2vw,28px);font-weight:800;color:var(--merah-tua);">{{ $rincianPengunjung['stunting'] }}</div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="kiosk-card d-flex align-items-center gap-3">
+                <div style="width:22px;height:22px;border-radius:50%;background:#FF5252;flex-shrink:0;"></div>
+                <div style="font-size:clamp(13px,1.2vw,18px);font-weight:600;">Gizi Buruk</div>
+                <div style="margin-left:auto;font-size:clamp(18px,2vw,28px);font-weight:800;color:var(--merah-tua);">{{ $rincianPengunjung['gizi_buruk'] }}</div>
+            </div>
+        </div>
+    </div>
 
-        new Chart(document.getElementById('chartGizi'), {
-            type: 'doughnut', 
-            data: {
-                labels: ['Gizi Buruk', 'Sedang', 'Cukup Gizi'],
-                datasets: [{ 
-                    data: [20, 30, 50], 
-                    backgroundColor: ['#4B0082', '#FF7676', '#42A5F5'],
-                    hoverOffset: 15 
-                }]
-            },
-            options: {
-                ...commonOptions,
-                plugins: { 
-                    legend: { position: 'bottom' },
-                    datalabels: { formatter: (val) => val + '%' }
-                }
-            }
-        });
-    }
-</script>
+    {{-- Data Kelahiran & Kematian --}}
+    <div class="row g-3 mb-3">
+        <div class="col-6">
+            <div style="color:var(--merah-tua);font-size:clamp(15px,1.5vw,24px);font-weight:700;margin-bottom:1vh;">Data Kelahiran</div>
+            <div style="background:var(--merah-tua);color:white;text-align:center;padding:1.2vh;border-radius:15px 15px 0 0;font-weight:700;font-size:clamp(13px,1.2vw,18px);">Data Kelahiran</div>
+            <div style="background:var(--abu);text-align:center;padding:1.5vh;font-size:clamp(16px,1.8vw,26px);font-weight:900;border-radius:0 0 15px 15px;margin-bottom:1vh;box-shadow:0 4px 4px rgba(0,0,0,0.1);">
+                {{ $dataKelahiran['total'] }} Jiwa
+            </div>
+            <div style="height:clamp(130px,16vh,220px);margin-bottom:1.5vh;position:relative;">
+                <canvas id="chartKelahiran"></canvas>
+            </div>
+            <table style="width:100%;border-collapse:separate;border-spacing:0 0.6vh;">
+                <tr>
+                    <td style="background:var(--merah-tua);color:white;padding:0.8vh 1.2vw;width:55%;border-radius:5px 0 0 5px;font-weight:700;font-size:clamp(12px,1.1vw,16px);">Jumlah Laki-Laki</td>
+                    <td style="background:var(--abu);padding:0.8vh 1.2vw;font-weight:700;font-size:clamp(12px,1.1vw,18px);">{{ $dataKelahiran['laki'] }} Jiwa</td>
+                </tr>
+                <tr>
+                    <td style="background:var(--merah-tua);color:white;padding:0.8vh 1.2vw;border-radius:5px 0 0 5px;font-weight:700;font-size:clamp(12px,1.1vw,16px);">Jumlah Perempuan</td>
+                    <td style="background:var(--abu);padding:0.8vh 1.2vw;font-weight:700;font-size:clamp(12px,1.1vw,18px);">{{ $dataKelahiran['perempuan'] }} Jiwa</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-6">
+            <div style="color:var(--merah-tua);font-size:clamp(15px,1.5vw,24px);font-weight:700;margin-bottom:1vh;">Data Kematian</div>
+            <div style="background:var(--merah-tua);color:white;text-align:center;padding:1.2vh;border-radius:15px 15px 0 0;font-weight:700;font-size:clamp(13px,1.2vw,18px);">Data Kematian</div>
+            <div style="background:var(--abu);text-align:center;padding:1.5vh;font-size:clamp(16px,1.8vw,26px);font-weight:900;border-radius:0 0 15px 15px;margin-bottom:1vh;box-shadow:0 4px 4px rgba(0,0,0,0.1);">
+                {{ $dataKematian['total'] }} Jiwa
+            </div>
+            <div style="height:clamp(130px,16vh,220px);margin-bottom:1.5vh;position:relative;">
+                <canvas id="chartKematian"></canvas>
+            </div>
+            <table style="width:100%;border-collapse:separate;border-spacing:0 0.6vh;">
+                <tr>
+                    <td style="background:var(--merah-tua);color:white;padding:0.8vh 1.2vw;width:55%;border-radius:5px 0 0 5px;font-weight:700;font-size:clamp(12px,1.1vw,16px);">Jumlah Laki-Laki</td>
+                    <td style="background:var(--abu);padding:0.8vh 1.2vw;font-weight:700;font-size:clamp(12px,1.1vw,18px);">{{ $dataKematian['laki'] }} Jiwa</td>
+                </tr>
+                <tr>
+                    <td style="background:var(--merah-tua);color:white;padding:0.8vh 1.2vw;border-radius:5px 0 0 5px;font-weight:700;font-size:clamp(12px,1.1vw,16px);">Jumlah Perempuan</td>
+                    <td style="background:var(--abu);padding:0.8vh 1.2vw;font-weight:700;font-size:clamp(12px,1.1vw,18px);">{{ $dataKematian['perempuan'] }} Jiwa</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    {{-- Data Kesehatan --}}
+    <div style="color:var(--merah-tua);font-size:clamp(16px,1.6vw,28px);font-weight:700;margin-bottom:1.5vh;">Data Kesehatan</div>
+    <div class="row g-3 mb-4">
+        <div class="col-7">
+            <div style="background:#f0f0f0;border-radius:20px;overflow:hidden;">
+                <div style="background:var(--merah-tua);color:white;text-align:center;padding:1vh;font-weight:700;font-size:clamp(13px,1.2vw,18px);">Statistik Imunisasi Balita</div>
+                <div style="padding:2vh;height:clamp(160px,20vh,280px);position:relative;">
+                    <canvas id="chartImunisasi"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-5">
+            <div style="font-weight:700;font-size:clamp(14px,1.3vw,18px);margin-bottom:1vh;">Status Gizi Balita</div>
+            <div style="display:flex;align-items:center;gap:1vw;margin-bottom:1vh;">
+                @php
+                $giziLegend = [
+                    ['warna'=>'#4B0082','label'=>'Gizi Buruk'],
+                    ['warna'=>'#FF7676','label'=>'Sedang'],
+                    ['warna'=>'#42A5F5','label'=>'Cukup Gizi'],
+                ];
+                @endphp
+                @foreach($giziLegend as $g)
+                <div style="display:flex;align-items:center;gap:0.5vw;font-size:clamp(11px,1vw,15px);font-weight:700;">
+                    <div style="width:14px;height:14px;border-radius:50%;background:{{ $g['warna'] }};flex-shrink:0;"></div>
+                    {{ $g['label'] }}
+                </div>
+                @endforeach
+            </div>
+            <div style="height:clamp(160px,22vh,300px);position:relative;">
+                <canvas id="chartGizi"></canvas>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 @endsection
 
 @section('bottom_navigation')
 <a href="{{ route('pkk.posyandu') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i>
-    KEMBALI
+    <i class="bi bi-arrow-left"></i> KEMBALI
 </a>
 @endsection
+
+@push('scripts')
+<script>
+Chart.register(ChartDataLabels);
+const labels12 = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+const commonOpts = {
+    responsive: true, maintainAspectRatio: false, devicePixelRatio: 2,
+    plugins: { datalabels: { color: '#fff', font: { weight: 'bold', size: 11 }, formatter: v => v } }
+};
+
+window.onload = function () {
+    new Chart(document.getElementById('chartLayanan'), {
+        type: 'bar',
+        data: { labels: labels12, datasets: [{ data: [10,20,15,25,30,35,40,45,50,55,60,65], backgroundColor: '#FF7676', borderRadius: 5 }] },
+        options: { ...commonOpts, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', color: '#B51016' } }, scales: { y: { beginAtZero: true, grid: { display: false } } } }
+    });
+
+    new Chart(document.getElementById('chartKelahiran'), {
+        type: 'pie',
+        data: { labels: ['Laki-laki','Perempuan'], datasets: [{ data: [{{ $dataKelahiran['laki'] }}, {{ $dataKelahiran['perempuan'] }}], backgroundColor: ['#B51016','#FF7676'], borderWidth: 2 }] },
+        options: { ...commonOpts, plugins: { legend: { position: 'bottom' }, datalabels: { formatter: v => v + ' Jiwa' } } }
+    });
+
+    new Chart(document.getElementById('chartKematian'), {
+        type: 'pie',
+        data: { labels: ['Laki-laki','Perempuan'], datasets: [{ data: [{{ $dataKematian['laki'] }}, {{ $dataKematian['perempuan'] }}], backgroundColor: ['#B51016','#FF7676'], borderWidth: 2 }] },
+        options: { ...commonOpts, plugins: { legend: { position: 'bottom' }, datalabels: { formatter: v => v + ' Jiwa' } } }
+    });
+
+    new Chart(document.getElementById('chartImunisasi'), {
+        type: 'line',
+        data: { labels: labels12, datasets: [{ data: [15,25,20,35,45,40,50,55,60,65,70,75], borderColor: '#42A5F5', backgroundColor: 'rgba(66,165,245,0.2)', fill: true, tension: 0.4, pointRadius: 5 }] },
+        options: { ...commonOpts, plugins: { legend: { display: false }, datalabels: { backgroundColor: '#42A5F5', borderRadius: 4, padding: 4 } } }
+    });
+
+    new Chart(document.getElementById('chartGizi'), {
+        type: 'doughnut',
+        data: { labels: ['Gizi Buruk','Sedang','Cukup Gizi'], datasets: [{ data: [20,30,50], backgroundColor: ['#4B0082','#FF7676','#42A5F5'], hoverOffset: 15 }] },
+        options: { ...commonOpts, plugins: { legend: { display: false }, datalabels: { formatter: v => v + '%' } } }
+    });
+};
+</script>
+@endpush

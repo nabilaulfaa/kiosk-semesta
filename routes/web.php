@@ -1,107 +1,58 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes - Kiosk Semesta Jatimulyo
-|--------------------------------------------------------------------------
-*/
-
-// 1. RUTE UTAMA (BERANDA)
-Route::get('/', function () {
-    return view('beranda.index');
-})->name('beranda');
+use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\EvaluasiController;
+use App\Http\Controllers\BumdesController;
+use App\Http\Controllers\PkkPosyanduController;
+use App\Http\Controllers\LayananSuratController;
+use App\Http\Controllers\ProfilDesaController;
+use App\Http\Controllers\ApbdesController;
+use App\Http\Controllers\ProgramKadesController;
+use App\Http\Controllers\PetaWilayahController;
 
 
-// 2. GROUP RUTE MODAL & LAYANAN (8 MODUL UTAMA)
+// 1. BERANDA
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+
+// 2. GROUP KIOSK
 Route::prefix('kiosk')->group(function () {
-    
+
     // Profil Desa
-    Route::get('/profil-desa', function () { 
-        return view('profil_desa.index'); 
-    })->name('profil.desa');
+    Route::get('/profil-desa', [ProfilDesaController::class, 'index'])->name('profil.desa');
 
     // APBDes
-    Route::get('/apbdes', function () { 
-        return view('apbdes.index'); 
-    })->name('apbdes');
+    Route::get('/apbdes', [ApbdesController::class, 'index'])->name('apbdes');
 
     // BUMDes
-    Route::get('/bumdes', function () { 
-        return view('bumdes.index'); 
-    })->name('bumdes');
+    Route::get('/bumdes', [BumdesController::class, 'index'])->name('bumdes');
 
     // Program Kades
-    Route::get('/program-kades', function () { 
-        return view('program_kades.index'); 
-    })->name('program.kades');
-
-    // PKK & Posyandu
-    Route::get('/pkk-posyandu', function () { 
-        return view('pkk_posyandu.index'); 
-    })->name('pkk.posyandu');
+    Route::get('/program-kades', [ProgramKadesController::class, 'index'])->name('program.kades');
 
     // Peta Wilayah
-    Route::get('/peta-wilayah', function () { 
-        return view('peta_wilayah.index'); 
-    })->name('peta.wilayah');
+    Route::get('/peta-wilayah', [PetaWilayahController::class, 'index'])->name('peta.wilayah');
+
+    // PKK & Posyandu
+    Route::get('/pkk-posyandu',          [PkkPosyanduController::class, 'index'])->name('pkk.posyandu');
+    Route::get('/pkk-posyandu/pkk',      [PkkPosyanduController::class, 'pkk'])->name('pkk.index');
+    Route::get('/pkk-posyandu/posyandu', [PkkPosyanduController::class, 'posyandu'])->name('posyandu.index');
 
     // Layanan Surat
-    Route::get('/layanan-surat', function () { 
-        return view('layanan_surat.index'); 
-    })->name('layanan.surat');
+    Route::get('/layanan-surat', [LayananSuratController::class, 'index'])->name('layanan.surat');
+    Route::get('/cek-surat',     [LayananSuratController::class, 'cekSurat'])->name('cek.surat');
 
-    Route::get('/cek-surat', function () { 
-        return view('layanan_surat.cek_surat'); 
-    })->name('cek.surat');
-
-    // 3. GROUP EVALUASI (DENGAN SUB-KATEGORI)
+    // Evaluasi
     Route::prefix('evaluasi')->group(function () {
-        
-        // Halaman Utama Evaluasi (Menu Pilihan Kategori)
-        Route::get('/', function () {
-            return view('evaluasi.index');
-        })->name('evaluasi');
-
-        // Sub-Kategori Evaluasi
-        Route::get('/infrastruktur', function () {
-            return view('evaluasi.infrastruktur'); // File evaluasi pembangunanmu
-        })->name('evaluasi.infrastruktur');
-
-        Route::get('/sarana', function () {
-            return view('evaluasi.sarana');
-        })->name('evaluasi.sarana');
-
-        Route::get('/ekonomi', function () {
-            return view('evaluasi.ekonomi');
-        })->name('evaluasi.ekonomi');
-
-        Route::get('/sosial', function () {
-            return view('evaluasi.sosial');
-        })->name('evaluasi.sosial');
-
-        // Detail Evaluasi Berdasarkan ID
-        Route::get('/detail/{id}', function ($id) {
-            return view('evaluasi.detail', compact('id'));
-        })->name('evaluasi.detail');
+        Route::get('/',              [EvaluasiController::class, 'index'])->name('evaluasi');
+        Route::get('/infrastruktur', [EvaluasiController::class, 'infrastruktur'])->name('evaluasi.infrastruktur');
+        Route::get('/sarana',        [EvaluasiController::class, 'sarana'])->name('evaluasi.sarana');
+        Route::get('/sarana/{slug}', [EvaluasiController::class, 'saranaDetail'])->name('evaluasi.sarana.detail');
+        Route::get('/ekonomi',       [EvaluasiController::class, 'ekonomi'])->name('evaluasi.ekonomi');
+        Route::get('/sosial',        [EvaluasiController::class, 'sosial'])->name('evaluasi.sosial');
     });
 
-    // PKK & Posyandu Utama
-    Route::get('/kiosk/pkk-posyandu', function () { 
-        return view('pkk_posyandu.index'); 
-    })->name('pkk.posyandu');
-
-    // Sub-Menu PKK
-    Route::get('/kiosk/pkk-posyandu/pkk', function () {
-        // Karena filenya pkk_posyandu/pkk.blade.php
-        return view('pkk_posyandu.pkk'); 
-    })->name('pkk.index');
-
-    // Sub-Menu Posyandu
-    Route::get('/kiosk/pkk-posyandu/posyandu', function () {
-        // Karena filenya pkk_posyandu/posyandu.blade.php
-        return view('pkk_posyandu.posyandu'); 
-    })->name('posyandu.index');
-
 });
+
+// API data layanan surat 
+Route::get('/api/layanan-surat/data', [LayananSuratController::class, 'apiData'])->name('layanan.surat.api');
