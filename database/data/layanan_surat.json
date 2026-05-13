@@ -1,0 +1,131 @@
+{
+    "jenis_surat": [
+        {
+            "id": 1,
+            "nama": "Surat Keterangan Penduduk",
+            "icon": "bi-person-vcard",
+            "blanko": "blanko/1.pdf",
+            "persyaratan": [
+                "Fotokopi KTP",
+                "Fotokopi KK",
+                "Surat Pengantar RT/RW"
+            ]
+        },
+        {
+            "id": 2,
+            "nama": "Surat Pengantar SKCK",
+            "icon": "bi-shield-check",
+            "blanko": "blanko/2.pdf",
+            "persyaratan": [
+                "Fotokopi KTP",
+                "Fotokopi KK",
+                "Pas Foto 4x6 (2 lembar)"
+            ]
+        },
+        {
+            "id": 3,
+            "nama": "Surat Keterangan Usaha",
+            "icon": "bi-shop",
+            "blanko": "blanko/3.pdf",
+            "persyaratan": [
+                "Fotokopi KTP",
+                "Fotokopi KK",
+                "Surat Pengantar RT/RW",
+                "Foto Usaha"
+            ]
+        },
+        {
+            "id": 4,
+            "nama": "Surat Permohonan Kartu Keluarga",
+            "icon": "bi-people",
+            "blanko": "blanko/4.pdf",
+            "persyaratan": [
+                "Fotokopi KTP semua anggota keluarga",
+                "Surat Nikah/Akta Cerai",
+                "Surat Pengantar RT/RW"
+            ]
+        },
+        {
+            "id": 5,
+            "nama": "Surat Permohonan KTP",
+            "icon": "bi-credit-card",
+            "blanko": "blanko/5.pdf",
+            "persyaratan": [
+                "Fotokopi KK",
+                "Pas Foto 3x4 (2 lembar)",
+                "Surat Pengantar RT/RW"
+            ]
+        },
+        {
+            "id": 6,
+            "nama": "Surat Keterangan Pindah Penduduk",
+            "icon": "bi-house-door",
+            "blanko": "blanko/6.pdf",
+            "persyaratan": [
+                "Fotokopi KTP",
+                "Fotokopi KK",
+                "Surat Pengantar RT/RW asal",
+                "Surat Pengantar RT/RW tujuan"
+            ]
+        },
+        {
+            "id": 7,
+            "nama": "Surat Keterangan Kelahiran",
+            "icon": "bi-heart-pulse",
+            "blanko": "blanko/7.pdf",
+            "persyaratan": [
+                "Surat Keterangan Lahir dari Bidan/RS",
+                "Fotokopi KTP kedua orang tua",
+                "Fotokopi KK",
+                "Surat Nikah orang tua"
+            ]
+        },
+        {
+            "id": 8,
+            "nama": "Surat Keterangan Kematian",
+            "icon": "bi-file-earmark-medical",
+            "blanko": "blanko/8.pdf",
+            "persyaratan": [
+                "Surat Keterangan Kematian dari Dokter/RS",
+                "Fotokopi KTP almarhum",
+                "Fotokopi KK"
+            ]
+        },
+        {
+            "id": 9,
+            "nama": "Surat Keterangan Untuk Nikah",
+            "icon": "bi-heart",
+            "blanko": "blanko/9.pdf",
+            "persyaratan": [
+                "Fotokopi KTP",
+                "Fotokopi KK",
+                "Pas Foto 3x4 (4 lembar)",
+                "Surat Pengantar RT/RW",
+                "Akta Kelahiran"
+            ]
+        }
+    ],
+    "mock_status": {
+        "111": {
+            "nama": "Budi Santoso",
+            "jenis": "Surat Keterangan Penduduk",
+            "status": "pengajuan",
+            "update": "10 Mei 2026, 08:00",
+            "estimasi": "3-5 hari kerja"
+        },
+        "222": {
+            "nama": "Siti Rahayu",
+            "jenis": "Surat Pengantar SKCK",
+            "status": "proses",
+            "update": "10 Mei 2026, 10:30",
+            "estimasi": "1-2 hari kerja"
+        },
+        "333": {
+            "nama": "Ahmad Fauzi",
+            "jenis": "Surat Keterangan Usaha",
+            "status": "selesai",
+            "update": "10 Mei 2026, 14:00",
+            "estimasi": "Sudah selesai, silakan cetak"
+        }
+    }
+}
