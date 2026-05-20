@@ -15,21 +15,20 @@
 
     <div style="font-size:clamp(18px,2vw,32px);font-weight:800;margin-bottom:2vh;">MENU PKK</div>
 
-    {{-- Filter Kegiatan Pokja --}}
+    {{-- Filter Tahun - 1 filter untuk semua data --}}
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5vh;">
         <div style="color:var(--merah-tua);font-size:clamp(16px,1.8vw,30px);font-weight:800;">KEGIATAN POKJA PKK</div>
         <form action="{{ route('pkk.index') }}" method="GET">
-            <input type="hidden" name="tahun_statistik" value="{{ $tahunStatistik }}">
             <select name="tahun" class="select-merah" onchange="this.form.submit()">
                 <option value="all" {{ $tahun === 'all' ? 'selected' : '' }}>Semua Tahun</option>
-                @foreach($tahunTersediaKegiatan as $th)
+                @foreach($tahunTersedia as $th)
                     <option value="{{ $th }}" {{ $tahun == $th ? 'selected' : '' }}>Tahun {{ $th }}</option>
                 @endforeach
             </select>
         </form>
     </div>
 
-    {{-- Tabel: thead stay, tbody scroll jika > 5 baris --}}
+    {{-- Tabel Kegiatan --}}
     <div style="margin-bottom:2vh;border-radius:12px;overflow:hidden;">
         <table class="tabel-kiosk" style="margin-bottom:0;">
             <thead>
@@ -66,7 +65,7 @@
     <div class="row g-3 mb-3">
         @php
         $cards = [
-            ['label' => 'Total Anggota PKK',  'value' => $dataUmum['total_anggota'], 'dot' => 'orange'],
+            ['label' => 'Total Anggota PKK',   'value' => $dataUmum['total_anggota'], 'dot' => 'orange'],
             ['label' => 'Total Kader PKK',     'value' => $dataUmum['total_kader'],   'dot' => '#007bff'],
             ['label' => 'Kelompok Dasawisma',  'value' => $dataUmum['dasawisma'],     'dot' => 'green'],
             ['label' => 'RT Aktif',            'value' => $dataUmum['rt_aktif'],      'dot' => 'red'],
@@ -90,7 +89,6 @@
                 <div style="background:#4B0082;color:white;text-align:center;padding:1vh;font-weight:700;font-size:clamp(13px,1.2vw,18px);">Distribusi Anggota Pokja</div>
                 <div style="padding:2vh;height:clamp(180px,22vh,300px);position:relative;">
                     <canvas id="chartPokjaBar"></canvas>
-                    <div style="text-align:center;margin-top:1vh;font-weight:700;font-size:clamp(13px,1.2vw,18px);">Total Anggota : 85 Orang</div>
                 </div>
             </div>
         </div>
@@ -98,32 +96,22 @@
             <div style="font-size:clamp(14px,1.4vw,22px);font-weight:700;margin-bottom:1.5vh;">Persentase Pokja</div>
             <div style="display:flex;align-items:center;gap:2vw;">
                 <div style="flex:1;">
+                    @php $totalPokja = array_sum(array_column($distribusiPokja, 'jumlah')); @endphp
                     @foreach($distribusiPokja as $p)
+                    @php $persenHitung = $totalPokja > 0 ? round($p['jumlah'] / $totalPokja * 100) : 0; @endphp
                     <div style="display:flex;align-items:center;gap:1vw;font-size:clamp(12px,1.1vw,16px);font-weight:700;margin-bottom:0.8vh;">
                         <div style="width:18px;height:18px;border-radius:50%;background:{{ $p['warna'] }};flex-shrink:0;"></div>
-                        {{ $p['label'] }} - {{ $p['persen'] }}%
+                        {{ $p['label'] }} - {{ $persenHitung }}%
                     </div>
                     @endforeach
-                </div>
-                <div style="width:clamp(80px,10vw,160px);height:clamp(80px,10vw,160px);position:relative;">
-                    <canvas id="chartPokjaPie"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
-    {{-- Statistik Kegiatan PKK --}}
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5vh;">
+    {{-- Statistik Kegiatan PKK - tanpa filter, ikut filter atas --}}
+    <div style="margin-bottom:1.5vh;">
         <div style="color:var(--merah-tua);font-size:clamp(16px,1.8vw,30px);font-weight:800;">STATISTIK KEGIATAN PKK</div>
-        <form action="{{ route('pkk.index') }}" method="GET">
-            <input type="hidden" name="tahun" value="{{ $tahun }}">
-            <select name="tahun_statistik" class="select-merah" onchange="this.form.submit()">
-                <option value="all" {{ $tahunStatistik === 'all' ? 'selected' : '' }}>Semua Tahun</option>
-                @foreach($tahunTersediaStatistik as $th)
-                    <option value="{{ $th }}" {{ $tahunStatistik == $th ? 'selected' : '' }}>Tahun {{ $th }}</option>
-                @endforeach
-            </select>
-        </form>
     </div>
 
     <div class="row g-3 mb-3">
@@ -199,16 +187,32 @@ const dataBulanan = @json($statistikKegiatan['bulanan']);
 const commonOpts = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } };
 
 window.onload = function () {
-    new Chart(document.getElementById('chartPokjaBar'), {
+        new Chart(document.getElementById('chartPokjaBar'), {
         type: 'bar',
-        data: { labels: ['Pokja 1','Pokja 2','Pokja 3','Pokja 4'], datasets: [{ data: pokjaJumlah, backgroundColor: pkkColors, barThickness: 15 }] },
-        options: { ...commonOpts, indexAxis: 'y' }
-    });
-
-    new Chart(document.getElementById('chartPokjaPie'), {
-        type: 'pie',
-        data: { datasets: [{ data: pokjaPersen, backgroundColor: pkkColors }] },
-        options: commonOpts
+        data: { 
+            labels: @json(array_column($distribusiPokja, 'label')),
+            datasets: [{ data: pokjaJumlah, backgroundColor: pkkColors, barThickness: 15 }] 
+        },
+        options: { 
+            ...commonOpts, 
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Jumlah Anggota',
+                        font: { size: 13, weight: 'bold' },
+                        color: '#333'
+                    },
+                    ticks: { color: '#333', font: { size: 12 } },
+                    grid: { color: 'rgba(0,0,0,0.1)' }
+                },
+                y: {
+                    ticks: { color: '#333', font: { size: 12 } }
+                }
+            }
+        }
     });
 
     new Chart(document.getElementById('chartKegiatanBulanan'), {

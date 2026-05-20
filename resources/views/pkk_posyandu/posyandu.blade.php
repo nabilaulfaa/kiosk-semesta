@@ -211,28 +211,56 @@ window.onload = function () {
         options: { ...commonOpts, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', color: '#B51016' } }, scales: { y: { beginAtZero: true, grid: { display: false } } } }
     });
 
+    // chartKelahiran - hapus datalabels
     new Chart(document.getElementById('chartKelahiran'), {
         type: 'pie',
         data: { labels: ['Laki-laki','Perempuan'], datasets: [{ data: [{{ $dataKelahiran['laki'] }}, {{ $dataKelahiran['perempuan'] }}], backgroundColor: ['#B51016','#FF7676'], borderWidth: 2 }] },
-        options: { ...commonOpts, plugins: { legend: { position: 'bottom' }, datalabels: { formatter: v => v + ' Jiwa' } } }
+        options: { 
+            ...commonOpts, 
+            plugins: { 
+                legend: { position: 'bottom' }, 
+                datalabels: { display: false }  // ← tambah ini
+            } 
+        }
     });
 
+    // chartKematian - sama
     new Chart(document.getElementById('chartKematian'), {
         type: 'pie',
         data: { labels: ['Laki-laki','Perempuan'], datasets: [{ data: [{{ $dataKematian['laki'] }}, {{ $dataKematian['perempuan'] }}], backgroundColor: ['#B51016','#FF7676'], borderWidth: 2 }] },
-        options: { ...commonOpts, plugins: { legend: { position: 'bottom' }, datalabels: { formatter: v => v + ' Jiwa' } } }
+        options: { 
+            ...commonOpts, 
+            plugins: { 
+                legend: { position: 'bottom' }, 
+                datalabels: { display: false }  // ← tambah ini
+            } 
+        }
     });
 
+    // chartImunisasi - hapus datalabels
     new Chart(document.getElementById('chartImunisasi'), {
         type: 'line',
         data: { labels: labels12, datasets: [{ data: [15,25,20,35,45,40,50,55,60,65,70,75], borderColor: '#42A5F5', backgroundColor: 'rgba(66,165,245,0.2)', fill: true, tension: 0.4, pointRadius: 5 }] },
-        options: { ...commonOpts, plugins: { legend: { display: false }, datalabels: { backgroundColor: '#42A5F5', borderRadius: 4, padding: 4 } } }
+        options: { 
+            ...commonOpts, 
+            plugins: { 
+                legend: { display: false }, 
+                datalabels: { display: false }  // ← ubah ini
+            } 
+        }
     });
 
+    // chartGizi - hapus datalabels
     new Chart(document.getElementById('chartGizi'), {
         type: 'doughnut',
         data: { labels: ['Gizi Buruk','Sedang','Cukup Gizi'], datasets: [{ data: [20,30,50], backgroundColor: ['#4B0082','#FF7676','#42A5F5'], hoverOffset: 15 }] },
-        options: { ...commonOpts, plugins: { legend: { display: false }, datalabels: { formatter: v => v + '%' } } }
+        options: { 
+            ...commonOpts, 
+            plugins: { 
+                legend: { display: false }, 
+                datalabels: { display: false }  // ← ubah ini
+            } 
+        }
     });
 };
 </script>

@@ -133,9 +133,10 @@ function _initFormCek() {
     _setBtn(btn, false);
 
     input.addEventListener('input', () => {
-        const nik = input.value.trim();
-        _setBtn(btn, nik !== '');
-    });
+    const nik   = input.value.trim();
+    const valid = nik !== '' && _suratData.mock_status?.[nik] !== undefined;
+    _setBtn(btn, valid);
+});
 
     btn.addEventListener('click', () => {
         const nik    = input.value.trim();

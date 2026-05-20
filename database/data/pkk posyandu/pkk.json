@@ -1,0 +1,66 @@
+{
+    "data_umum": {
+        "2026": {
+            "total_anggota": 85,
+            "total_kader": 30,
+            "dasawisma": 6,
+            "rt_aktif": 10
+        },
+        "2025": {
+            "total_anggota": 75,
+            "total_kader": 25,
+            "dasawisma": 5,
+            "rt_aktif": 8
+        },
+        "2024": {
+            "total_anggota": 60,
+            "total_kader": 20,
+            "dasawisma": 4,
+            "rt_aktif": 6
+        }
+    },
+
+    "distribusi_pokja": {
+        "2026":  [
+            { "label": "Pokja 1", "jumlah": 25, "persen": 24, "warna": "#109688" },
+            { "label": "Pokja 2", "jumlah": 35, "persen": 21, "warna": "#B51016" },
+            { "label": "Pokja 3", "jumlah": 18, "persen": 26, "warna": "#0D47A1" },
+            { "label": "Pokja 4", "jumlah": 22, "persen": 29, "warna": "#FFB74D" }
+        ],
+        "2025": [
+            { "label": "Pokja 1", "jumlah": 20, "persen": 27, "warna": "#109688" },
+            { "label": "Pokja 2", "jumlah": 25, "persen": 34, "warna": "#B51016" },
+            { "label": "Pokja 3", "jumlah": 15, "persen": 20, "warna": "#0D47A1" }
+        ],
+        "2024": [
+            { "label": "Pokja 1", "jumlah": 15, "persen": 25, "warna": "#109688" },
+            { "label": "Pokja 2", "jumlah": 20, "persen": 33, "warna": "#B51016" }
+        ]
+    },
+
+    "kegiatan": {
+        "2026": [
+            { "pokja": "Pokja 1", "nama": "Penyuluhan KB",             "tanggal": "05 Jan 2026", "lokasi": "Balai Desa" },
+            { "pokja": "Pokja 2", "nama": "Pelatihan Memasak Sehat",   "tanggal": "12 Jan 2026", "lokasi": "Rumah Kader RT 3" },
+            { "pokja": "Pokja 3", "nama": "Sosialisasi Pendidikan",    "tanggal": "19 Jan 2026", "lokasi": "TK Al Islam" },
+            { "pokja": "Pokja 4", "nama": "Pelatihan Menjahit",        "tanggal": "26 Jan 2026", "lokasi": "Balai Desa" },
+            { "pokja": "Pokja 1", "nama": "Pertemuan Rutin Dasawisma", "tanggal": "02 Feb 2026", "lokasi": "Rumah Kader RT 7" },
+            { "pokja": "Pokja 2", "nama": "Pelatihan Batik Tulis",     "tanggal": "09 Feb 2026", "lokasi": "Balai Desa" }
+        ],
+        "2025": [
+            { "pokja": "Pokja 1", "nama": "Penyuluhan Gizi",     "tanggal": "07 Jan 2025", "lokasi": "Balai Desa" },
+            { "pokja": "Pokja 2", "nama": "Pelatihan Kerajinan", "tanggal": "14 Jan 2025", "lokasi": "Rumah Kader RT 5" },
+            { "pokja": "Pokja 3", "nama": "Sosialisasi Kesehatan","tanggal": "21 Jan 2025", "lokasi": "Puskesmas" }
+        ],
+        "2024": [
+            { "pokja": "Pokja 1", "nama": "Pertemuan PKK Desa", "tanggal": "10 Jan 2024", "lokasi": "Balai Desa" },
+            { "pokja": "Pokja 2", "nama": "Pelatihan Memasak",  "tanggal": "17 Jan 2024", "lokasi": "Rumah Kader RT 2" }
+        ]
+    },
+
+    "statistik_kegiatan": {
+        "2026": { "total": 10, "pelatihan": 9, "pertemuan": 3, "bulanan": [2,3,4,5,7,8,6,5,4,7,8,9] },
+        "2025": { "total": 7,  "pelatihan": 5, "pertemuan": 2, "bulanan": [1,2,3,2,4,5,3,4,2,3,4,5] },
+        "2024": { "total": 4,  "pelatihan": 3, "pertemuan": 1, "bulanan": [1,1,2,1,2,3,2,1,2,1,2,2] }
+    }
+}

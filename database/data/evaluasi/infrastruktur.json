@@ -1,0 +1,84 @@
+{
+    "proyek": [
+        {
+            "id": 1,
+            "judul": "Pembangunan Jalan Desa",
+            "lokasi": "Dusun 1",
+            "status": "Selesai",
+            "tahun": 2025,
+            "progress": 100,
+            "anggaran": 20000000,
+            "deskripsi": "Pembangunan jalan sepanjang 1,7 km untuk menghubungkan Dusun 1 dengan pusat desa.",
+            "gambar": {
+                "utama":   "infrastruktur/jalan_utama.jpg",
+                "awal":    "infrastruktur/jalan_awal.jpg",
+                "proses":  "infrastruktur/jalan_proses.jpg",
+                "selesai": "infrastruktur/jalan_selesai.jpg"
+            }
+        },
+        {
+            "id": 2,
+            "judul": "Pembangunan Balai Desa",
+            "lokasi": "Dusun 2",
+            "status": "Proses",
+            "tahun": 2025,
+            "progress": 60,
+            "anggaran": 15000000,
+            "deskripsi": "Renovasi balai desa untuk fasilitas warga dan kegiatan kemasyarakatan.",
+            "gambar": {
+                "utama":   "infrastruktur/balai_utama.jpg",
+                "awal":    "infrastruktur/balai_awal.jpg",
+                "proses":  "infrastruktur/balai_proses.jpg",
+                "selesai": "infrastruktur/balai_selesai.jpg"
+            }
+        },
+        {
+            "id": 3,
+            "judul": "Pembangunan Drainase",
+            "lokasi": "Dusun 3",
+            "status": "Proses",
+            "tahun": 2024,
+            "progress": 40,
+            "anggaran": 12000000,
+            "deskripsi": "Perbaikan sistem drainase desa untuk mengurangi genangan saat musim hujan.",
+            "gambar": {
+                "utama":   "infrastruktur/drainase_utama.jpg",
+                "awal":    "infrastruktur/drainase_awal.jpg",
+                "proses":  "infrastruktur/drainase_proses.jpg",
+                "selesai": "infrastruktur/drainase_selesai.jpg"
+            }
+        },
+        {
+            "id": 4,
+            "judul": "Pembangunan Taman Desa",
+            "lokasi": "Dusun 4",
+            "status": "Belum",
+            "tahun": 2025,
+            "progress": 10,
+            "anggaran": 8000000,
+            "deskripsi": "Rencana pembangunan taman desa sebagai ruang terbuka hijau bagi warga.",
+            "gambar": {
+                "utama":   "infrastruktur/taman_utama.jpg",
+                "awal":    "infrastruktur/taman_awal.jpg",
+                "proses":  "infrastruktur/taman_proses.jpg",
+                "selesai": "infrastruktur/taman_selesai.jpg"
+            }
+        },
+        {
+            "id": 5,
+            "judul": "Perbaikan Jembatan Desa",
+            "lokasi": "Dusun 5",
+            "status": "Selesai",
+            "tahun": 2024,
+            "progress": 100,
+            "anggaran": 18000000,
+            "deskripsi": "Perbaikan jembatan penghubung antar dusun sepanjang 12 meter.",
+            "gambar": {
+                "utama":   "infrastruktur/jembatan_utama.jpg",
+                "awal":    "infrastruktur/jembatan_awal.jpg",
+                "proses":  "infrastruktur/jembatan_proses.jpg",
+                "selesai": "infrastruktur/jembatan_selesai.jpg"
+            }
+        }
+    ]
+}

@@ -62,12 +62,12 @@
         data-desc="{{ $item['deskripsi'] }}"
         data-progress="{{ $item['progress'] }}"
         data-anggaran="{{ number_format($item['anggaran'], 0, ',', '.') }}"
-        data-img-utama="{{ asset('images/' . $item['gambar']['utama']) }}"
-        data-img-awal="{{ asset('images/' . $item['gambar']['awal']) }}"
-        data-img-proses="{{ asset('images/' . $item['gambar']['proses']) }}"
-        data-img-selesai="{{ asset('images/' . $item['gambar']['selesai']) }}"
+        data-img-utama="{{ asset('storage/' . $item['gambar']['utama']) }}"
+        data-img-awal="{{ asset('storage/' . $item['gambar']['awal']) }}"
+        data-img-proses="{{ asset('storage/' . $item['gambar']['proses']) }}"
+        data-img-selesai="{{ asset('storage/' . $item['gambar']['selesai']) }}"
     >
-        <img src="{{ asset('images/' . $item['gambar']['utama']) }}"
+        <img src="{{ asset('storage/' . $item['gambar']['utama']) }}"
             style="width:clamp(150px,16vw,250px);height:clamp(100px,12vh,180px);object-fit:cover;border-radius:15px;flex-shrink:0;">
         <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
             <div>
@@ -175,9 +175,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const progress = parseInt(card.dataset.progress);
 
             let targetImg = card.dataset.imgUtama;
-            if (progress >= 100) targetImg = card.dataset.imgSelesai;
-            else if (progress >= 50) targetImg = card.dataset.imgProses;
-            else if (progress > 0)  targetImg = card.dataset.imgAwal;
 
             document.getElementById('m-title').innerText = card.dataset.judul;
             document.getElementById('m-loc').innerText   = 'Lokasi : ' + card.dataset.lokasi;
@@ -187,8 +184,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('m-perc').innerText  = card.dataset.progress + '%';
 
             document.getElementById('m-img-step1').src = card.dataset.imgAwal;
-            document.getElementById('m-img-step2').src = card.dataset.imgProses;
-            document.getElementById('m-img-step3').src = card.dataset.imgSelesai;
+            document.getElementById('m-img-step2').src = progress >= 50  ? card.dataset.imgProses  : '';
+            document.getElementById('m-img-step3').src = progress >= 100 ? card.dataset.imgSelesai : '';
 
             ['step1','step2','step3'].forEach(id => {
                 document.getElementById(id).querySelector('.step-circle').style.background = '#fff';

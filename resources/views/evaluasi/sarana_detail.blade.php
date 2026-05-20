@@ -17,8 +17,8 @@
             <div style="font-size:clamp(15px,1.5vw,24px);font-weight:800;margin-bottom:1.5vh;">
                 {{ $i + 1 }}. {{ $item['nama'] }}
             </div>
-            <img src="{{ asset('images/' . $item['gambar']) }}"
-                style="width:100%;height:clamp(140px,20vh,280px);object-fit:cover;border-radius:15px;margin-bottom:1.5vh;">
+            <img src="{{ asset('storage/' . $item['gambar']) }}"
+                style="width:100%;max-width:600px;height:clamp(200px,25vh,350px);object-fit:cover;border-radius:15px;margin-bottom:1.5vh;display:block;">
             <div style="font-size:clamp(13px,1.2vw,18px);font-weight:500;margin-bottom:0.8vh;">
                 <b>Status Kondisi :</b>
                 <span class="badge-status {{ $item['kondisi'] }}">{{ $item['kondisi'] }}</span>

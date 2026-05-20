@@ -22,7 +22,7 @@
         <div class="col-6">
             <div class="card-pengurus" onclick="showDetailPengurus({{ $i }})">
                 <div class="photo-container">
-                    <img src="{{ asset('images/' . $p['foto']) }}" alt="{{ $p['nama'] }}" class="photo-img">
+                    <img src="{{ asset($p['foto']) }}" alt="{{ $p['nama'] }}" class="photo-img">
                 </div>
                 <div>
                     <div class="jabatan">{{ $p['jabatan'] }}</div>
@@ -211,7 +211,7 @@ function updateChartData(key) {
 function showDetailPengurus(i) {
     const p = pengurusData[i];
     document.getElementById('modalPengurusTitle').innerText = 'DETAIL ' + p.jabatan.toUpperCase();
-    document.getElementById('modalPengurusFoto').src        = '/images/' + p.foto;
+    document.getElementById('modalPengurusFoto').src        = '/' + p.foto;
     document.getElementById('modalPengurusNama').innerText  = p.nama;
     document.getElementById('modalPengurusJabatan').innerText = p.jabatan;
     document.getElementById('dNama').innerText        = p.nama;

@@ -1,0 +1,57 @@
+{
+    "jadwal": {
+        "2026": [
+            { "nama": "Posyandu Melati 1", "tanggal": "03 Jan 2026", "lokasi": "RT 01 Dusun 1" },
+            { "nama": "Posyandu Melati 2", "tanggal": "10 Jan 2026", "lokasi": "RT 04 Dusun 2" },
+            { "nama": "Posyandu Mawar",    "tanggal": "17 Jan 2026", "lokasi": "RT 07 Dusun 3" },
+            { "nama": "Posyandu Anggrek",  "tanggal": "24 Jan 2026", "lokasi": "RT 10 Dusun 4" },
+            { "nama": "Posyandu Kenanga",  "tanggal": "31 Jan 2026", "lokasi": "RT 13 Dusun 5" },
+            { "nama": "Posyandu Melati 1", "tanggal": "07 Feb 2026", "lokasi": "RT 01 Dusun 1" }
+        ],
+        "2025": [
+            { "nama": "Posyandu Melati 1", "tanggal": "05 Jan 2025", "lokasi": "RT 01 Dusun 1" },
+            { "nama": "Posyandu Mawar",    "tanggal": "12 Jan 2025", "lokasi": "RT 07 Dusun 3" },
+            { "nama": "Posyandu Anggrek",  "tanggal": "19 Jan 2025", "lokasi": "RT 10 Dusun 4" }
+        ],
+        "2024": [
+            { "nama": "Posyandu Melati 2", "tanggal": "08 Jan 2024", "lokasi": "RT 04 Dusun 2" },
+            { "nama": "Posyandu Kenanga",  "tanggal": "15 Jan 2024", "lokasi": "RT 13 Dusun 5" }
+        ]
+    },
+
+    "data": {
+        "2026": {
+            "rincian_pengunjung": {
+                "balita": 60, "lansia": 40, "ibu_hamil": 20, "imunisasi": 180,
+                "stunting": 30, "gizi_buruk": 20
+            },
+            "statistik_pengunjung": [10,20,15,25,30,35,40,45,50,55,60,65],
+            "imunisasi_bulanan":    [15,25,20,35,45,40,50,55,60,65,70,75],
+            "gizi_balita":          [20, 30, 50],
+            "data_kelahiran": { "total": 850, "laki": 250, "perempuan": 600 },
+            "data_kematian":  { "total": 120, "laki": 70,  "perempuan": 50  }
+        },
+        "2025": {
+            "rincian_pengunjung": {
+                "balita": 55, "lansia": 35, "ibu_hamil": 18, "imunisasi": 160,
+                "stunting": 25, "gizi_buruk": 15
+            },
+            "statistik_pengunjung": [8,15,12,20,25,30,35,38,42,48,55,58],
+            "imunisasi_bulanan":    [10,18,15,28,38,32,42,48,52,58,62,68],
+            "gizi_balita":          [18, 32, 50],
+            "data_kelahiran": { "total": 780, "laki": 220, "perempuan": 560 },
+            "data_kematian":  { "total": 105, "laki": 60,  "perempuan": 45  }
+        },
+        "2024": {
+            "rincian_pengunjung": {
+                "balita": 48, "lansia": 30, "ibu_hamil": 15, "imunisasi": 140,
+                "stunting": 20, "gizi_buruk": 12
+            },
+            "statistik_pengunjung": [6,12,10,18,22,26,30,32,36,40,45,50],
+            "imunisasi_bulanan":    [8,15,12,22,30,28,36,40,44,50,55,60],
+            "gizi_balita":          [15, 35, 50],
+            "data_kelahiran": { "total": 720, "laki": 200, "perempuan": 520 },
+            "data_kematian":  { "total": 95,  "laki": 55,  "perempuan": 40  }
+        }
+    }
+}

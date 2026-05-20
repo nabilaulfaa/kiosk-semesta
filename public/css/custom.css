@@ -173,7 +173,6 @@ html, body {
 .btn-nav:hover, .btn-nav:focus {
     color: white;
     text-decoration: none;
-    background: var(--merah);
 }
 
 .footer-bottom-bar {
@@ -319,8 +318,6 @@ html, body {
     font-weight: 700;
     cursor: pointer;
 }
-
-.btn-merah:hover { background: var(--merah); color: white; }
 
 .select-merah {
     background: var(--merah-tua);
@@ -516,8 +513,6 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
     border: 2px solid transparent;
 }
 
-.card-pengurus:hover { background: #fff; border-color: var(--merah-tua); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-
 .photo-container {
     width: clamp(70px, 7vw, 120px);
     height: clamp(70px, 7vw, 120px);
@@ -549,12 +544,16 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .detail-table td.lbl {
     background: var(--merah-tua);
     color: white;
-    width: 35%;
+    width: 50%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.detail-table td:last-child { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+.detail-table td:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    white-space: nowrap;
+}
 
 /* ----------------------------------------------------------
    20. LAYANAN SURAT
@@ -588,7 +587,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 
 .surat-item i { font-size: clamp(18px, 1.8vw, 28px); flex-shrink: 0; }
 .surat-item .arrow { font-size: clamp(20px, 2.5vw, 36px); font-weight: 900; flex-shrink: 0; }
-.surat-item:hover { background: #c9181f; color: white; text-decoration: none; }
+.surat-item:hover {color: white; text-decoration: none; }
 
 .container-surat { padding: 2vh 5vw 6vh; }
 

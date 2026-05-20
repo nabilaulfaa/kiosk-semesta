@@ -1,0 +1,111 @@
+{
+    "pendidikan": [
+        {
+            "slug": "tk",
+            "nama": "Taman Kanak-Kanak (TK)",
+            "jumlah": 4,
+            "kondisi": "baik",
+            "gambar": "sarana/tk_default.jpg",
+            "detail": [
+                { "nama": "TK Al Islam",  "kondisi": "baik",  "gambar": "sarana/tk_al_islam.jpg",  "deskripsi": "TK memiliki fasilitas bermain yang aman dan ruang belajar yang nyaman." },
+                { "nama": "TK Al Ikhlas", "kondisi": "baik",  "gambar": "sarana/tk_al_ikhlas.jpg", "deskripsi": "Kondisi bangunan sangat baik dan terawat secara rutin." },
+                { "nama": "TK Pertiwi",   "kondisi": "cukup", "gambar": "sarana/tk_pertiwi.jpg",   "deskripsi": "Perlu peremajaan beberapa fasilitas bermain." },
+                { "nama": "TK Muslimat",  "kondisi": "baik",  "gambar": "sarana/tk_muslimat.jpg",  "deskripsi": "Baru direnovasi tahun 2024, kondisi sangat baik." }
+            ]
+        },
+        {
+            "slug": "sd",
+            "nama": "Sekolah Dasar (SD)",
+            "jumlah": 3,
+            "kondisi": "baik",
+            "gambar": "sarana/sd_default.jpg",
+            "detail": [
+                { "nama": "SDN 1 Jatimulyo", "kondisi": "baik",  "gambar": "sarana/sdn1.jpg", "deskripsi": "Kondisi bangunan sangat baik dan terawat secara rutin." },
+                { "nama": "SDN 2 Jatimulyo", "kondisi": "baik",  "gambar": "sarana/sdn2.jpg", "deskripsi": "Kondisi bangunan sangat baik dan terawat secara rutin." },
+                { "nama": "SDN 3 Jatimulyo", "kondisi": "cukup", "gambar": "sarana/sdn3.jpg", "deskripsi": "Perlu perbaikan atap dan pengecatan ulang." }
+            ]
+        }
+    ],
+    "kesehatan": [
+        {
+            "slug": "puskesmas",
+            "nama": "Puskesmas",
+            "jumlah": 1,
+            "kondisi": "cukup",
+            "gambar": "sarana/puskesmas.jpg",
+            "detail": [
+                { "nama": "Puskesmas Jatimulyo", "kondisi": "cukup", "gambar": "sarana/puskesmas_detail.jpg", "deskripsi": "Perlu penambahan peralatan medis dan ruang periksa." }
+            ]
+        }
+    ],
+    "umum": [
+        {
+            "slug": "balai-desa",
+            "nama": "Balai Desa",
+            "jumlah": 1,
+            "kondisi": "baik",
+            "gambar": "sarana/balai_desa.jpg",
+            "detail": [
+                { "nama": "Balai Desa Jatimulyo", "kondisi": "baik", "gambar": "sarana/balai_desa_detail.jpg", "deskripsi": "Baru selesai direnovasi, kondisi sangat baik." }
+            ]
+        },
+        {
+            "slug": "lapangan",
+            "nama": "Lapangan",
+            "jumlah": 3,
+            "kondisi": "baik",
+            "gambar": "sarana/lapangan.jpg",
+            "detail": []
+        }
+    ],
+    "lingkungan": [
+    {
+        "slug": "tps",
+        "nama": "Tempat Pembuangan Sampah",
+        "jumlah": 3,
+        "kondisi": "cukup",
+        "gambar": "sarana/tps_default.jpg",
+        "detail": [
+            {
+                "nama": "TPS RW 01",
+                "kondisi": "cukup",
+                "gambar": "sarana/tps_rw01.jpg",
+                "deskripsi": "Perlu penambahan kontainer sampah organik."
+            },
+            {
+                "nama": "TPS RW 03",
+                "kondisi": "baik",
+                "gambar": "sarana/tps_rw03.jpg",
+                "deskripsi": "Sudah dilengkapi pemilahan sampah 3 kategori."
+            },
+            {
+                "nama": "TPS RW 05",
+                "kondisi": "buruk",
+                "gambar": "sarana/tps_rw05.jpg",
+                "deskripsi": "Perlu renovasi total, kapasitas tidak mencukupi."
+            }
+        ]
+    },
+    {
+        "slug": "drainase-lingkungan",
+        "nama": "Drainase Lingkungan",
+        "jumlah": 5,
+        "kondisi": "cukup",
+        "gambar": "sarana/drainase_default.jpg",
+        "detail": [
+            {
+                "nama": "Drainase Dusun 1",
+                "kondisi": "baik",
+                "gambar": "sarana/drainase_dusun1.jpg",
+                "deskripsi": "Kondisi baik, air mengalir lancar."
+            },
+            {
+                "nama": "Drainase Dusun 2",
+                "kondisi": "cukup",
+                "gambar": "sarana/drainase_dusun2.jpg",
+                "deskripsi": "Perlu pembersihan berkala dari sedimentasi."
+            }
+        ]
+    }
+]
+}
