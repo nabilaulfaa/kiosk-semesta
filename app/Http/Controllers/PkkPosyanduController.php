@@ -11,19 +11,17 @@ class PkkPosyanduController extends Controller
 
     public function pkk()
     {
-        $tahun = request('tahun', '2026'); // default 2026, bukan 'all'
-        $d = json_decode(file_get_contents(database_path('data/pkk posyandu/pkk.json')), true);
+        $tahun = request('tahun', '2026');
+        $d = json_decode(file_get_contents(public_path('api/pkk-posyandu/pkk.json')), true);
 
         $tahunTersedia = array_keys($d['kegiatan']);
 
-        // Kegiatan
         if ($tahun === 'all') {
             $kegiatanPkk = array_merge(...array_values($d['kegiatan']));
         } else {
             $kegiatanPkk = $d['kegiatan'][$tahun] ?? [];
         }
 
-        // Statistik
         if ($tahun === 'all') {
             $statistikKegiatan = [
                 'total'     => array_sum(array_column($d['statistik_kegiatan'], 'total')),
@@ -39,7 +37,6 @@ class PkkPosyanduController extends Controller
                 ?? ['total' => 0, 'pelatihan' => 0, 'pertemuan' => 0, 'bulanan' => array_fill(0, 12, 0)];
         }
 
-        // Data umum & distribusi pokja per tahun
         $dataUmum        = $d['data_umum'][$tahun]        ?? $d['data_umum']['2026'];
         $distribusiPokja = $d['distribusi_pokja'][$tahun] ?? $d['distribusi_pokja']['2026'];
 
@@ -52,18 +49,16 @@ class PkkPosyanduController extends Controller
     public function posyandu()
     {
         $tahun = request('tahun', '2026');
-        $d = json_decode(file_get_contents(database_path('data/pkk posyandu/posyandu.json')), true);
+        $d = json_decode(file_get_contents(public_path('api/pkk-posyandu/posyandu.json')), true);
 
         $tahunTersedia = array_keys($d['jadwal']);
 
-        // Jadwal
         if ($tahun === 'all') {
             $jadwalPosyandu = array_merge(...array_values($d['jadwal']));
         } else {
             $jadwalPosyandu = $d['jadwal'][$tahun] ?? [];
         }
 
-        // Data per tahun
         $dataPerTahun      = $d['data'][$tahun] ?? $d['data']['2026'];
         $rincianPengunjung = $dataPerTahun['rincian_pengunjung'];
         $dataKelahiran     = $dataPerTahun['data_kelahiran'];

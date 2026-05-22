@@ -1,0 +1,9 @@
+{
+    "2026": { "umkm": 1280, "petani": 2600, "pedagang": 890, "sektor_unggulan": "Agribisnis" },
+    "2025": { "umkm": 1200, "petani": 2500, "pedagang": 850, "sektor_unggulan": "Agribisnis" },
+    "2024": { "umkm": 1100, "petani": 2300, "pedagang": 790, "sektor_unggulan": "Agribisnis" },
+    "2023": { "umkm": 980,  "petani": 2150, "pedagang": 720, "sektor_unggulan": "Agribisnis" },
+    "2022": { "umkm": 870,  "petani": 2000, "pedagang": 650, "sektor_unggulan": "Pertanian"  },
+    "2021": { "umkm": 750,  "petani": 1900, "pedagang": 580, "sektor_unggulan": "Pertanian"  },
+    "2020": { "umkm": 640,  "petani": 1800, "pedagang": 510, "sektor_unggulan": "Pertanian"  }
+}

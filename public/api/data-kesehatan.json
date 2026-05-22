@@ -1,0 +1,22 @@
+{
+    "posyandu": 6,
+    "balita_imunisasi": 15,
+    "balita_gizi_baik": 30,
+    "balita_gizi_buruk": 5,
+    "lansia_gizi_baik": 2,
+    "lansia_gizi_buruk": 5,
+    "balita_stunting": 8,
+    "kasus_penyakit": 12,
+    "status_gizi": {
+        "baik": 30,
+        "buruk": 5,
+        "stunting": 8
+    },
+    "penyakit": [
+        { "nama": "ISPA",   "nilai": 20 },
+        { "nama": "Demam",  "nilai": 60 },
+        { "nama": "Campak", "nilai": 25 },
+        { "nama": "Diare",  "nilai": 40 },
+        { "nama": "DBD",    "nilai": 20 }
+    ]
+}

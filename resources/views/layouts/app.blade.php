@@ -12,7 +12,7 @@
     {{-- Google Fonts --}}
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     {{-- Custom CSS (theme & override Bootstrap) --}}
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/kiosk-semesta.css') }}" rel="stylesheet">
 
     @stack('styles')
 </head>
@@ -39,18 +39,25 @@
             @yield('content')
         </div>
 
-        {{-- ===== FOOTER NAVIGASI ===== --}}
+        {{-- ===== FOOTER NAVIGASI =====
+             Prioritas:
+             1. hide_bottom_nav → sembunyikan seluruh nav (contoh: beranda)
+             2. bottom_navigation → render nav custom dari halaman (contoh: peta, 2 tombol)
+             3. fallback → tombol BERANDA tunggal
+        --}}
         <div class="footer-section">
-            <div class="footer-nav-wrapper">
-                @hasSection('bottom_navigation')
-                    @yield('bottom_navigation')
-                @else
-                    <a href="{{ route('beranda') }}" class="btn-nav">
-                        <i class="bi bi-house-door-fill"></i>
-                        BERANDA
-                    </a>
-                @endif
-            </div>
+            @if(!$__env->hasSection('hide_bottom_nav'))
+                <div class="footer-nav-wrapper">
+                    @hasSection('bottom_navigation')
+                        @yield('bottom_navigation')
+                    @else
+                        <a href="{{ route('beranda') }}" class="btn-nav">
+                            <i class="bi bi-house-door-fill"></i>
+                            BERANDA
+                        </a>
+                    @endif
+                </div>
+            @endif
 
             <div class="footer-bottom-bar">
                 <div class="welcome-msg">
@@ -73,7 +80,7 @@
 {{-- Bootstrap JS --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 {{-- Custom JS global --}}
-<script src="{{ asset('js/custom.js') }}"></script>
+<script src="{{ asset('js/kiosk-semesta.js') }}"></script>
 
 @stack('scripts')
 

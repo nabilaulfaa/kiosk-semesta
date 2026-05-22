@@ -62,12 +62,12 @@
         data-desc="{{ $item['deskripsi'] }}"
         data-progress="{{ $item['progress'] }}"
         data-anggaran="{{ number_format($item['anggaran'], 0, ',', '.') }}"
-        data-img-utama="{{ asset('storage/' . $item['gambar']['utama']) }}"
-        data-img-awal="{{ asset('storage/' . $item['gambar']['awal']) }}"
-        data-img-proses="{{ asset('storage/' . $item['gambar']['proses']) }}"
-        data-img-selesai="{{ asset('storage/' . $item['gambar']['selesai']) }}"
+        data-img-utama="{{ asset($item['gambar']['utama']) }}"
+        data-img-awal="{{ asset($item['gambar']['awal']) }}"
+        data-img-proses="{{ asset($item['gambar']['proses']) }}"
+        data-img-selesai="{{ asset($item['gambar']['selesai']) }}"
     >
-        <img src="{{ asset('storage/' . $item['gambar']['utama']) }}"
+        <img src="{{ asset($item['gambar']['utama']) }}"
             style="width:clamp(150px,16vw,250px);height:clamp(100px,12vh,180px);object-fit:cover;border-radius:15px;flex-shrink:0;">
         <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
             <div>

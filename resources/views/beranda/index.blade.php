@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('hide_bottom_nav', '1')
+
 @section('content')
 <div class="hero-wrapper">
     <img src="{{ asset('images/hero-desa.jpg') }}" class="hero-img" alt="Desa Jatimulyo">

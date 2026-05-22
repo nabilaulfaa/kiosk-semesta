@@ -148,11 +148,6 @@
 
 @endsection
 
-@section('bottom_navigation')
-<a href="{{ route('beranda') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
-@endsection
 
 @push('scripts')
 <script>
