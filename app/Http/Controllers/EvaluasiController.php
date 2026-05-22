@@ -7,7 +7,7 @@ class EvaluasiController extends Controller
     private function load(string $file): array
     {
         return json_decode(
-            file_get_contents(database_path("data/evaluasi/{$file}.json")),
+            file_get_contents(public_path("api/evaluasi/{$file}.json")),
             true
         );
     }
@@ -19,13 +19,13 @@ class EvaluasiController extends Controller
 
     public function infrastruktur()
     {
-        $infrastruktur = $this->load('infrastruktur')['proyek'];  
+        $infrastruktur = $this->load('infrastruktur')['proyek'];
         return view('evaluasi.infrastruktur', compact('infrastruktur'));
     }
 
     public function sarana()
     {
-        $sarana = $this->load('sarana');  
+        $sarana = $this->load('sarana');
         return view('evaluasi.sarana', compact('sarana'));
     }
 
@@ -55,7 +55,7 @@ class EvaluasiController extends Controller
 
     public function ekonomi()
     {
-        $ekonomi = $this->load('ekonomi');  
+        $ekonomi = $this->load('ekonomi');
         return view('evaluasi.ekonomi', compact('ekonomi'));
     }
 

@@ -1,0 +1,68 @@
+{
+  "summary": {
+    "total_jalan": "200 km",
+    "total_jembatan": 10,
+    "total_sekolah": 15,
+    "total_faskes": 5
+  },
+
+  "jalan": [
+    {
+      "nama": "Jalan Soekarno Hatta",
+      "gambar": "/images/jl suhat.jpg"
+    },
+    {
+      "nama": "Jalan Pisan Kipas",
+      "gambar": "/images/jl suhat.jpg"
+    },
+    {
+      "nama": "Jalan Senggani",
+      "gambar": "/images/jl suhat.jpg"
+    }
+  ],
+
+  "jembatan": [
+    {
+      "nama": "Jembatan Soekarno Hatta",
+      "gambar": "/images/jembatan.jpg"
+    },
+    {
+      "nama": "Jembatan Mbioro",
+      "gambar": "/images/jembatan.jpg"
+    },
+    {
+      "nama": "Jembatan KH. A Fattah",
+      "gambar": "/images/jembatan.jpg"
+    }
+  ],
+
+  "sekolah": [
+    {
+      "nama": "SD Insan Amanah",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "Gracia Nusantara School",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "SMP Kertanegara Malang",
+      "gambar": "/images/sekolah.jpg"
+    }
+  ],
+
+  "faskes": [
+    {
+      "nama": "Klinik Universitas Brawijaya",
+      "gambar": "/images/faskes.jpg"
+    },
+    {
+      "nama": "Puskesmas Kendalsari",
+      "gambar": "/images/faskes.jpg"
+    },
+    {
+      "nama": "Medicalkes Smart Malang",
+      "gambar": "/images/faskes.jpg"
+    }
+  ]
+}

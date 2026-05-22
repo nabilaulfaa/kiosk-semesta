@@ -1,0 +1,74 @@
+{
+    "jumlah_penduduk": "1.234.212 Jiwa",
+    "jumlah_kepala_keluarga": "2.301 Jiwa",
+
+    "jenis_kelamin": {
+        "laki_laki": "1.300 Jiwa",
+        "perempuan": "1.200 Jiwa"
+    },
+
+    "usia": {
+        "remaja": "630 Jiwa",
+        "dewasa": "240 Jiwa",
+        "balita": "630 Jiwa",
+        "lansia": "240 Jiwa"
+    },
+
+    "dinamika_penduduk": {
+        "kematian": 120,
+        "penduduk_masuk": 200,
+        "penduduk_keluar": 150,
+        "kelahiran": 300
+    },
+
+    "pekerjaan": [
+        {
+            "jenis_pekerjaan": "Petani",
+            "jumlah": "120",
+            "laki_laki": "80",
+            "perempuan": "40"
+        },
+        {
+            "jenis_pekerjaan": "Pedagang",
+            "jumlah": "90",
+            "laki_laki": "40",
+            "perempuan": "50"
+        },
+        {
+            "jenis_pekerjaan": "Guru",
+            "jumlah": "70",
+            "laki_laki": "30",
+            "perempuan": "40"
+        },
+        {
+            "jenis_pekerjaan": "Nelayan",
+            "jumlah": "50",
+            "laki_laki": "45",
+            "perempuan": "5"
+        },
+        {
+            "jenis_pekerjaan": "Buruh",
+            "jumlah": "100",
+            "laki_laki": "70",
+            "perempuan": "30"
+        },
+        {
+            "jenis_pekerjaan": "Wiraswasta",
+            "jumlah": "60",
+            "laki_laki": "35",
+            "perempuan": "25"
+        },
+        {
+            "jenis_pekerjaan": "PNS",
+            "jumlah": "40",
+            "laki_laki": "20",
+            "perempuan": "20"
+        },
+        {
+            "jenis_pekerjaan": "Lainnya",
+            "jumlah": "30",
+            "laki_laki": "15",
+            "perempuan": "15"
+        }
+    ]
+}

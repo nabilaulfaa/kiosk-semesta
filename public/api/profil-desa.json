@@ -1,0 +1,17 @@
+{
+    "nama_desa": "Jatimulyo",
+    "kecamatan": "Lowokwaru",
+    "kabupaten": "Malang",
+    "provinsi": "Jawa Timur",
+    "alamat": "Jl. Simbar Menjangan No. 10, Jatimulyo, Kecamatan Lowokwaru, Kota Malang.",
+    "gambar": "images/profil.png",
+    "visi": "Terwujudnya Desa Jatimulyo yang mandiri, maju, sejahtera, dan berdaya saing berbasis potensi lokal serta pelayanan publik yang berkualitas.",
+    "misi": [
+        "Meningkatkan kualitas pelayanan publik",
+        "Mengembangkan potensi ekonomi desa",
+        "Meningkatkan kualitas SDM",
+        "Mewujudkan tata kelola pemerintahan desa",
+        "Meningkatkan pembangunan infrastruktur"
+    ],
+    "struktur": "images/struktur desa.webp"
+}

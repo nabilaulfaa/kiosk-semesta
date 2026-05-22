@@ -1,0 +1,74 @@
+{
+    
+     "2026": {
+        "kode_desa": "3507132001",
+        "data": [
+            {
+                "nama_dusun": "Dusun Krajan",
+                "jumlah_kk": 190,
+                "jumlah_rt": 1,
+                "jumlah_rw": 1
+            },
+            {
+                "nama_dusun": "Dusun Sumberrejo",
+                "jumlah_kk": 100,
+                "jumlah_rt": 2,
+                "jumlah_rw": 3
+            }
+        ]
+    },
+
+    "2025": {
+        "kode_desa": "3507132001",
+        "data": [
+            {
+                "nama_dusun": "Dusun Krajan",
+                "jumlah_kk": 120,
+                "jumlah_rt": 5,
+                "jumlah_rw": 2
+            },
+            {
+                "nama_dusun": "Dusun Sumberrejo",
+                "jumlah_kk": 98,
+                "jumlah_rt": 4,
+                "jumlah_rw": 2
+            }
+        ]
+    },
+
+    "2024": {
+        "kode_desa": "3507132001",
+        "data": [
+            {
+                "nama_dusun": "Dusun Krajan",
+                "jumlah_kk": 115,
+                "jumlah_rt": 5,
+                "jumlah_rw": 2
+            },
+            {
+                "nama_dusun": "Dusun Sumberrejo",
+                "jumlah_kk": 90,
+                "jumlah_rt": 4,
+                "jumlah_rw": 2
+            }
+        ]
+    },
+
+    "2023": {
+        "kode_desa": "3507132001",
+        "data": [
+            {
+                "nama_dusun": "Dusun Krajan",
+                "jumlah_kk": 100,
+                "jumlah_rt": 4,
+                "jumlah_rw": 2
+            },
+            {
+                "nama_dusun": "Dusun Sumberrejo",
+                "jumlah_kk": 80,
+                "jumlah_rt": 3,
+                "jumlah_rw": 1
+            }
+        ]
+    }
+}

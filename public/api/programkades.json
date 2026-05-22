@@ -1,0 +1,110 @@
+{
+    "profil": {
+        "nama": "Muhammad Suudi",
+        "foto": null,
+        "lahir": "Malang, 10-01-1977",
+        "agama": "Islam",
+        "pendidikan": "S2",
+        "jabatan": "Kepala Desa Jatimulyo",
+        "periode": "2021 – 2027"
+    },
+    "visi": "Terwujudnya Kelurahan Jatimulyo yang Maju, Mandiri, Sejahtera, dan Berkeadilan melalui Tata Kelola Pemerintahan yang Bersih dan Transparan.",
+    "misi": [
+        "Meningkatkan kualitas pelayanan publik yang profesional, cepat, dan transparan.",
+        "Mendorong pertumbuhan ekonomi masyarakat melalui pengembangan UMKM dan potensi lokal.",
+        "Meningkatkan kualitas pendidikan dan kesehatan warga kelurahan.",
+        "Membangun infrastruktur yang merata dan berkelanjutan di seluruh wilayah.",
+        "Menciptakan lingkungan yang aman, bersih, hijau, dan nyaman bagi seluruh warga."
+    ],
+    "riwayat_kerja": [
+        { "jabatan": "Kepala Desa Jatimulyo",       "instansi": "Pemkot Malang", "tahun_mulai": "2021", "tahun_selesai": "2027" },
+        { "jabatan": "Sekretaris Kelurahan",          "instansi": "Pemkot Malang", "tahun_mulai": "2015", "tahun_selesai": "2021" },
+        { "jabatan": "Staf Kecamatan Lowokwaru",     "instansi": "Pemkot Malang", "tahun_mulai": "2010", "tahun_selesai": "2015" },
+        { "jabatan": "Staf Kelurahan Mojolangu",     "instansi": "Pemkot Malang", "tahun_mulai": "2005", "tahun_selesai": "2010" },
+        { "jabatan": "Staf Administrasi Kecamatan",  "instansi": "Pemkot Malang", "tahun_mulai": "2000", "tahun_selesai": "2005" }
+    ],
+    "semua_program": [
+        {
+            "id": 1,
+            "nama": "Program Desa Mandiri BPJS",
+            "tahun": "2024 – 2025",
+            "status": "selesai",
+            "persen": 100,
+            "anggaran": "Rp 80.000.000",
+            "updated_at": "2024-02-12",
+            "laporan": {
+                "tanggal": "12 Februari 2024",
+                "hasil": "Program selesai 100%",
+                "kendala": "Kurangnya kesadaran warga",
+                "rekomendasi": "Perlu sosialisasi berkala",
+                "deskripsi": "Program Desa Mandiri BPJS telah berhasil diselesaikan. Seluruh warga desa kini terdaftar dalam program BPJS Kesehatan."
+            }
+        },
+        {
+            "id": 2,
+            "nama": "Teknologi Sumur untuk Persediaan Air di Desa",
+            "tahun": "2024",
+            "status": "selesai",
+            "persen": 100,
+            "anggaran": "Rp 150.000.000",
+            "updated_at": "2025-01-05",
+            "laporan": {
+                "tanggal": "5 Januari 2025",
+                "hasil": "Program selesai 100%",
+                "kendala": "Lokasi pengeboran sulit",
+                "rekomendasi": "Perlu pemeliharaan rutin",
+                "deskripsi": "Pembangunan sumur bor telah selesai dan seluruh warga dapat menikmati air bersih."
+            }
+        },
+        {
+            "id": 3,
+            "nama": "Mengubah Limbah Minyak Menjadi PAD",
+            "tahun": "2025 – 2026",
+            "status": "berjalan",
+            "persen": 90,
+            "anggaran": "Rp 120.000.000",
+            "updated_at": "2026-03-01",
+            "laporan": null
+        },
+        {
+            "id": 4,
+            "nama": "Pembangkit Listrik Tenaga Mikro Hidro",
+            "tahun": "2025 – 2026",
+            "status": "berjalan",
+            "persen": 60,
+            "anggaran": "Rp 200.000.000",
+            "updated_at": "2026-02-15",
+            "laporan": null
+        },
+        {
+            "id": 5,
+            "nama": "Program Penyusunan Informasi Tanah Milik Warga",
+            "tahun": "2026",
+            "status": "berjalan",
+            "persen": 75,
+            "anggaran": "Rp 50.000.000",
+            "updated_at": "2026-02-20",
+            "laporan": null
+        },
+        {
+            "id": 6,
+            "nama": "Tempat Pengolahan Sampah Terpadu",
+            "tahun": "2025 – 2026",
+            "status": "tertunda",
+            "persen": 15,
+            "anggaran": "Rp 90.000.000",
+            "updated_at": "2026-01-10",
+            "laporan": null
+        },
+        {
+            "id": 7,
+            "nama": "Budidaya Ikan di Irigasi",
+            "tahun": "2026",
+            "status": "baru",
+            "persen": 0,
+            "anggaran": "Rp 30.000.000",
+            "updated_at": "2026-01-01",
+            "laporan": null
+        }
+    ]
+}

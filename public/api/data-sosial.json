@@ -1,0 +1,81 @@
+{
+    "statistik": {
+        "fasilitas_ibadah": 32,
+        "organisasi": 32,
+        "kegiatan_sosial": 32
+    },
+
+    "fasilitas_ibadah": [
+        {
+            "nama": "Masjid",
+            "gambar": "images/masjid.png",
+            "keterangan": "Jemaat : 100"
+        },
+        {
+            "nama": "Gereja",
+            "gambar": "images/gereja.png",
+            "keterangan": "Jemaat : 100"
+        },
+        {
+            "nama": "Vihara",
+            "gambar": "images/vihara.png",
+            "keterangan": "Jemaat : 100"
+        },
+        {
+            "nama": "Pura",
+            "gambar": "images/pura.jpg",
+            "keterangan": "Jemaat : 100"
+        },
+        {
+            "nama": "Klenteng",
+            "gambar": "images/klenteng.jpg",
+            "keterangan": "Jemaat : 100"
+        }
+    ],
+
+    "organisasi": [
+        {
+            "nama": "Karang Taruna",
+            "gambar": "images/karang taruna.png",
+            "keterangan": "Anggota : 35"
+        },
+        {
+            "nama": "LinMas",
+            "gambar": "images/linmas.png",
+            "keterangan": "Anggota : 45"
+        },
+        {
+            "nama": "PKK",
+            "gambar": "images/pkk.png",
+            "keterangan": "Anggota : 65"
+        }
+    ],
+
+    "kegiatan_sosial": [
+        {
+            "nama": "Bantuan Kemanusiaan",
+            "gambar": "images/bantuan kemanusiaan.jpeg",
+            "keterangan": "Santunan Anak Yatim"
+        },
+        {
+            "nama": "Layanan Kesehatan",
+            "gambar": "images/layanan kesehatan.jpg",
+            "keterangan": "Donor Darah"
+        },
+        {
+            "nama": "Pendidikan & Pemberdayaan",
+            "gambar": "images/pendidikan dan pemberdayaan.jpg",
+            "keterangan": "Mengajar Sukarela"
+        },
+        {
+            "nama": "Pemberdayaan Masyarakat",
+            "gambar": "images/pemberdayaan masyarakat.jpg",
+            "keterangan": "Pelatihan Wirausaha"
+        },
+        {
+            "nama": "Bakti Sosial",
+            "gambar": "images/bakti sosial.jpeg",
+            "keterangan": "Pembagian Sembako"
+        }
+    ]
+}

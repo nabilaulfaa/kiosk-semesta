@@ -62,7 +62,7 @@ function renderSarana(data) {
     data.forEach(item => {
         container.innerHTML += `
             <div class="kiosk-card d-flex align-items-center gap-3">
-                <img src="/storage/${item.gambar}"
+                <img src="/${item.gambar}"
                     style="width:clamp(120px,14vw,200px);height:clamp(80px,10vh,130px);object-fit:cover;border-radius:12px;flex-shrink:0;">
                 <div style="flex:1;display:flex;justify-content:space-between;align-items:center;">
                     <div>
@@ -88,4 +88,3 @@ renderKategori();
 renderSarana(saranaData[currentKategori]);
 </script>
 @endpush
- 

@@ -7,7 +7,7 @@ class BumdesController extends Controller
     private function getData(): array
     {
         return json_decode(
-            file_get_contents(database_path('data/bumdes.json')),
+            file_get_contents(public_path('api/bumdes.json')),
             true
         );
     }

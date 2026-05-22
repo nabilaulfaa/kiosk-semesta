@@ -1,0 +1,41 @@
+{
+  "pertanian": [
+    {
+      "image": "sda 1.png",
+      "label": "Analisis Hasil Panen",
+      "value": "Potensi hasil panen tinggi"
+    },
+    {
+      "image": "sda 2.png",
+      "label": "Indeks Kualitas Tanah",
+      "value": "Ideal untuk Menanam biji-bijian"
+    }
+  ],
+  "perkebunan": [
+    {
+      "image": "sda 3.png",
+      "label": "Analisis Hasil Panen",
+      "value": "Potensi hasil panen tinggi"
+    }
+  ],
+  "perikanan": [
+    {
+      "image": "sda 5.png",
+      "label": "Indeks Keanekaragaman Hayati Laut",
+      "value": "Kehidupan laut yang kaya"
+    }
+  ],
+  "wisata": [
+    {
+      "image": "sda 7.png",
+      "label": "Indeks Daya Tarik Wisata",
+      "value": "Minat pengunjung tinggi"
+    }
+  ],
+  "sumber_daya": {
+    "lahan_pertanian": "5000 Hektar",
+    "kehutanan": "3000 Hektar",
+    "perikanan": "1500 Ton",
+    "wisatawan": "2000 Per Tahun"
+  }
+}

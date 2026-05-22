@@ -1,0 +1,86 @@
+{
+    "2025": {
+        "statistik": {
+            "pendapatan": { "anggaran": 1000000000, "realisasi": 54000000,  "persentase": 5.4  },
+            "belanja":    { "anggaran": 44000000,   "realisasi": 44000000,  "persentase": 100  },
+            "pembiayaan": { "anggaran": 5000000,    "realisasi": 5000000,   "persentase": 100  },
+            "silpa":      { "realisasi": 15000000 }
+        },
+        "pembangunan": [
+            {
+                "id": 1,
+                "judul": "Pembangunan Jalan Desa",
+                "keterangan": "Pembangunan Jalan Kelas C",
+                "sumber_dana": "Alokasi Dana Desa",
+                "pelaksana": "CV. Swastika Kartika",
+                "anggaran": 2300000000,
+                "lokasi": "Dusun 1",
+                "wilayah": { "dusun": "Dusun 1", "rw": "01", "rt": "001" }
+            },
+            {
+                "id": 2,
+                "judul": "Perbaikan Balai Posyandu",
+                "keterangan": "Terusan pembangunan sebelumnya",
+                "sumber_dana": "Alokasi Dana Desa",
+                "pelaksana": "CV. Swastika Kartika",
+                "anggaran": 25000000,
+                "lokasi": "Dusun 1",
+                "wilayah": { "dusun": "Dusun 1", "rw": "01", "rt": "002" }
+            }
+        ]
+    },
+    "2024": {
+        "statistik": {
+            "pendapatan": { "anggaran": 10000000, "realisasi": 10000000, "persentase": 100 },
+            "belanja":    { "anggaran": 0,        "realisasi": 0,        "persentase": 0   },
+            "pembiayaan": { "anggaran": 0,        "realisasi": 0,        "persentase": 0   },
+            "silpa":      { "realisasi": 10000000 }
+        },
+        "pembangunan": [
+            {
+                "id": 1,
+                "judul": "Perbaikan Jalan",
+                "keterangan": "Pembangunan Jalan Kelas C",
+                "sumber_dana": "Alokasi Dana Desa",
+                "pelaksana": "CV. Pratama Mandiri",
+                "anggaran": 100000000,
+                "lokasi": "Sepanjang Jalan Poros Desa",
+                "wilayah": { "dusun": null, "rw": null, "rt": null }
+            }
+        ]
+    },
+    "2023": {
+        "statistik": {
+            "pendapatan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "belanja":    { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "pembiayaan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "silpa":      { "realisasi": 0 }
+        },
+        "pembangunan": []
+    },
+    "2022": {
+        "statistik": {
+            "pendapatan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "belanja":    { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "pembiayaan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "silpa":      { "realisasi": 0 }
+        },
+        "pembangunan": []
+    },
+    "2021": {
+        "statistik": {
+            "pendapatan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "belanja":    { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "pembiayaan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
+            "silpa":      { "realisasi": 0 }
+        },
+        "pembangunan": []
+    },
+    "periode": [
+        { "tahun": 2021, "pendapatan": { "realisasi": 0 },        "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 0 } },
+        { "tahun": 2022, "pendapatan": { "realisasi": 0 },        "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 0 } },
+        { "tahun": 2023, "pendapatan": { "realisasi": 0 },        "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 0 } },
+        { "tahun": 2024, "pendapatan": { "realisasi": 10000000 }, "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 10000000 } },
+        { "tahun": 2025, "pendapatan": { "realisasi": 54000000 }, "belanja": { "realisasi": 44000000 }, "pembiayaan": { "realisasi": 5000000 }, "silpa": { "realisasi": 15000000 } }
+    ]
+}
