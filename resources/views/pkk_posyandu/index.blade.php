@@ -8,7 +8,7 @@
 </div>
 
 <div class="hero-wrapper">
-    <img src="{{ asset('images/hero-desa.jpg') }}" class="hero-img" alt="PKK Posyandu">
+    <img src="{{ asset('images/pkk-posyandu.png') }}" class="hero-img" alt="PKK Posyandu">
     <div class="hero-accent"></div>
 </div>
 

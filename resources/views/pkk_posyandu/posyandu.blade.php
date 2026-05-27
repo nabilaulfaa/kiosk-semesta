@@ -31,7 +31,7 @@
 
     {{-- Tabel: thead stay, tbody scroll jika > 5 baris --}}
     <div style="margin-bottom:2vh;border-radius:12px;overflow:hidden;">
-        <table class="tabel-kiosk" style="margin-bottom:0;">
+        <table class="tabel-kiosk col-3" style="margin-bottom:0;">
             <thead>
                 <tr>
                     <th style="width:40%;">Nama Posyandu</th>
@@ -41,7 +41,7 @@
             </thead>
         </table>
         <div class="{{ count($jadwalPosyandu) > 5 ? 'tabel-scroll-wrapper' : 'tabel-scroll-wrapper no-scroll' }}">
-            <table class="tabel-kiosk" style="margin-top:0;">
+            <table class="tabel-kiosk col-3" style="margin-top:0;">
                 <tbody>
                     @forelse($jadwalPosyandu as $j)
                     <tr>

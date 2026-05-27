@@ -1,102 +1,122 @@
 <?php
 
+use App\Http\Controllers\Desa\ApiDesaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BerandaController;
-use App\Http\Controllers\EvaluasiController;
-use App\Http\Controllers\BumdesController;
-use App\Http\Controllers\PkkPosyanduController;
-use App\Http\Controllers\LayananSuratController;
-use App\Http\Controllers\ProfilDesaController;
-use App\Http\Controllers\ApbdesController;
-use App\Http\Controllers\ProgramKadesController;
-use App\Http\Controllers\PetaWilayahController;
+use App\Http\Controllers\Desa\DesaController;
 
-// ============================================================
-// 1. BERANDA
-// ============================================================
-Route::get('/', [BerandaController::class, 'index'])->name('beranda');
+// BERANDA
+Route::get('/', function () {
+    return view('beranda/index');
+})->name('beranda');
 
-// ============================================================
-// 2. GROUP KIOSK
-// ============================================================
+// GRUP KIOSK
 Route::prefix('kiosk')->group(function () {
 
-    // ----------------------------------------------------------
-    // MODUL KAMU
-    // ----------------------------------------------------------
-
-    // BUMDes
-    Route::get('/bumdes', [BumdesController::class, 'index'])->name('bumdes');
+    // BUMDES
+    Route::get('/bumdes', [DesaController::class, 'bumdes'])->name('bumdes');
 
     // PKK & Posyandu
-    Route::get('/pkk-posyandu',          [PkkPosyanduController::class, 'index'])->name('pkk.posyandu');
-    Route::get('/pkk-posyandu/pkk',      [PkkPosyanduController::class, 'pkk'])->name('pkk.index');
-    Route::get('/pkk-posyandu/posyandu', [PkkPosyanduController::class, 'posyandu'])->name('posyandu.index');
+    Route::get('/pkk-posyandu',          [DesaController::class, 'pkkPosyandu'])->name('pkk.posyandu');
+    Route::get('/pkk-posyandu/pkk',      [DesaController::class, 'pkk'])->name('pkk.index');
+    Route::get('/pkk-posyandu/posyandu', [DesaController::class, 'posyandu'])->name('posyandu.index');
 
-    // Layanan Surat
-    Route::get('/layanan-surat', [LayananSuratController::class, 'index'])->name('layanan.surat');
-    Route::get('/cek-surat',     [LayananSuratController::class, 'cekSurat'])->name('cek.surat');
+    // LAYANAN SURAT
+    Route::get('/layanan-surat', [DesaController::class, 'layananSurat'])->name('layanan.surat');
+    Route::get('/cek-surat',     [DesaController::class, 'layananSuratCek'])->name('cek.surat');
 
-    // Evaluasi
+    // EVALUASI DESA
     Route::prefix('evaluasi')->group(function () {
-        Route::get('/',              [EvaluasiController::class, 'index'])->name('evaluasi');
-        Route::get('/infrastruktur', [EvaluasiController::class, 'infrastruktur'])->name('evaluasi.infrastruktur');
-        Route::get('/sarana',        [EvaluasiController::class, 'sarana'])->name('evaluasi.sarana');
-        Route::get('/sarana/{slug}', [EvaluasiController::class, 'saranaDetail'])->name('evaluasi.sarana.detail');
-        Route::get('/ekonomi',       [EvaluasiController::class, 'ekonomi'])->name('evaluasi.ekonomi');
-        Route::get('/sosial',        [EvaluasiController::class, 'sosial'])->name('evaluasi.sosial');
+        Route::get('/',              [DesaController::class, 'evaluasi'])->name('evaluasi');
+        Route::get('/infrastruktur', [DesaController::class, 'evaluasiInfrastruktur'])->name('evaluasi.infrastruktur');
+        Route::get('/sarana',        [DesaController::class, 'evaluasiSarana'])->name('evaluasi.sarana');
+        Route::get('/sarana/{slug}', [DesaController::class, 'evaluasiSaranaDetail'])->name('evaluasi.sarana.detail');
+        Route::get('/ekonomi',       [DesaController::class, 'evaluasiEkonomi'])->name('evaluasi.ekonomi');
+        Route::get('/sosial',        [DesaController::class, 'evaluasiSosial'])->name('evaluasi.sosial');
     });
 
-    // ----------------------------------------------------------
-    // MODUL TEMAN — Profil Desa (semua pakai ProfilDesaController)
-    // ----------------------------------------------------------
-    Route::get('/profil-desa',       [ProfilDesaController::class, 'index'])->name('profil.desa');
-    Route::get('/data-umum',         [ProfilDesaController::class, 'umum'])->name('data.umum');
-    Route::get('/data-geografis',    [ProfilDesaController::class, 'geografis'])->name('data.geografis');
-    Route::get('/data-kependudukan', [ProfilDesaController::class, 'kependudukan'])->name('data.kependudukan');
-    Route::get('/data-sosial',       [ProfilDesaController::class, 'sosial'])->name('data.sosial');
-    Route::get('/data-ekonomi',      [ProfilDesaController::class, 'ekonomi'])->name('ekonomi');
-    Route::get('/data-sda',          [ProfilDesaController::class, 'sda'])->name('data.sda');
-    Route::get('/data-infrastruktur',[ProfilDesaController::class, 'infrastruktur'])->name('data.infrastruktur');
-    Route::get('/data-pendidikan',   [ProfilDesaController::class, 'pendidikan'])->name('data.pendidikan');
-    Route::get('/data-kesehatan',    [ProfilDesaController::class, 'kesehatan'])->name('data.kesehatan');
+    // PROFIL DESA & DATA DESA
+    Route::get('/profil-desa',        [DesaController::class, 'profilDesa'])->name('profil.desa');
+    Route::get('/data-umum',          [DesaController::class, 'umum'])->name('data.umum');
+    Route::get('/data-geografis',     [DesaController::class, 'geografis'])->name('data.geografis');
+    Route::get('/data-kependudukan',  [DesaController::class, 'kependudukan'])->name('data.kependudukan');
+    Route::get('/data-sosial',        [DesaController::class, 'sosial'])->name('data.sosial');
+    Route::get('/data-ekonomi',       [DesaController::class, 'ekonomi'])->name('ekonomi');
+    Route::get('/data-sda',           [DesaController::class, 'sda'])->name('data.sda');
+    Route::get('/data-infrastruktur', [DesaController::class, 'infrastruktur'])->name('data.infrastruktur');
+    Route::get('/data-pendidikan',    [DesaController::class, 'pendidikan'])->name('data.pendidikan');
+    Route::get('/data-kesehatan',     [DesaController::class, 'kesehatan'])->name('data.kesehatan');
 
-    // MODUL TEMAN — APBDes
-    Route::get('/apbdes', [ApbdesController::class, 'index'])->name('apbdes');
+    // APBDes
+    Route::get('/apbdes', [DesaController::class, 'apbdes'])->name('apbdes');
 
-    // MODUL TEMAN — Program Kades
-    Route::get('/program-kades',         [ProgramKadesController::class, 'index'])->name('program.kades');
-    Route::get('/program-kades/kerja',   [ProgramKadesController::class, 'programKerja'])->name('program-kerja');
-    Route::get('/program-kades/baru',    [ProgramKadesController::class, 'programBaru'])->name('program-baru');
-    Route::get('/program-kades/selesai', [ProgramKadesController::class, 'programSelesai'])->name('program-selesai');
+    // PROGRAM KADES
+    Route::get('/program-kades',         [DesaController::class, 'programKades'])->name('program.kades');
+    Route::get('/program-kades/kerja',   [DesaController::class, 'programKerja'])->name('program-kerja');
+    Route::get('/program-kades/baru',    [DesaController::class, 'programBaru'])->name('program-baru');
+    Route::get('/program-kades/selesai', [DesaController::class, 'programSelesai'])->name('program-selesai');
 
-    // MODUL TEMAN — Peta Wilayah
-    Route::get('/peta-wilayah', [PetaWilayahController::class, 'index'])->name('peta.wilayah');
+    // PETA WILAYAH
+    Route::get('/peta-wilayah', [DesaController::class, 'petaWilayah'])->name('peta.wilayah');
 
 });
 
-// ============================================================
-// 3. API ROUTES
-// ============================================================
+// API ROUTES
+Route::prefix('api/desa')->group(function () {
+    Route::get('/profil',         [DesaController::class, 'apiProfil']);
+    Route::get('/geografis',      [DesaController::class, 'apiGeografis']);
+    Route::get('/infrastruktur',  [DesaController::class, 'apiInfrastruktur']);
+    Route::get('/kependudukan',   [DesaController::class, 'apiKependudukan']);
+    Route::get('/kesehatan',      [DesaController::class, 'apiKesehatan']);
+    Route::get('/sda',            [DesaController::class, 'apiSda']);
+    Route::get('/sosial',         [DesaController::class, 'apiSosial']);
+    Route::get('/layanan-surat',  [DesaController::class, 'layananSuratApi']);
+    Route::get('/apbdes',         [DesaController::class, 'apbdesStatistik']);
+    Route::get('/apbdes-periode', [DesaController::class, 'apbdesPeriode']);
+    Route::get('/pembangunan',    [DesaController::class, 'apbdesPembangunanJson']);
+    Route::get('/peta-geojson',   [DesaController::class, 'petaGeojson']);
+    Route::get('/peta-infra',     [DesaController::class, 'petaInfrastruktur']);
+    Route::get('/peta-dusun',     [DesaController::class, 'petaDusun']);
+    Route::get('/program-kades',  [DesaController::class, 'programKadesApi']);
 
-// API Layanan Surat (modul kamu)
-Route::get('/api/layanan-surat/data', [LayananSuratController::class, 'apiData'])->name('layanan.surat.api');
 
-// API Profil Desa (modul teman)
-Route::get('/api/profil-desa',        [ProfilDesaController::class, 'apiProfil']);
-Route::get('/api/data-geografis',     [ProfilDesaController::class, 'apiGeografis']);
-Route::get('/api/data-infrastruktur', [ProfilDesaController::class, 'apiInfrastruktur']);
-Route::get('/api/data-kependudukan',  [ProfilDesaController::class, 'apiKependudukan']);
-Route::get('/api/data-kesehatan',     [ProfilDesaController::class, 'apiKesehatan']);
-Route::get('/api/data-sda',           [ProfilDesaController::class, 'apiSda']);
-Route::get('/api/data-sosial',        [ProfilDesaController::class, 'apiSosial']);
+// API BARU
+    Route::get('/program-kades-data', [ApiDesaController::class, 'getProgramKadesData']);
 
-// API APBDes (modul teman)
-Route::get('/api/apbdes',             [ApbdesController::class, 'statistik'])->name('apbdes.statistik');
-Route::get('/api/apbdes-periode',     [ApbdesController::class, 'periode'])->name('apbdes.periode');
-Route::get('/api/pembangunan',        [ApbdesController::class, 'pembangunanJson'])->name('apbdes.pembangunan');
+    // Profil Desa
+    Route::get('/profil',        [ApiDesaController::class, 'getProfil']);
+    Route::get('/geografis',     [ApiDesaController::class, 'getGeografis']);
+    Route::get('/infrastruktur', [ApiDesaController::class, 'getInfrastruktur']);
+    Route::get('/kependudukan',  [ApiDesaController::class, 'getKependudukan']);
+    Route::get('/kesehatan',     [ApiDesaController::class, 'getKesehatan']);
+    Route::get('/sda',           [ApiDesaController::class, 'getSda']);
+    Route::get('/sosial',        [ApiDesaController::class, 'getSosial']);
+    Route::get('/umum',   [ApiDesaController::class, 'getUmum']);
+    Route::get('/ekonomi', [ApiDesaController::class, 'getEkonomi']);
+    Route::get('/pendidikan', [ApiDesaController::class, 'getPendidikan']);
 
-// API Peta Wilayah (modul teman)
-Route::get('/api/peta/geojson',       [PetaWilayahController::class, 'geojson'])->name('peta.geojson');
-Route::get('/api/peta/infrastruktur', [PetaWilayahController::class, 'infrastruktur'])->name('peta.infrastruktur');
-Route::get('/api/peta/dusun',         [PetaWilayahController::class, 'dusun'])->name('peta.dusun');
+    // APBDes
+    Route::get('/apbdes',         [ApiDesaController::class, 'getApbdesStatistik']);
+    Route::get('/apbdes-periode', [ApiDesaController::class, 'getApbdesPeriode']);
+    Route::get('/pembangunan',    [ApiDesaController::class, 'getApbdesPembangunan']);
+
+    //Bumdes
+    Route::get('/bumdes', [ApiDesaController::class, 'getBumdes']);
+
+    //Evaluasi
+    Route::get('/evaluasi-infrastruktur', [ApiDesaController::class, 'getEvaluasiInfrastruktur']);
+    Route::get('/evaluasi-sarana',        [ApiDesaController::class, 'getEvaluasiSarana']);
+    Route::get('/evaluasi-ekonomi',       [ApiDesaController::class, 'getEvaluasiEkonomi']);
+    Route::get('/evaluasi-sosial',        [ApiDesaController::class, 'getEvaluasiSosial']);
+
+    // Layanan Surat
+    Route::get('/layanan-surat', [ApiDesaController::class, 'getLayananSurat']);
+
+    //Peta Wilayah
+    Route::get('/peta-geojson',   [DesaController::class, 'petaGeojson'])->name('peta.geojson');
+    Route::get('/peta-infra',     [DesaController::class, 'petaInfrastruktur'])->name('peta.infrastruktur');
+    Route::get('/peta-dusun',     [DesaController::class, 'petaDusun'])->name('peta.dusun');
+
+    // PKK & Posyandu
+    Route::get('/pkk',      [ApiDesaController::class, 'getPkk']);
+    Route::get('/posyandu', [ApiDesaController::class, 'getPosyandu']);
+});

@@ -80,9 +80,9 @@
 
 @push('scripts')
 <script>
-    const API_STATISTIK   = '/api/apbdes';
-    const API_PERIODE     = '/api/apbdes-periode';
-    const API_PEMBANGUNAN = '/api/pembangunan';
+    const API_STATISTIK   = '/api/desa/apbdes';
+    const API_PERIODE     = '/api/desa/apbdes-periode';
+    const API_PEMBANGUNAN = '/api/desa/pembangunan';
 
     var tahunAktif = {{ $tahunAktif ?? 2025 }};
 

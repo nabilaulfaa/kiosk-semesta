@@ -59,7 +59,7 @@
 @push('scripts')
 <script src="{{ asset('js/kiosk-semesta.js') }}"></script>
 <script>
-fetch('/api/data-infrastruktur')
+fetch('/api/desa/infrastruktur')
     .then(response => response.json())
     .then(data => {
         document.getElementById('total-jalan').innerText    = data.summary.total_jalan;

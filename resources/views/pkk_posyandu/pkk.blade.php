@@ -30,7 +30,7 @@
 
     {{-- Tabel Kegiatan --}}
     <div style="margin-bottom:2vh;border-radius:12px;overflow:hidden;">
-        <table class="tabel-kiosk" style="margin-bottom:0;">
+        <table class="tabel-kiosk col-4" style="margin-bottom:0;">
             <thead>
                 <tr>
                     <th>Pokja</th>
@@ -41,7 +41,7 @@
             </thead>
         </table>
         <div class="{{ count($kegiatanPkk) > 5 ? 'tabel-scroll-wrapper' : 'tabel-scroll-wrapper no-scroll' }}">
-            <table class="tabel-kiosk" style="margin-top:0;">
+            <table class="tabel-kiosk col-4" style="margin-top:0;">
                 <tbody>
                     @forelse($kegiatanPkk as $k)
                     <tr>
@@ -159,9 +159,6 @@
                         {{ $l['label'] }}
                     </div>
                     @endforeach
-                </div>
-                <div style="width:clamp(80px,10vw,150px);height:clamp(80px,10vw,150px);position:relative;">
-                    <canvas id="chartJenisKegiatan"></canvas>
                 </div>
             </div>
         </div>

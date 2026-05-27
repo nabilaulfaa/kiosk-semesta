@@ -1,14 +1,5 @@
-/* ===========================================================
-   KIOSK SEMESTA — MERGED CSS
-   Base: CSS Utama (kamu)
-   Tambahan: Adaptasi modul teman (Profil Desa, APBDes,
-             Peta Wilayah, Program Kades)
-   Semua variable & naming convention mengikuti CSS utama.
-=========================================================== */
 
-/* ----------------------------------------------------------
-   1. WARNA TEMA
----------------------------------------------------------- */
+/* Warna tema utama*/ 
 :root {
     --merah:        #E72128;
     --merah-tua:    #B51016;
@@ -25,9 +16,7 @@
     --kuning:       #f59e0b;
 }
 
-/* ----------------------------------------------------------
-   2. BASE
----------------------------------------------------------- */
+/* Base */
 *, *::before, *::after { box-sizing: border-box; }
 
 html, body {
@@ -44,9 +33,7 @@ html, body {
 ::-webkit-scrollbar { display: none; }
 * { scrollbar-width: none; }
 
-/* ----------------------------------------------------------
-   3. KIOSK WRAPPER
----------------------------------------------------------- */
+/* kiosk wrapper */
 .kiosk-wrapper {
     width: 100vw;
     height: 100vh;
@@ -64,9 +51,7 @@ html, body {
     width: 100%;
 }
 
-/* ----------------------------------------------------------
-   4. HEADER
----------------------------------------------------------- */
+/* HEADER */
 .header-top {
     flex-shrink: 0;
     height: 14vh;
@@ -132,7 +117,6 @@ html, body {
     margin: 0;
 }
 
-/* Header alternatif (modul teman) */
 .header {
     background: #FFFFFF;
     position: relative;
@@ -178,9 +162,7 @@ html, body {
 .header-text h1 { font-size: 14px; font-weight: 800; color: var(--biru-tua); text-transform: uppercase; }
 .header-text .sub { font-size: 12px; font-weight: 700; color: var(--biru); text-transform: uppercase; }
 
-/* ----------------------------------------------------------
-   5. PAGE CONTENT
----------------------------------------------------------- */
+/*PAGE CONTENT */
 .page-content {
     position: relative;
     z-index: 5;
@@ -189,11 +171,10 @@ html, body {
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
+    min-height: 0;
 }
 
-/* ----------------------------------------------------------
-   6. FOOTER
----------------------------------------------------------- */
+/*FOOTER */
 .footer-section {
     flex-shrink: 0;
     display: flex;
@@ -262,9 +243,7 @@ html, body {
 .date-val { font-size: clamp(11px, 1.1vw, 18px); font-weight: 600; display: block; }
 .hour-val { font-size: clamp(18px, 2vw, 33px); font-weight: 900; display: block; line-height: 1; }
 
-/* ----------------------------------------------------------
-   7. MODUL HEADER
----------------------------------------------------------- */
+/* MODUL HEADER */
 .modul-header {
     display: flex;
     justify-content: flex-end;
@@ -309,9 +288,7 @@ html, body {
 .section-label { display: flex; justify-content: flex-end; padding: 15px 15px 5px; }
 .section-title { font-weight: 800; font-size: clamp(13px, 1.4vw, 18px); margin: 14px 15px 8px; }
 
-/* ----------------------------------------------------------
-   8. ICON CIRCLE
----------------------------------------------------------- */
+/*ICON CIRCLE*/
 .icon-circle {
     width: clamp(80px, 10vw, 161px);
     height: clamp(80px, 10vw, 161px);
@@ -325,16 +302,12 @@ html, body {
 
 .icon-circle img { width: 45%; height: 45%; filter: brightness(0) invert(1); }
 .icon-circle i { font-size: clamp(32px, 4.5vw, 70px); color: white; }
-
-/* Icon kecil (modul teman) */
 .lp-icon-wrap { width: 40px; height: 40px; background: var(--merah); border-radius: 50%; display: flex; justify-content: center; align-items: center; overflow: hidden; }
 .lp-icon-wrap img { width: 120%; height: 120%; object-fit: cover; }
 .lp-text { font-weight: 800; font-size: 14px; }
 .subtitle-left { margin: 0 15px; font-size: 12px; font-weight: 700; }
 
-/* ----------------------------------------------------------
-   9. HERO BANNER
----------------------------------------------------------- */
+/*HERO BANNER*/
 .hero-wrapper { position: relative; width: 100%; text-align: center; }
 
 .hero-img {
@@ -342,6 +315,8 @@ html, body {
     height: 32vh;
     object-fit: cover;
     display: block;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-accent {
@@ -357,13 +332,10 @@ html, body {
     pointer-events: none;
 }
 
-/* Hero modul teman */
 .hero { width: 100%; position: relative; overflow: hidden; border-bottom: 7px solid var(--merah); }
 .hero img { width: 100%; height: 220px; object-fit: cover; display: block; }
 
-/* ----------------------------------------------------------
-   10. CARD UMUM
----------------------------------------------------------- */
+/*CARD UMUM*/
 .kiosk-card {
     background: var(--abu-card);
     border-radius: 20px;
@@ -371,9 +343,7 @@ html, body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
 
-/* ----------------------------------------------------------
-   11. TOMBOL
----------------------------------------------------------- */
+/* TOMBOL*/
 .btn-merah {
     background: var(--merah-tua);
     color: white;
@@ -398,7 +368,6 @@ html, body {
     outline: none;
 }
 
-/* Tombol modul teman — adopsi var utama */
 .btn-back       { margin: 20px 15px; background: var(--merah); color: #fff; text-align: center; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; border: none; width: calc(100% - 30px); font-size: clamp(12px, 1.2vw, 16px); transition: background .15s; }
 .btn-back:hover { background: var(--merah-tua); }
 
@@ -428,19 +397,37 @@ html, body {
 .btn-icon          { position: absolute; left: 12px; display: flex; align-items: center; }
 .btn-icon img      { width: 16px; height: 16px; }
 
-/* ----------------------------------------------------------
-   12. TABEL KIOSK
----------------------------------------------------------- */
+/* TABEL KIOSK */
 .tabel-kiosk {
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 0.8vh;
+    border-spacing: 0.5vw 0.8vh;
+    table-layout: fixed;
+}
+
+.tabel-kiosk thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    padding-right: 8px;
+}
+
+.tabel-kiosk tbody {
+    display: block;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.tabel-kiosk tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .tabel-kiosk th {
     background: var(--merah-tua);
     color: white;
-    padding: 1.2vh 1.5vw;
+    padding: 1.2vh 2vw;
     border-radius: 10px;
     font-size: clamp(14px, 1.3vw, 22px);
     text-align: center;
@@ -450,9 +437,32 @@ html, body {
     background: var(--abu);
     height: 5vh;
     border-radius: 10px;
-    padding: 0 1.5vw;
+    padding: 0 2vw;
     font-size: clamp(13px, 1.1vw, 18px);
 }
+
+/* Tabel 3 (Posyandu) */
+.tabel-kiosk.col-3 th:first-child,
+.tabel-kiosk.col-3 td:first-child { width: 40%; }
+
+.tabel-kiosk.col-3 th:nth-child(2),
+.tabel-kiosk.col-3 td:nth-child(2) { width: 30%; }
+
+.tabel-kiosk.col-3 th:nth-child(3),
+.tabel-kiosk.col-3 td:nth-child(3) { width: 30%; }
+
+/* Tabel 4 (PKK) */
+.tabel-kiosk.col-4 th:first-child,
+.tabel-kiosk.col-4 td:first-child { width: 15%; }
+
+.tabel-kiosk.col-4 th:nth-child(2),
+.tabel-kiosk.col-4 td:nth-child(2) { width: 40%; }
+
+.tabel-kiosk.col-4 th:nth-child(3),
+.tabel-kiosk.col-4 td:nth-child(3) { width: 25%; }
+
+.tabel-kiosk.col-4 th:nth-child(4),
+.tabel-kiosk.col-4 td:nth-child(4) { width: 20%; }
 
 .tabel-scroll-wrapper {
     overflow-y: auto;
@@ -467,9 +477,7 @@ html, body {
 .tabel-scroll-wrapper::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 10px; }
 .tabel-scroll-wrapper::-webkit-scrollbar-thumb { background: var(--merah-tua); border-radius: 10px; }
 
-/* ----------------------------------------------------------
-   13. CHART BOX
----------------------------------------------------------- */
+/* CHART BOX*/
 .chart-box {
     background: var(--abu-card);
     border-radius: 16px;
@@ -479,7 +487,6 @@ html, body {
     position: relative;
 }
 
-/* Chart box modul teman (beda fungsi, beda nama) */
 .chart-box-modul {
     width: 48%;
     text-align: center;
@@ -504,9 +511,7 @@ html, body {
 .bar-group { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; position: relative; flex: 1; }
 .bar-label { text-align: center; font-size: 11px; font-weight: 700; color: #333; position: absolute; bottom: -24px; white-space: nowrap; }
 
-/* ----------------------------------------------------------
-   14. MODAL OVERLAY
----------------------------------------------------------- */
+/* MODAL OVERLAY*/
 .modal-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -566,14 +571,12 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 
 .modal-body-kiosk { padding: 2.5vh 2.5vw; overflow-y: auto; flex: 1; }
 
-/* Modal Bootstrap override (modul teman) */
+/* Modal Bootstrap override */
 .modal-header    { background: var(--merah); }
 .modal-title     { color: #fff; font-weight: 800; }
 .btn-close-white { filter: brightness(0) invert(1); }
 
-/* ----------------------------------------------------------
-   15. PROGRESS BAR
----------------------------------------------------------- */
+/*PROGRESS BAR*/
 .progress-bg { background: #F4C7C8; border-radius: 10px; overflow: hidden; height: 12px; }
 .progress-fill { height: 100%; background: var(--merah-tua); border-radius: 10px; }
 
@@ -583,9 +586,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .progress-bar-fill.green { background: var(--hijau); }
 .progress-bar-fill.gray  { background: #9E9E9E; }
 
-/* ----------------------------------------------------------
-   16. BADGE STATUS
----------------------------------------------------------- */
+/*BADGE STATUS */
 .badge-status {
     padding: 0.4vh 1vw;
     border-radius: 8px;
@@ -602,7 +603,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .badge-status.proses   { background: var(--kuning); }
 .badge-status.belum    { background: #6b7280; }
 
-/* Badge program kades (posisi absolute, beda fungsi) */
+/* Badge program kades */
 .badge-program {
     position: absolute;
     top: 0; right: 0;
@@ -618,9 +619,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .badge-program.selesai  { background: var(--biru); }
 .badge-program.tertunda { background: #9E9E9E; }
 
-/* ----------------------------------------------------------
-   17. INPUT KIOSK
----------------------------------------------------------- */
+/*INPUT KIOSK*/
 .input-kiosk {
     width: 100%;
     font-size: clamp(15px, 1.4vw, 22px);
@@ -635,9 +634,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .input-kiosk:focus { background: #f5f5f5; box-shadow: 0 0 0 3px rgba(231,33,40,0.15); }
 .input-kiosk:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* ----------------------------------------------------------
-   18. CARD PENGURUS
----------------------------------------------------------- */
+/*CARD PENGURUS*/
 .card-pengurus {
     background: #ececec;
     border-radius: 20px;
@@ -664,9 +661,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .jabatan { font-weight: 700; font-size: clamp(16px, 1.5vw, 24px); color: #111; line-height: 1.2; }
 .nama { font-size: clamp(13px, 1.1vw, 20px); font-weight: 500; color: var(--teks-abu); }
 
-/* ----------------------------------------------------------
-   19. DETAIL TABLE
----------------------------------------------------------- */
+/*DETAIL TABLE*/
 .detail-table { width: 100%; border-collapse: separate; border-spacing: 0 0.8vh; }
 
 .detail-table td {
@@ -691,9 +686,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
     white-space: nowrap;
 }
 
-/* ----------------------------------------------------------
-   20. LAYANAN SURAT
----------------------------------------------------------- */
+/*LAYANAN SURAT*/
 .content-area { padding: 0 5vw 8vh; }
 
 .left-section-title {
@@ -766,18 +759,14 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .step-item.active .step-label,
 .step-item.completed .step-label { color: #333; }
 
-/* ----------------------------------------------------------
-   21. TICKER
----------------------------------------------------------- */
+/*TICKER*/
 .ticker { background: #FFFFFF; border-top: 1.5px solid var(--abu); padding: 7px 0; display: flex; align-items: center; overflow: hidden; }
 .ticker-track { flex: 1; overflow: hidden; height: 18px; }
 .ticker-inner { display: inline-block; white-space: nowrap; font-size: 11px; font-weight: 700; color: var(--merah); animation: marquee 22s linear infinite; padding-left: 100%; }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 .ticker-clock { background: var(--merah); color: #fff; font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 5px; margin: 0 10px; white-space: nowrap; }
 
-/* ----------------------------------------------------------
-   22. DROPDOWN TAHUN
----------------------------------------------------------- */
+/*DROPDOWN TAHUN*/
 .top-info { display: flex; justify-content: space-between; align-items: center; padding: 0 15px; margin-bottom: 10px; font-size: 12px; }
 
 .year-wrapper { position: relative; }
@@ -805,9 +794,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .dropdown-tahun a:last-child { border-bottom: none; }
 .dropdown-tahun a:hover { background: #ffebee; color: var(--merah-tua); }
 
-/* ----------------------------------------------------------
-   23. MENU BERANDA
----------------------------------------------------------- */
+/*MENU BERANDA*/
 .menu-area { padding: 24px 16px 16px; }
 
 .menu-circle { width: 64px; height: 64px; background: var(--merah); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 12px rgba(231,33,40,.30); transition: background .15s, transform .15s; overflow: hidden; margin: 0 auto; }
@@ -824,17 +811,13 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 
 @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 
-/* ----------------------------------------------------------
-   24. SKELETON LOADING
----------------------------------------------------------- */
+/*SKELETON LOADING*/
 .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.2s infinite; border-radius: 4px; height: 14px; }
 @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-/* ----------------------------------------------------------
-   25. PETA WILAYAH (LEAFLET)
----------------------------------------------------------- */
+/*PETA WILAYAH (LEAFLET)*/
 .map-wrap { margin: 4px 14px 0; border-radius: 10px; overflow: hidden; border: 2px solid var(--abu); box-shadow: 0 2px 12px rgba(0,0,0,.10); position: relative; }
-#map { width: 100%; height: 300px; }
+#map { width: 100%; height: 45vh; }
 
 .leaflet-tile, .leaflet-zoom-animated { transition: none !important; }
 .leaflet-fade-anim .leaflet-tile, .leaflet-fade-anim .leaflet-popup { transition: none !important; }
@@ -883,9 +866,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .popup-row .key { color: #888; font-weight: 600; }
 .popup-row .val { color: #000; font-weight: 700; text-align: right; }
 
-/* ----------------------------------------------------------
-   26. PROFIL DESA
----------------------------------------------------------- */
+/*PROFIL DESA*/
 .center-img { text-align: center; margin: 10px 0 15px; }
 .center-img img { width: 200px; }
 .center-image img { width: 100%; max-width: 280px; }
@@ -901,9 +882,9 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .data-table .td-label { background: var(--merah); color: #fff; font-weight: 700; width: 40%; border-radius: 8px 0 0 8px; }
 .data-table .td-value { background: var(--abu-bg); font-weight: 600; border-radius: 0 8px 8px 0; }
 
-.luas-box { margin: 0 15px 10px; border-radius: 10px; overflow: hidden; }
-.luas-title { background: var(--merah-tua); color: #fff; text-align: center; padding: 8px; font-weight: 700; }
-.luas-value { background: var(--abu-bg); text-align: center; padding: 10px; font-weight: 700; margin-top: 3px; }
+.luas-box { margin: 0 15px 10px; border-radius: 10px; overflow: hidden; min-height: 80px; width: calc(100% - 30px); }
+.luas-title { background: var(--merah-tua); color: #fff; text-align: center; padding: 8px; font-weight: 700; font-size: clamp(13px, 1.3vw, 20px); }
+.luas-value { background: var(--abu-bg); text-align: center; padding: 10px; font-weight: 700; margin-top: 3px; font-size: clamp(13px, 1.3vw, 20px); }
 
 .batas { margin: 0 15px; }
 .batas-row { display: flex; margin-bottom: 6px; gap: 5px; }
@@ -934,9 +915,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .rk-sep { color: #bbb; flex-shrink: 0; font-size: 10px; }
 .rk-val { color: #000; font-weight: 600; font-size: 11px; flex: 1; }
 
-/* ----------------------------------------------------------
-   27. PROGRAM KADES
----------------------------------------------------------- */
+/*PROGRAM KADES*/
 .program-card { border: 1.5px solid var(--abu); border-radius: 8px; display: flex; align-items: stretch; position: relative; overflow: hidden; background: #fff; }
 .pc-icon { width: 60px; flex-shrink: 0; background: var(--abu); display: flex; align-items: center; justify-content: center; padding: 10px 0; }
 .pc-icon img { width: 34px; height: 34px; object-fit: contain; filter: brightness(0); }
@@ -978,9 +957,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .lap-desc-title { font-size: 13px; font-weight: 800; color: #111; margin: 10px 0 6px; }
 .lap-desc { font-size: 11px; color: #333; line-height: 1.6; }
 
-/* ----------------------------------------------------------
-   28. APBDes
----------------------------------------------------------- */
+/*APBDes*/
 .ringkasan-grid { display: grid; grid-template-columns: repeat(4, 1fr); border: 1.5px solid var(--abu); border-radius: 8px; overflow: hidden; }
 .rg-cell { padding: 8px 6px; text-align: center; border-right: 1px solid var(--abu); background: #fff; }
 .rg-cell:last-child { border-right: none; }
@@ -1009,9 +986,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .periode-table tr:last-child td { border-bottom: none; }
 .periode-table tr:hover td { background: #fff5f5; }
 
-/* ----------------------------------------------------------
-   29. DATA UMUM & TABEL GRID
----------------------------------------------------------- */
+/*DATA UMUM & TABEL GRID*/
 .table-header { display: flex; gap: 5px; margin-bottom: 6px; }
 .table-header div { flex: 1; background: var(--merah-tua); color: #fff; font-size: 11px; text-align: center; padding: 10px; font-weight: 700; }
 .table-header div:first-child { border-radius: 12px 0 0 0; }
@@ -1036,9 +1011,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 .custom-table th:last-child { border-radius: 0 10px 0 0; }
 .custom-table td { background: var(--abu-bg); padding: 6px; text-align: center; font-weight: 600; height: 24px; }
 
-/* ----------------------------------------------------------
-   30. DATA KEPENDUDUKAN
----------------------------------------------------------- */
+/*DATA KEPENDUDUKAN*/
 .card-group { display: flex; gap: 10px; margin: 10px 15px; }
 .kep-card { flex: 1; text-align: center; display: flex; flex-direction: column; gap: 2px; }
 .card-title { background: var(--merah-tua); color: #fff; padding: 3px 6px; border-radius: 8px 8px 0 0; font-size: 9px; font-weight: 600; white-space: nowrap; }
@@ -1066,9 +1039,7 @@ body.modal-open { overflow: hidden !important; touch-action: none; }
 #jkChart, #usiaChart { max-width: 110px !important; max-height: 110px !important; margin: auto; }
 canvas { width: 100% !important; height: auto !important; }
 
-/* ----------------------------------------------------------
-   31. DATA KESEHATAN & STAT GRID
----------------------------------------------------------- */
+/*DATA KESEHATAN & STAT GRID*/
 .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 15px; }
 .stat-card { background: var(--abu-bg); border-radius: 8px; padding: 6px 8px; border: 1px solid #b0b0b0; box-shadow: 0 2px 0 #a0a0a0; display: flex; align-items: center; gap: 8px; }
 .icon-wrap { width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
@@ -1087,31 +1058,27 @@ canvas { width: 100% !important; height: auto !important; }
 .pend-wrap .stat-grid .stat-card b { font-size: 26px; font-weight: 900; line-height: 1; }
 .pend-wrap .year-wrapper { display: flex; justify-content: flex-end; padding: 0 15px; margin-bottom: 8px; }
 
-/* ----------------------------------------------------------
-   32. DATA INFRASTRUKTUR
----------------------------------------------------------- */
+/*DATA INFRASTRUKTUR*/
 .infra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 15px; }
 .infra-card { background: var(--merah-tua); color: #fff; border-radius: 10px; padding: 8px 10px; display: flex; flex-direction: column; min-height: 70px; justify-content: center; }
 .infra-card small { font-size: 10px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
 .infra-card b { font-size: 22px; margin: 0; line-height: 1; }
 
-.img-grid { display: flex; gap: 12px; margin: 0 15px; padding-bottom: 8px; overflow-x: auto; scroll-snap-type: x mandatory; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+.img-grid { display: flex; gap: 12px; margin: 0 15px; padding-bottom: 8px; overflow-x: auto; scroll-snap-type: x mandatory; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; min-height: 170px;}
 .img-grid::-webkit-scrollbar { height: 5px; }
 .img-grid::-webkit-scrollbar-thumb { background: var(--abu); border-radius: 10px; }
 .img-card { background: transparent; width: 160px; flex: 0 0 160px; display: flex; flex-direction: column; scroll-snap-align: start; flex-shrink: 0; }
 .img-card img { width: 100%; height: 110px; object-fit: cover; border-radius: 12px 12px 0 0; display: block; }
 .img-label { background: var(--merah-tua); color: #fff; padding: 8px 10px; font-size: 11px; font-weight: 800; border-radius: 0 0 12px 12px; border-top: 4px solid #fff; min-height: 50px; display: flex; align-items: center; justify-content: center; text-align: center; }
 
-/* ----------------------------------------------------------
-   33. DATA SDA
----------------------------------------------------------- */
-.tab-wrapper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 12px 15px; border: 1.5px solid var(--abu); border-radius: 10px; overflow: hidden; }
-.tab-info { background: #fff; padding: 10px 6px; font-size: 11px; font-weight: 700; text-align: center; line-height: 1.4; color: #111; border-right: 1.5px solid var(--abu); }
+/*DATA SDA*/
+.tab-wrapper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 12px 15px; border: 1.5px solid var(--abu); border-radius: 10px; overflow: hidden; min-height: 60px;}
+.tab-info { background: #fff; padding: 10px 6px; font-size: 11px; font-weight: 700; text-align: center; line-height: 1.4; color: #111; border-right: 1.5px solid var(--abu); min-height: 60px; display: flex; align-items: center; justify-content: center; }
 .tab-info:last-child { border-right: none; }
 
 .category-title { margin: 8px 15px 6px; font-size: 15px; font-weight: 800; color: var(--merah-tua); }
 
-.card-grid { display: flex; gap: 10px; overflow-x: auto; margin: 0 15px 10px; padding-bottom: 5px; }
+.card-grid { display: flex; gap: 10px; overflow-x: auto; overflow-y: visible; margin: 0 15px 10px; padding-bottom: 5px; flex-wrap: nowrap; min-height: 225px;}
 .card-grid::-webkit-scrollbar { height: 5px; }
 .card-grid::-webkit-scrollbar-thumb { background: var(--abu); border-radius: 10px; }
 
@@ -1126,9 +1093,7 @@ canvas { width: 100% !important; height: auto !important; }
 .sd-card .sd-label { font-size: 10px; font-weight: 600; opacity: .85; margin-bottom: 8px; }
 .sd-card .sd-value { font-size: 16px; font-weight: 800; line-height: 1.2; }
 
-/* ----------------------------------------------------------
-   34. DATA SOSIAL
----------------------------------------------------------- */
+/*DATA SOSIAL*/
 .stat-box { display: flex; gap: 10px; margin: 10px 15px; }
 .stat { flex: 1; text-align: center; background: #e0e0e0; border-radius: 10px; overflow: hidden; box-shadow: 0 3px 0 #bdbdbd; }
 .stat-title { background: var(--merah-tua); color: #fff; padding: 8px; font-size: 11px; font-weight: 700; border-radius: 10px 10px 0 0; }
@@ -1148,9 +1113,7 @@ canvas { width: 100% !important; height: auto !important; }
 .scroll-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: rgba(0,0,0,.25); color: #fff; border: none; font-size: 14px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; }
 .scroll-btn:hover { background: rgba(0,0,0,.45); }
 
-/* ----------------------------------------------------------
-   35. PENYAKIT / GRAFIK KESEHATAN
----------------------------------------------------------- */
+/*PENYAKIT / GRAFIK KESEHATAN*/
 .custom-bar { display: flex; justify-content: space-around; align-items: flex-end; height: 80px; margin-top: 18px; padding: 0 10px; }
 .bar-item { flex: 1; display: flex; justify-content: center; align-items: flex-end; height: 100%; }
 .bar { width: 24px; border-radius: 0; }
@@ -1172,7 +1135,5 @@ canvas { width: 100% !important; height: auto !important; }
 .w4 { width: 40%; background: #fb8c00; }
 .w5 { width: 20%; background: #26a69a; }
 
-/* ----------------------------------------------------------
-   36. SCROLL BUTTON GRID
----------------------------------------------------------- */
+/*SCROLL BUTTON GRID*/
 @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }

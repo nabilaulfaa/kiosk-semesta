@@ -8,8 +8,8 @@
 </div>
 
 <div class="hero-wrapper">
-    <img src="{{ asset('images/hero-desa.jpg') }}" class="hero-img" alt="Evaluasi">
     <div class="hero-accent"></div>
+    <img src="{{ asset('images/evaluasi.png') }}" class="hero-img" alt="Evaluasi">
 </div>
 
 <div style="

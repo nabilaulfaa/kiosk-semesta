@@ -7,7 +7,7 @@
     $blankoPath = $suratItem ? asset('storage/' . $suratItem['blanko']) : '';
 @endphp
 
-{{-- Header — sama seperti modul lain --}}
+{{-- Header --}}
 <div class="modul-header" style="flex-direction: row-reverse; justify-content: flex-start;">
     <div class="modul-title">LAYANAN SURAT</div>
     <div class="modul-icon"><i class="bi bi-envelope-paper"></i></div>
@@ -58,7 +58,7 @@
             <i class="bi bi-eye"></i> Lihat
         </button>
         <button class="btn-merah" id="btnUnduh">
-            <i class="bi bi-download"></i> Unduh
+            <i class="bi bi-printer"></i> Cetak
         </button>
     </div>
 

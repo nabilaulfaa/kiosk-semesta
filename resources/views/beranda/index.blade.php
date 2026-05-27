@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="hero-wrapper">
-    <img src="{{ asset('images/hero-desa.jpg') }}" class="hero-img" alt="Desa Jatimulyo">
     <div class="hero-accent"></div>
+    <img src="{{ asset('images/hero-desa.jpg') }}" class="hero-img" alt="Desa Jatimulyo">
 </div>
 
 <div style="

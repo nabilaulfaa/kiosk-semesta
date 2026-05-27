@@ -77,7 +77,7 @@
 
 @endsection
 
-{{-- Halaman index profil desa → tombol BERANDA (default layout, tidak perlu override) --}}
+
 
 @section('modal_content')
 

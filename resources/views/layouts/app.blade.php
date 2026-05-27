@@ -39,12 +39,7 @@
             @yield('content')
         </div>
 
-        {{-- ===== FOOTER NAVIGASI =====
-             Prioritas:
-             1. hide_bottom_nav → sembunyikan seluruh nav (contoh: beranda)
-             2. bottom_navigation → render nav custom dari halaman (contoh: peta, 2 tombol)
-             3. fallback → tombol BERANDA tunggal
-        --}}
+        {{-- ===== FOOTER NAVIGASI ===== --}}
         <div class="footer-section">
             @if(!$__env->hasSection('hide_bottom_nav'))
                 <div class="footer-nav-wrapper">

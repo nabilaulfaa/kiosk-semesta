@@ -1,13 +1,5 @@
-/* ===========================================================
-   KIOSK SEMESTA — MERGED JS
-   Base: JS Utama (kamu) — jam, modal, tabel, layanan surat
-   Tambahan: JS Teman — APBDes, peta, kependudukan, profil desa
-   Tidak ada konflik fungsi; DOMContentLoaded digabung satu.
-=========================================================== */
 
-/* ----------------------------------------------------------
-   1. JAM REAL-TIME
----------------------------------------------------------- */
+// JAM REAL-TIME
 function updateClock() {
     const now     = new Date();
     const hours   = String(now.getHours()).padStart(2, '0');
@@ -18,9 +10,7 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-/* ----------------------------------------------------------
-   2. MODAL HELPER
----------------------------------------------------------- */
+// MODAL HEALPER
 function openModal(id) {
     const overlay = document.getElementById(id);
     if (!overlay) return;
@@ -48,9 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-/* ----------------------------------------------------------
-   3. TABEL AUTO-SCROLL
----------------------------------------------------------- */
+// TABEL AUTO-SCROLL
 function checkTableScroll(tbodyId, wrapperId, maxRows = 5) {
     const tbody   = document.getElementById(tbodyId);
     const wrapper = document.getElementById(wrapperId);
@@ -63,12 +51,7 @@ function checkTableScroll(tbodyId, wrapperId, maxRows = 5) {
     }
 }
 
-/* ----------------------------------------------------------
-   4. FORMAT ANGKA
-   formatRupiah → dipakai di modul kamu (layanan surat)
-   rupiah       → dipakai di modul teman (APBDes, pembangunan)
-   Keduanya dipertahankan karena Blade masing-masing sudah pakai nama beda.
----------------------------------------------------------- */
+// FORMAT ANGKA 
 function formatRupiah(num) {
     return 'Rp ' + Number(num).toLocaleString('id-ID');
 }
@@ -80,25 +63,19 @@ function rupiah(n) {
     return 'Rp ' + Number(n).toLocaleString('id-ID');
 }
 
-/* ----------------------------------------------------------
-   5. SKELETON LOADING
----------------------------------------------------------- */
+// SKELETON LOADING
 function showSkeleton(id) {
     const el = document.getElementById(id);
     if (!el) return;
     el.innerHTML = `<tr><td colspan="2"><div class="skeleton w-75"></div></td></tr>`;
 }
 
-/* ============================================================
-   MODUL KAMU — LAYANAN SURAT
-============================================================ */
+// MODUL LAYANAN SURAT
 
-/* ----------------------------------------------------------
-   6. INDEX: Render daftar surat dari API
----------------------------------------------------------- */
+// RENDER DAFTAR SURAT DARI API
 async function renderDaftarSurat() {
     try {
-        const res  = await fetch('/api/layanan-surat/data');
+        const res  = await fetch('/api/desa/layanan-surat');
         const data = await res.json();
         const container = document.getElementById('suratList');
         if (!container) return;
@@ -123,14 +100,12 @@ async function renderDaftarSurat() {
     }
 }
 
-/* ----------------------------------------------------------
-   7. CEK SURAT: Form, blanko, popup
----------------------------------------------------------- */
+// CEK SURAT, BLANKO, POPUP STATUS
 let _suratData = {};
 
 async function _fetchSuratData() {
     try {
-        const res = await fetch('/api/layanan-surat/data');
+        const res = await fetch('/api/desa/layanan-surat');
         _suratData = await res.json();
     } catch (err) {
         console.error('Gagal fetch data surat:', err);
@@ -177,12 +152,8 @@ function _initBlanko() {
 
     document.getElementById('btnUnduh')?.addEventListener('click', () => {
         if (blankoUrl) {
-            const judulEl = document.getElementById('judulSurat');
-            const nama    = judulEl ? judulEl.innerText : 'blanko';
-            const a       = document.createElement('a');
-            a.href        = blankoUrl;
-            a.download    = nama + '.pdf';
-            a.click();
+            const win = window.open(blankoUrl, '_blank');
+            if (win) win.onload = () => win.print();
         } else {
             alert('Blanko surat belum tersedia.');
         }
@@ -247,21 +218,16 @@ function closePopupSurat() {
 window.cetakSurat      = cetakSurat;
 window.closePopupSurat = closePopupSurat;
 
-/* ============================================================
-   MODUL TEMAN — APBDes, PETA, KEPENDUDUKAN, PROFIL DESA
-============================================================ */
+// MODUL APBDes, PETA, KEPENDUDUKAN, PROFIL DESA
 
-/* ----------------------------------------------------------
-   8. WARNA DUSUN
----------------------------------------------------------- */
+// WARNA DUSUN
+
 const WARNA_DUSUN = [
     '#B71C1C', '#7B1F1F', '#4E342E',
     '#3E2723', '#880E4F', '#1A237E'
 ];
 
-/* ----------------------------------------------------------
-   9. DROPDOWN TAHUN
----------------------------------------------------------- */
+//DROPDOWN TAHUN
 function toggleYear() {
     const menu = document.getElementById('yearMenu');
     if (!menu) return;
@@ -288,9 +254,7 @@ function applyYear() {
     goToYear(year);
 }
 
-/* ----------------------------------------------------------
-   10. APBDes — STATISTIK & PERIODE
----------------------------------------------------------- */
+// APBDes - Statistik, PERIODE
 async function loadStatistik(tahun) {
     if (!document.getElementById('tabelPendapatan')) return;
     showSkeleton('tabelPendapatan');
@@ -350,9 +314,7 @@ async function loadPeriode() {
     }
 }
 
-/* ----------------------------------------------------------
-   11. APBDes — PEMBANGUNAN
----------------------------------------------------------- */
+// APBEDES - Program Pembangunan
 async function loadPembangunan(tahun) {
     const el = document.getElementById('listPembangunan');
     if (!el) return;
@@ -371,7 +333,7 @@ async function loadPembangunan(tahun) {
                 : d.lokasi || '-';
             return `
                 <div class="d-flex align-items-center gap-3 rounded-3 p-3 mb-2" style="background:#e8e8e8;">
-                    <img src="images/pembangunan.png" width="70" height="70" style="object-fit:contain;flex-shrink:0;" alt="pembangunan">
+                    <img src="/images/pembangunan.png" width="70" height="70" style="object-fit:contain;flex-shrink:0;" alt="pembangunan">
                     <div class="flex-fill">
                         <div class="fw-bold text-danger mb-2" style="font-size:13px;">${d.judul}</div>
                         <div class="d-flex gap-2 mb-1" style="font-size:11px;"><span style="min-width:65px;color:#555;font-weight:600;">Lokasi</span><span>: <strong>${wilayah}</strong></span></div>
@@ -387,9 +349,7 @@ async function loadPembangunan(tahun) {
     }
 }
 
-/* ----------------------------------------------------------
-   12. KEPENDUDUKAN — CHARTS
----------------------------------------------------------- */
+// KEPENDUDUKAN - Chart.js
 function initCharts() {
     const jkChart = document.getElementById('jkChart');
     if (jkChart) {
@@ -439,18 +399,14 @@ function initCharts() {
     }
 }
 
-/* ----------------------------------------------------------
-   13. SCROLL — SDA, Sosial
----------------------------------------------------------- */
+// SCROLL SDA, SOSIAL
 function scrollRight(id) {
     const el = document.getElementById(id);
     if (!el) return;
     el.scrollBy({ left: 200, behavior: 'smooth' });
 }
 
-/* ----------------------------------------------------------
-   14. MENU BERANDA — Disabled shake
----------------------------------------------------------- */
+//menu beranda disable shake
 function initDisabledMenu() {
     document.querySelectorAll('.menu-item.disabled').forEach(el => {
         el.addEventListener('click', function (e) {
@@ -463,9 +419,7 @@ function initDisabledMenu() {
     });
 }
 
-/* ----------------------------------------------------------
-   15. PETA WILAYAH — Leaflet
----------------------------------------------------------- */
+// PETA WILAYAH leaflet.js
 let map          = null;
 let wilayahLayer = null;
 const infraLayers = new Map();
@@ -650,9 +604,7 @@ async function initData() {
     }
 }
 
-/* ----------------------------------------------------------
-   16. PROFIL DESA
----------------------------------------------------------- */
+//profil desa
 function toggleMonografi() {
     const menu  = document.getElementById('monografiMenu');
     const arrow = document.getElementById('arrowIcon');
@@ -665,9 +617,7 @@ function toggleMonografi() {
 function toggleZoom(img) { img.classList.toggle('zoomed'); }
 function toggleAcc(el)   { el.nextElementSibling.classList.toggle('open'); }
 
-/* ----------------------------------------------------------
-   17. GLOBAL EVENT LISTENERS
----------------------------------------------------------- */
+// global event listeners
 document.addEventListener('click', function (e) {
     // Tutup year dropdown saat klik di luar
     const wrapper = document.querySelector('.year-wrapper');
@@ -688,9 +638,7 @@ document.addEventListener('keydown', function (e) {
     });
 });
 
-/* ----------------------------------------------------------
-   18. INIT — DOMContentLoaded (gabungan)
----------------------------------------------------------- */
+// INIT — DOMContentLoaded (gabungan)
 document.addEventListener('DOMContentLoaded', function () {
 
     // Layanan surat — modul kamu
@@ -706,7 +654,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })();
     }
 
-    // APBDes — modul teman (hanya jalan kalau elemen & API tersedia)
+    // APBDes 
     const urlTahun = new URLSearchParams(window.location.search).get('tahun');
     if (urlTahun && typeof tahunAktif !== 'undefined') {
         tahunAktif = parseInt(urlTahun);
