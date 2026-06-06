@@ -68,17 +68,17 @@ html, body {
     padding: 0 5vw;
     display: flex;
     align-items: center;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .header-top::before {
     content: "";
     position: absolute;
-    left: -10px;
-    top: 50%;
+    left: -45px;
+    top: 70%;
     transform: translateY(-50%);
-    width: min(55%, 300px);
-    height: 150%;
+    width: min(80%, 520px);      
+    height: 400%;
     background: url('/images/logo-semesta-putih.png') no-repeat left center;
     background-size: contain;
     filter: brightness(0) opacity(0.06);
@@ -89,10 +89,10 @@ html, body {
 .header-top::after {
     content: "";
     position: absolute;
-    right: -15px;
-    top: -30%;
-    width: min(25%, 200px);
-    height: 160%;
+    right: -13%;
+    top: -55%;       
+    width: min(45%, 500px);   
+    height: 500%;
     background: url('/images/logo-semesta.png') no-repeat right top;
     background-size: contain;
     filter: brightness(0) saturate(100%) invert(18%) sepia(93%) saturate(5422%) hue-rotate(353deg);
@@ -106,6 +106,7 @@ html, body {
     align-items: center;
     gap: 2vw;
     z-index: 10;
+    position: relative;
 }
 
 .header-logo { 
@@ -3699,6 +3700,18 @@ canvas {
     .text-dark-blue { font-size: 28px; }
     .text-blue      { font-size: 24px; }
     .header-logo    { height: 10vh; }
+
+    .header-top::before {
+        width: min(80%, 600px);
+        height: 400%;   
+    }
+
+    .header-top::after {
+        right: -10%;
+        top: -60%;
+        width: min(40%, 480px);
+        height: 520%;
+    }
  
 
     /* MODUL HEADER */
@@ -4031,6 +4044,18 @@ canvas {
     .modul-icon   { width: 70px; height: 70px; }
     .modul-icon i { font-size: 34px; }
     .page-title   { font-size: 34px; }
+
+    .header-top::before {
+        width: min(85%, 750px);
+        height: 400%;
+    }
+
+    .header-top::after {
+        right: -8%;
+        top: -125%;
+        width: min(38%, 550px);
+        height: 350%;
+    }
  
     .btn-nav       { font-size: 26px; }
     .btn-beranda   { font-size: 18px; }
