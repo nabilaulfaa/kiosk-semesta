@@ -4,7 +4,7 @@
  
 <div class="modul-header">
     <div class="modul-icon"><i class="bi bi-search"></i></div>
-    <div class="modul-title">EVALUASI</div>
+    <a href="{{ route('evaluasi') }}" class="modul-title modul-title-link">EVALUASI</a>
 </div>
 <div class="page-title">SARANA DAN PRASARANA</div>
  
@@ -16,25 +16,25 @@
  
 @endsection
  
-@section('bottom_navigation')
-<a href="{{ route('evaluasi') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
-@endsection
- 
 @push('scripts')
 <script>
 const saranaData = @json($sarana);
 let kategoriKeys = Object.keys(saranaData);
-let currentKategori = kategoriKeys[0];
+
+let currentKategori = sessionStorage.getItem('sarana_kategori') || kategoriKeys[0];
+
+if (!saranaData[currentKategori]) {
+    currentKategori = kategoriKeys[0];
+}
  
 function renderKategori() {
     const wrapper = document.getElementById('kategoriWrapper');
     wrapper.innerHTML = '';
-    kategoriKeys.forEach((key, i) => {
-        const count = saranaData[key].length;
+    kategoriKeys.forEach((key) => {
+        const count  = saranaData[key].length;
+        const active = key === currentKategori;
         wrapper.innerHTML += `
-            <button class="btn-merah ${i === 0 ? '' : 'opacity-75'}" 
+            <button class="btn-merah ${active ? '' : 'opacity-75'}" 
                 style="border-radius:12px;display:flex;align-items:center;gap:0.8vw;font-size:clamp(13px,1.2vw,20px);"
                 onclick="switchKategori('${key}', this)">
                 ${key.toUpperCase()}
@@ -45,6 +45,7 @@ function renderKategori() {
  
 function switchKategori(key, btn) {
     currentKategori = key;
+    sessionStorage.setItem('sarana_kategori', key); // simpan pilihan
     document.querySelectorAll('#kategoriWrapper button').forEach(b => b.classList.add('opacity-75'));
     btn.classList.remove('opacity-75');
     renderSarana(saranaData[key]);

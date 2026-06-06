@@ -13,55 +13,82 @@
     <div class="modul-title">PROGRAM KADES</div>
 </div>
 
-<div class="px-3 mt-2">
-    <p class="mb-2" style="font-weight:800; font-size:13px;">Profil Kepala Desa</p>
+<div class="px-3 mt-2 pb-4">
+    <p class="section-title" style="font-size: clamp(16px, 1.8vw, 26px); font-weight: 800; margin-bottom: 1.5vh;">
+        Profil Kepala Desa
+    </p>
 
-    <div class="d-flex gap-3">
-        <div class="profil-foto flex-shrink-0">
-            @if($data['profil']['foto'])
-                <img src="{{ $data['profil']['foto'] }}" alt="Foto Kades">
-            @else
-                <img src="{{ asset('images/kades.png') }}" alt="Foto Kades">
-            @endif
+    {{-- Foto + Tabel --}}
+    <div class="kiosk-card d-flex gap-3 align-items-center mb-3" style="padding: 2vh 2vw;">
+        <div class="flex-shrink-0">
+            <img 
+                src="{{ $data['profil']['foto'] ?? asset('images/kades.png') }}" 
+                alt="Foto Kades"
+                style="width: clamp(110px, 11vw, 190px); height: clamp(150px, 17vw, 280px); object-fit: cover; border-radius: 15px; border: 3px solid #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15);"
+            >
         </div>
-        <div class="flex-grow-1">
+        <div style="flex:1; min-width:0;">
             <table class="profil-tabel">
-                <tr><td class="td-key">Nama</td><td class="td-val">{{ $data['profil']['nama'] }}</td></tr>
-                <tr><td class="td-key">Lahir</td><td class="td-val">{{ $data['profil']['lahir'] }}</td></tr>
-                <tr><td class="td-key">Agama</td><td class="td-val">{{ $data['profil']['agama'] }}</td></tr>
-                <tr><td class="td-key">Pendidikan</td><td class="td-val">{{ $data['profil']['pendidikan'] }}</td></tr>
-            </table>
+    <tr>
+        <td class="td-key">Nama</td>
+        <td class="td-val">{{ $data['profil']['nama'] }}</td>
+    </tr>
+    <tr>
+        <td class="td-key">Lahir</td>
+        <td class="td-val">{{ $data['profil']['lahir'] }}</td>
+    </tr>
+    <tr>
+        <td class="td-key">Agama</td>
+        <td class="td-val">{{ $data['profil']['agama'] }}</td>
+    </tr>
+    <tr>
+        <td class="td-key">Pendidikan</td>
+        <td class="td-val">{{ $data['profil']['pendidikan'] }}</td>
+    </tr>
+</table>
         </div>
     </div>
 
     <div class="acc-item">
-        <button class="acc-header" onclick="toggleAcc(this)">Periode Menjabat</button>
-        <div class="acc-body">{{ $data['profil']['periode'] }}</div>
+        <button class="acc-header" onclick="toggleAcc(this)" style="font-size: clamp(14px, 1.4vw, 22px); padding: 1.5vh 2vw;">
+            Periode Menjabat
+        </button>
+        <div class="acc-body" style="font-size: clamp(13px, 1.3vw, 20px); line-height: 1.7;">
+            {{ $data['profil']['periode'] }}
+        </div>
     </div>
 
     <div class="acc-item">
-        <button class="acc-header" onclick="toggleAcc(this)">Visi</button>
-        <div class="acc-body">{{ $data['visi'] }}</div>
+        <button class="acc-header" onclick="toggleAcc(this)" style="font-size: clamp(14px, 1.4vw, 22px); padding: 1.5vh 2vw;">
+            Visi
+        </button>
+        <div class="acc-body" style="font-size: clamp(13px, 1.3vw, 20px); line-height: 1.7;">
+            {{ $data['visi'] }}
+        </div>
     </div>
 
     <div class="acc-item">
-        <button class="acc-header" onclick="toggleAcc(this)">Misi</button>
-        <div class="acc-body">
+        <button class="acc-header" onclick="toggleAcc(this)" style="font-size: clamp(14px, 1.4vw, 22px); padding: 1.5vh 2vw;">
+            Misi
+        </button>
+        <div class="acc-body" style="font-size: clamp(13px, 1.3vw, 20px); line-height: 1.9;">
             @foreach($data['misi'] as $m)
                 - {{ $m }}<br>
             @endforeach
         </div>
     </div>
 
-    <div class="row g-2 mt-2 mb-3">
+    {{-- Tombol --}}
+    <div class="row g-2 mt-3 mb-3">
         <div class="col-6">
-            {{-- Ganti data-bs-toggle → openModal --}}
-            <button class="btn-kades" onclick="openModal('modalRiwayat')">
+            <button class="btn-kades" onclick="openModal('modalRiwayat')" 
+                style="font-size: clamp(14px, 1.4vw, 22px); padding: 1.5vh; border-radius: 12px;">
                 Riwayat Kerja
             </button>
         </div>
         <div class="col-6">
-            <button class="btn-kades" onclick="window.location='{{ route('program-kerja') }}'">
+            <button class="btn-kades" onclick="window.location='{{ route('program-kerja') }}'"
+                style="font-size: clamp(14px, 1.4vw, 22px); padding: 1.5vh; border-radius: 12px;">
                 Program Kerja
             </button>
         </div>
@@ -74,7 +101,7 @@
 
 {{-- Modal Riwayat Kerja --}}
 <div class="modal-overlay" id="modalRiwayat">
-    <div class="modal-box">
+    <div class="modal-box modal-box-fullscreen">
         <div class="modal-header-kiosk">
             <h2>Riwayat Kerja</h2>
             <button class="btn-close-modal" onclick="closeModal('modalRiwayat')">✕</button>
@@ -82,10 +109,26 @@
         <div class="modal-body-kiosk">
             @foreach($data['riwayat_kerja'] as $rk)
             <div class="riwayat-card">
-                <div class="rk-row"><span class="rk-key">Jabatan</span><span class="rk-sep">:</span><span class="rk-val">{{ $rk['jabatan'] }}</span></div>
-                <div class="rk-row"><span class="rk-key">Instansi</span><span class="rk-sep">:</span><span class="rk-val">{{ $rk['instansi'] }}</span></div>
-                <div class="rk-row"><span class="rk-key">Tahun Mulai</span><span class="rk-sep">:</span><span class="rk-val">{{ $rk['tahun_mulai'] }}</span></div>
-                <div class="rk-row"><span class="rk-key">Tahun Selesai</span><span class="rk-sep">:</span><span class="rk-val">{{ $rk['tahun_selesai'] }}</span></div>
+                <div class="rk-row">
+                    <span class="rk-key">Jabatan</span>
+                    <span class="rk-sep">:</span>
+                    <span class="rk-val">{{ $rk['jabatan'] }}</span>
+                </div>
+                <div class="rk-row">
+                    <span class="rk-key">Instansi</span>
+                    <span class="rk-sep">:</span>
+                    <span class="rk-val">{{ $rk['instansi'] }}</span>
+                </div>
+                <div class="rk-row">
+                    <span class="rk-key">Tahun Mulai</span>
+                    <span class="rk-sep">:</span>
+                    <span class="rk-val">{{ $rk['tahun_mulai'] }}</span>
+                </div>
+                <div class="rk-row">
+                    <span class="rk-key">Tahun Selesai</span>
+                    <span class="rk-sep">:</span>
+                    <span class="rk-val">{{ $rk['tahun_selesai'] }}</span>
+                </div>
             </div>
             @endforeach
         </div>

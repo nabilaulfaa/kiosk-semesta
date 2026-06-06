@@ -11,7 +11,7 @@
 
     <div class="modul-header" style="padding: 3vh 0 1vh;">
         <div class="modul-icon"><i class="bi bi-people"></i></div>
-        <div class="modul-title">PKK POSYANDU</div>
+        <a href="{{ route('pkk.posyandu') }}" class="modul-title modul-title-link">PKK POSYANDU</a>
     </div>
 
     <div style="font-size:clamp(18px,2vw,32px);font-weight:800;margin-bottom:2vh;">MENU POSYANDU</div>
@@ -29,7 +29,7 @@
         </form>
     </div>
 
-    {{-- Tabel: thead stay, tbody scroll jika > 5 baris --}}
+    {{-- Tabel: thead stay, tbody scroll --}}
     <div style="margin-bottom:2vh;border-radius:12px;overflow:hidden;">
         <table class="tabel-kiosk col-3" style="margin-bottom:0;">
             <thead>
@@ -189,12 +189,6 @@
 
 @endsection
 
-@section('bottom_navigation')
-<a href="{{ route('pkk.posyandu') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
-@endsection
-
 @push('scripts')
 <script>
 Chart.register(ChartDataLabels);
@@ -211,7 +205,7 @@ window.onload = function () {
         options: { ...commonOpts, plugins: { legend: { display: false }, datalabels: { anchor: 'end', align: 'top', color: '#B51016' } }, scales: { y: { beginAtZero: true, grid: { display: false } } } }
     });
 
-    // chartKelahiran - hapus datalabels
+    // chartKelahiran
     new Chart(document.getElementById('chartKelahiran'), {
         type: 'pie',
         data: { labels: ['Laki-laki','Perempuan'], datasets: [{ data: [{{ $dataKelahiran['laki'] }}, {{ $dataKelahiran['perempuan'] }}], backgroundColor: ['#B51016','#FF7676'], borderWidth: 2 }] },
@@ -219,12 +213,12 @@ window.onload = function () {
             ...commonOpts, 
             plugins: { 
                 legend: { position: 'bottom' }, 
-                datalabels: { display: false }  // ← tambah ini
+                datalabels: { display: false } 
             } 
         }
     });
 
-    // chartKematian - sama
+    // chartKematian
     new Chart(document.getElementById('chartKematian'), {
         type: 'pie',
         data: { labels: ['Laki-laki','Perempuan'], datasets: [{ data: [{{ $dataKematian['laki'] }}, {{ $dataKematian['perempuan'] }}], backgroundColor: ['#B51016','#FF7676'], borderWidth: 2 }] },
@@ -232,12 +226,12 @@ window.onload = function () {
             ...commonOpts, 
             plugins: { 
                 legend: { position: 'bottom' }, 
-                datalabels: { display: false }  // ← tambah ini
+                datalabels: { display: false }  
             } 
         }
     });
 
-    // chartImunisasi - hapus datalabels
+    // chartImunisasi
     new Chart(document.getElementById('chartImunisasi'), {
         type: 'line',
         data: { labels: labels12, datasets: [{ data: [15,25,20,35,45,40,50,55,60,65,70,75], borderColor: '#42A5F5', backgroundColor: 'rgba(66,165,245,0.2)', fill: true, tension: 0.4, pointRadius: 5 }] },
@@ -245,12 +239,12 @@ window.onload = function () {
             ...commonOpts, 
             plugins: { 
                 legend: { display: false }, 
-                datalabels: { display: false }  // ← ubah ini
+                datalabels: { display: false }  
             } 
         }
     });
 
-    // chartGizi - hapus datalabels
+    // chartGizi 
     new Chart(document.getElementById('chartGizi'), {
         type: 'doughnut',
         data: { labels: ['Gizi Buruk','Sedang','Cukup Gizi'], datasets: [{ data: [20,30,50], backgroundColor: ['#4B0082','#FF7676','#42A5F5'], hoverOffset: 15 }] },
@@ -258,7 +252,7 @@ window.onload = function () {
             ...commonOpts, 
             plugins: { 
                 legend: { display: false }, 
-                datalabels: { display: false }  // ← ubah ini
+                datalabels: { display: false } 
             } 
         }
     });

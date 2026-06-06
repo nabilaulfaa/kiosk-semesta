@@ -1,4 +1,3 @@
-
 // JAM REAL-TIME
 function updateClock() {
     const now     = new Date();
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// TABEL AUTO-SCROLL
 function checkTableScroll(tbodyId, wrapperId, maxRows = 5) {
     const tbody   = document.getElementById(tbodyId);
     const wrapper = document.getElementById(wrapperId);
@@ -51,7 +49,6 @@ function checkTableScroll(tbodyId, wrapperId, maxRows = 5) {
     }
 }
 
-// FORMAT ANGKA 
 function formatRupiah(num) {
     return 'Rp ' + Number(num).toLocaleString('id-ID');
 }
@@ -63,7 +60,6 @@ function rupiah(n) {
     return 'Rp ' + Number(n).toLocaleString('id-ID');
 }
 
-// SKELETON LOADING
 function showSkeleton(id) {
     const el = document.getElementById(id);
     if (!el) return;
@@ -169,10 +165,10 @@ function _showPopupStatus(status) {
 
     const c = config[status.status] || config.proses;
 
-    document.getElementById('popupNama').innerText     = status.nama;
-    document.getElementById('popupJenis').innerText    = status.jenis;
-    document.getElementById('popupUpdate').innerText   = status.update;
-    document.getElementById('popupEstimasi').innerText = status.estimasi;
+    document.getElementById('popupNama').innerText      = status.nama;
+    document.getElementById('popupJenis').innerText     = status.jenis;
+    document.getElementById('popupUpdate').innerText    = status.update;
+    document.getElementById('popupEstimasi').innerText  = status.estimasi;
     document.getElementById('progressFill').style.width = c.fill;
 
     const badge = document.getElementById('popupBadge');
@@ -220,8 +216,7 @@ window.closePopupSurat = closePopupSurat;
 
 // MODUL APBDes, PETA, KEPENDUDUKAN, PROFIL DESA
 
-// WARNA DUSUN
-
+// WARNA DUSUN/RTRW
 const WARNA_DUSUN = [
     '#B71C1C', '#7B1F1F', '#4E342E',
     '#3E2723', '#880E4F', '#1A237E'
@@ -254,7 +249,126 @@ function applyYear() {
     goToYear(year);
 }
 
-// APBDes - Statistik, PERIODE
+// ─────────────────────────────────────────────────────────────
+// APBDes — RENDER (murni tampilkan data, tanpa fetch)
+// ─────────────────────────────────────────────────────────────
+
+function renderStatistik(json) {
+    const s = json.statistik;
+
+    document.getElementById('gridTahun').textContent      = json.tahun;
+    document.getElementById('gridPendapatan').textContent = rupiah(s.pendapatan.anggaran);
+    document.getElementById('gridBelanja').textContent    = rupiah(s.belanja.realisasi);
+    document.getElementById('gridSilpa').textContent      = rupiah(s.silpa.realisasi);
+
+    const pct = s.pendapatan.anggaran > 0
+        ? Math.min((s.belanja.realisasi / s.pendapatan.anggaran) * 100, 100)
+        : 0;
+    const barBelanja = document.getElementById('barBelanja');
+    if (barBelanja) barBelanja.style.width = pct.toFixed(1) + '%';
+
+    document.getElementById('tabelPendapatan').innerHTML = `
+     <tr>
+        <td class="td-nama" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+            Anggaran
+        </td>
+        <td class="td-nilai" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+            ${rupiah(s.pendapatan.anggaran)}
+        </td>
+     </tr>
+     <tr>
+        <td class="td-nama" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+            Realisasi
+        </td>
+        <td class="td-nilai" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+            ${rupiah(s.pendapatan.realisasi)}
+        </td>
+     </tr>
+       <tr class="tr-total">
+        <td class="td-nama" style="font-size:clamp(13px,1.1vw,18px);font-weight:700;">
+            Persentase
+        </td>
+        <td class="td-nilai" style="font-size:clamp(13px,1.1vw,18px);font-weight:700;">
+            ${s.pendapatan.persentase}%
+        </td>
+     </tr>
+    `;
+    document.getElementById('tabelBelanja').innerHTML = `
+        <tr>
+            <td class="td-nama" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+                Anggaran
+            </td>
+            <td class="td-nilai" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+                ${rupiah(s.belanja.anggaran)}
+            </td>
+        </tr>
+        <tr>
+            <td class="td-nama" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+                Realisasi
+            </td>
+            <td class="td-nilai" style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">
+                ${rupiah(s.belanja.realisasi)}
+            </td>
+        </tr>
+        <tr class="tr-total">
+            <td class="td-nama" style="font-size:clamp(13px,1.1vw,18px);font-weight:700;">
+                Persentase
+            </td>
+            <td class="td-nilai" style="font-size:clamp(13px,1.1vw,18px);font-weight:700;">
+                ${s.belanja.persentase}%
+            </td>
+        </tr>
+    `;
+}
+
+function renderPeriodeData(json) {
+    const body = document.getElementById('bodyPeriode');
+    if (!body) return;
+    body.innerHTML = json.data.map(d => `
+        <div class="table-row">
+            <div>${d.tahun}</div>
+            <div>${rupiah(d.pendapatan.realisasi)}</div>
+            <div>${rupiah(d.belanja.realisasi)}</div>
+            <div>${rupiah(d.pembiayaan.realisasi)}</div>
+            <div>${rupiah(d.silpa.realisasi)}</div>
+        </div>
+    `).join('');
+}
+
+function renderPembangunan(list, tahun) {
+    const el = document.getElementById('listPembangunan');
+    if (!el) return;
+    if (!list.length) {
+        el.innerHTML = `<div class="text-center py-3 text-secondary small">Tidak ada program pembangunan${tahun ? ' tahun ' + tahun : ''}</div>`;
+        return;
+    }
+    el.innerHTML = list.map(d => {
+        const wilayah = d.wilayah?.dusun
+            ? `${d.wilayah.dusun} RW ${d.wilayah.rw} RT ${d.wilayah.rt}`
+            : d.lokasi || '-';
+        return `
+            <div class="project-card kiosk-card d-flex gap-3 mb-2">
+                <img src="/images/pembangunan.png"
+                    style="width:clamp(150px,16vw,250px);height:clamp(100px,12vh,180px);object-fit:contain;border-radius:15px;flex-shrink:0;background:#ddd;padding:10px;">
+                <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+                    <div>
+                        <div style="color:var(--merah-tua);font-size:clamp(16px,1.6vw,28px);font-weight:700;margin-bottom:0.5vh;">
+                            ${d.judul}
+                        </div>
+                        <div style="font-size:clamp(13px,1.1vw,18px);font-weight:500;margin-bottom:0.3vh;">Lokasi : ${wilayah}</div>
+                        <div style="font-size:clamp(13px,1.1vw,18px);font-weight:500;margin-bottom:0.3vh;">Pelaksana : ${d.pelaksana}</div>
+                        <div style="font-size:clamp(13px,1.1vw,18px);font-weight:500;">Anggaran : ${rupiah(d.anggaran)}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ─────────────────────────────────────────────────────────────
+// APBDes — FETCH (dipakai saat ganti tahun via JS)
+// ─────────────────────────────────────────────────────────────
+
 async function loadStatistik(tahun) {
     if (!document.getElementById('tabelPendapatan')) return;
     showSkeleton('tabelPendapatan');
@@ -262,29 +376,7 @@ async function loadStatistik(tahun) {
     try {
         const res  = await fetch(`${API_STATISTIK}?tahun=${tahun}`);
         const json = await res.json();
-        const s    = json.statistik;
-
-        document.getElementById('gridTahun').textContent      = json.tahun;
-        document.getElementById('gridPendapatan').textContent = rupiah(s.pendapatan.anggaran);
-        document.getElementById('gridBelanja').textContent    = rupiah(s.belanja.realisasi);
-        document.getElementById('gridSilpa').textContent      = rupiah(s.silpa.realisasi);
-
-        const pct = s.pendapatan.anggaran > 0
-            ? Math.min((s.belanja.realisasi / s.pendapatan.anggaran) * 100, 100)
-            : 0;
-        const barBelanja = document.getElementById('barBelanja');
-        if (barBelanja) barBelanja.style.width = pct.toFixed(1) + '%';
-
-        document.getElementById('tabelPendapatan').innerHTML = `
-            <tr><td class="td-nama">Anggaran</td><td class="td-nilai">${rupiah(s.pendapatan.anggaran)}</td></tr>
-            <tr><td class="td-nama">Realisasi</td><td class="td-nilai">${rupiah(s.pendapatan.realisasi)}</td></tr>
-            <tr class="tr-total"><td class="td-nama">Persentase</td><td class="td-nilai">${s.pendapatan.persentase}%</td></tr>
-        `;
-        document.getElementById('tabelBelanja').innerHTML = `
-            <tr><td class="td-nama">Anggaran</td><td class="td-nilai">${rupiah(s.belanja.anggaran)}</td></tr>
-            <tr><td class="td-nama">Realisasi</td><td class="td-nilai">${rupiah(s.belanja.realisasi)}</td></tr>
-            <tr class="tr-total"><td class="td-nama">Persentase</td><td class="td-nilai">${s.belanja.persentase}%</td></tr>
-        `;
+        renderStatistik(json);
     } catch (err) {
         console.error('Gagal load statistik:', err);
         document.getElementById('tabelPendapatan').innerHTML = `<tr><td colspan="2" style="color:#999;padding:12px;text-align:center;">Gagal memuat data</td></tr>`;
@@ -295,26 +387,17 @@ async function loadStatistik(tahun) {
 async function loadPeriode() {
     const body = document.getElementById('bodyPeriode');
     if (!body) return;
-    body.innerHTML = `<tr><td colspan="5" class="text-center py-3" style="color:#999;">Memuat data...</td></tr>`;
+    body.innerHTML = `<div class="table-row"><div style="text-align:center;color:#999;">Memuat data...</div></div>`;
     try {
         const res  = await fetch(API_PERIODE);
         const json = await res.json();
-        body.innerHTML = json.data.map(d => `
-            <tr>
-                <td>${d.tahun}</td>
-                <td>${rupiah(d.pendapatan.realisasi)}</td>
-                <td>${rupiah(d.belanja.realisasi)}</td>
-                <td>${rupiah(d.pembiayaan.realisasi)}</td>
-                <td>${rupiah(d.silpa.realisasi)}</td>
-            </tr>
-        `).join('');
+        renderPeriodeData(json);
     } catch (err) {
         console.error('Gagal load periode:', err);
-        body.innerHTML = `<tr><td colspan="5" style="color:#999;padding:12px;text-align:center;">Gagal memuat data</td></tr>`;
+        body.innerHTML = `<div class="table-row"><div style="text-align:center;color:#999;">Gagal memuat data</div></div>`;
     }
 }
 
-// APBEDES - Program Pembangunan
 async function loadPembangunan(tahun) {
     const el = document.getElementById('listPembangunan');
     if (!el) return;
@@ -322,27 +405,7 @@ async function loadPembangunan(tahun) {
     try {
         const res  = await fetch(`${API_PEMBANGUNAN}?tahun=${tahun}`);
         const json = await res.json();
-        const list = json.data || [];
-        if (!list.length) {
-            el.innerHTML = `<div class="text-center py-3 text-secondary small">Tidak ada program pembangunan tahun ${tahun}</div>`;
-            return;
-        }
-        el.innerHTML = list.map(d => {
-            const wilayah = d.wilayah?.dusun
-                ? `${d.wilayah.dusun} RW ${d.wilayah.rw} RT ${d.wilayah.rt}`
-                : d.lokasi || '-';
-            return `
-                <div class="d-flex align-items-center gap-3 rounded-3 p-3 mb-2" style="background:#e8e8e8;">
-                    <img src="/images/pembangunan.png" width="70" height="70" style="object-fit:contain;flex-shrink:0;" alt="pembangunan">
-                    <div class="flex-fill">
-                        <div class="fw-bold text-danger mb-2" style="font-size:13px;">${d.judul}</div>
-                        <div class="d-flex gap-2 mb-1" style="font-size:11px;"><span style="min-width:65px;color:#555;font-weight:600;">Lokasi</span><span>: <strong>${wilayah}</strong></span></div>
-                        <div class="d-flex gap-2 mb-1" style="font-size:11px;"><span style="min-width:65px;color:#555;font-weight:600;">Pelaksana</span><span>: <strong>${d.pelaksana}</strong></span></div>
-                        <div class="d-flex gap-2" style="font-size:11px;"><span style="min-width:65px;color:#555;font-weight:600;">Anggaran</span><span>: <strong>${rupiah(d.anggaran)}</strong></span></div>
-                    </div>
-                </div>
-            `;
-        }).join('');
+        renderPembangunan(json.data || [], tahun);
     } catch (err) {
         console.error('Gagal load pembangunan:', err);
         el.innerHTML = `<div class="text-center py-3 text-secondary small">Gagal memuat data</div>`;
@@ -382,7 +445,7 @@ function initCharts() {
             data: {
                 labels: ['2023', '2024', '2025'],
                 datasets: [
-                    { data: [20, 22, 25], backgroundColor: '#000' },
+                    { data: [20, 22, 25], backgroundColor: '#ffed29' },
                     { data: [40, 45, 50], backgroundColor: '#ef9aa5' },
                     { data: [55, 60, 62], backgroundColor: '#c62828' },
                     { data: [70, 75, 78], backgroundColor: '#1b8f3a' }
@@ -391,22 +454,27 @@ function initCharts() {
             options: {
                 plugins: { legend: { display: false } },
                 scales: {
-                    x: { grid: { display: false }, border: { display: false } },
-                    y: { display: false }
-                }
+    x: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: {
+            font: { size: 16, weight: 'bold' },
+            color: '#333'
+        }
+    },
+    y: { display: false }
+}
             }
         });
     }
 }
 
-// SCROLL SDA, SOSIAL
 function scrollRight(id) {
     const el = document.getElementById(id);
     if (!el) return;
     el.scrollBy({ left: 200, behavior: 'smooth' });
 }
 
-//menu beranda disable shake
 function initDisabledMenu() {
     document.querySelectorAll('.menu-item.disabled').forEach(el => {
         el.addEventListener('click', function (e) {
@@ -419,7 +487,7 @@ function initDisabledMenu() {
     });
 }
 
-// PETA WILAYAH leaflet.js
+// PETA WILAYAH
 let map          = null;
 let wilayahLayer = null;
 const infraLayers = new Map();
@@ -612,14 +680,39 @@ function toggleMonografi() {
     const isOpen = menu.style.display === 'flex';
     menu.style.display = isOpen ? 'none' : 'flex';
     arrow.textContent  = isOpen ? '›' : '∧';
+
+    if (!isOpen) {
+        menu.querySelectorAll('a').forEach(function(link) {
+            const linkPath = new URL(link.href, window.location.origin).pathname;
+            const currPath = window.location.pathname;
+            if (linkPath === currPath) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
 }
+
+// Auto-highlight
+document.addEventListener('DOMContentLoaded', function() {
+    const menu = document.getElementById('monografiMenu');
+    if (!menu) return;
+    menu.querySelectorAll('a').forEach(function(link) {
+        const linkPath = new URL(link.href, window.location.origin).pathname;
+        const currPath = window.location.pathname;
+        if (linkPath === currPath) {
+            link.classList.add('active');
+        }
+    });
+    
+});
 
 function toggleZoom(img) { img.classList.toggle('zoomed'); }
 function toggleAcc(el)   { el.nextElementSibling.classList.toggle('open'); }
 
 // global event listeners
 document.addEventListener('click', function (e) {
-    // Tutup year dropdown saat klik di luar
     const wrapper = document.querySelector('.year-wrapper');
     if (wrapper && !wrapper.contains(e.target)) {
         const menu = document.getElementById('yearMenu');
@@ -629,7 +722,6 @@ document.addEventListener('click', function (e) {
 
 document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
-    // Tutup modal Bootstrap (modul teman)
     ['modalDetail', 'modalBaru', 'modalSelesai', 'modalRiwayat'].forEach(function (id) {
         const el = document.getElementById(id);
         if (!el) return;
@@ -638,10 +730,10 @@ document.addEventListener('keydown', function (e) {
     });
 });
 
-// INIT — DOMContentLoaded (gabungan)
+// INIT — DOMContentLoaded 
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Layanan surat — modul kamu
+    // Layanan surat
     if (document.getElementById('suratList')) {
         renderDaftarSurat();
     }
@@ -654,7 +746,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })();
     }
 
-    // APBDes 
+    // APBDes
     const urlTahun = new URLSearchParams(window.location.search).get('tahun');
     if (urlTahun && typeof tahunAktif !== 'undefined') {
         tahunAktif = parseInt(urlTahun);
@@ -664,9 +756,15 @@ document.addEventListener('DOMContentLoaded', function () {
         typeof API_STATISTIK !== 'undefined' &&
         document.getElementById('tabelPendapatan')
     ) {
-        loadStatistik(tahunAktif);
-        loadPeriode();
-        loadPembangunan(tahunAktif);
+        if (window.__serverData) {
+            renderStatistik(window.__serverData.statistik);
+            renderPeriodeData(window.__serverData.periode);
+            renderPembangunan(window.__serverData.pembangunan.data || [], tahunAktif);
+        } else {
+            loadStatistik(tahunAktif);
+            loadPeriode();
+            loadPembangunan(tahunAktif);
+        }
     }
 
     // Kependudukan charts

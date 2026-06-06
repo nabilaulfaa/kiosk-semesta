@@ -106,26 +106,38 @@
         }
     ],
     "mock_status": {
-        "111": {
+        "20260601001": {
             "nama": "Budi Santoso",
             "jenis": "Surat Keterangan Penduduk",
-            "status": "pengajuan",
-            "update": "10 Mei 2026, 08:00",
-            "estimasi": "3-5 hari kerja"
+            "status": "selesai",
+            "update": "03 Juni 2026, 14:00",
+            "estimasi": "Sudah selesai, silakan cetak",
+            "riwayat": [
+                { "status": "pengajuan", "waktu": "01 Juni 2026, 08:00" },
+                { "status": "proses",    "waktu": "02 Juni 2026, 09:00" },
+                { "status": "selesai",   "waktu": "03 Juni 2026, 14:00" }
+            ]
         },
-        "222": {
+        "20260601002": {
             "nama": "Siti Rahayu",
             "jenis": "Surat Pengantar SKCK",
             "status": "proses",
-            "update": "10 Mei 2026, 10:30",
-            "estimasi": "1-2 hari kerja"
+            "update": "02 Juni 2026, 10:30",
+            "estimasi": "1-2 hari kerja",
+            "riwayat": [
+                { "status": "pengajuan", "waktu": "01 Juni 2026, 10:00" },
+                { "status": "proses",    "waktu": "02 Juni 2026, 10:30" }
+            ]
         },
-        "333": {
+        "20260601003": {
             "nama": "Ahmad Fauzi",
             "jenis": "Surat Keterangan Usaha",
-            "status": "selesai",
-            "update": "10 Mei 2026, 14:00",
-            "estimasi": "Sudah selesai, silakan cetak"
+            "status": "pengajuan",
+            "update": "01 Juni 2026, 13:00",
+            "estimasi": "3-5 hari kerja",
+            "riwayat": [
+                { "status": "pengajuan", "waktu": "01 Juni 2026, 13:00" }
+            ]
         }
     }
 }

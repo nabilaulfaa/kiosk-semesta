@@ -11,46 +11,36 @@
 <div class="modul-header">
     <div class="d-flex align-items-center gap-2">
         <div class="modul-icon"><i class="bi bi-houses"></i></div>
-        <span class="modul-title">PROFIL DESA</span>
+        <a href="{{ route('profil.desa') }}" class="modul-title modul-title-link">PROFIL DESA</a>
     </div>
 </div>
 
-<div class="subtitle-left">Data Geografis</div>
+<div class="page-title" style="padding-left: 15px;">Data Geografis</div>
 
-<div class="center-img">
-    <img src="{{ asset('images/Computer-World-Map-Location Streamline Milano (datageografis).png') }}" alt="Geografis">
-</div>
 
-<div class="luas-box">
+{{-- Luas Wilayah --}}
+<div class="luas-box" style="margin-top: 3vh;">
     <div class="luas-title">Luas Wilayah</div>
-    <div class="luas-value">{{ $data['luas_wilayah'] ?? '-' }}</div>
-</div>
-
-<div class="batas">
-    <div class="batas-row">
-        <div class="batas-left">Batas Utara</div>
-        <div class="batas-right">{{ $data['batas_wilayah']['utara'] ?? '-' }}</div>
-    </div>
-    <div class="batas-row">
-        <div class="batas-left">Batas Selatan</div>
-        <div class="batas-right">{{ $data['batas_wilayah']['selatan'] ?? '-' }}</div>
-    </div>
-    <div class="batas-row">
-        <div class="batas-left">Batas Timur</div>
-        <div class="batas-right">{{ $data['batas_wilayah']['timur'] ?? '-' }}</div>
-    </div>
-    <div class="batas-row">
-        <div class="batas-left">Batas Barat</div>
-        <div class="batas-right">{{ $data['batas_wilayah']['barat'] ?? '-' }}</div>
+    <div class="luas-value">
+        {{ $data['luas_wilayah'] ?? 'Data belum tersedia' }}
     </div>
 </div>
 
-@endsection
+{{-- Batas Wilayah --}}
+<div class="batas" style="margin-bottom: 2vh;">
+    @foreach([
+        'Batas Utara'   => $data['batas_wilayah']['utara']   ?? '-',
+        'Batas Selatan' => $data['batas_wilayah']['selatan'] ?? '-',
+        'Batas Timur'   => $data['batas_wilayah']['timur']   ?? '-',
+        'Batas Barat'   => $data['batas_wilayah']['barat']   ?? '-',
+    ] as $label => $nilai)
+    <div class="batas-row">
+        <div class="batas-left">{{ $label }}</div>
+        <div class="batas-right">{{ $nilai }}</div>
+    </div>
+    @endforeach
+</div>
 
-@section('bottom_navigation')
-    <a href="{{ route('profil.desa') }}" class="btn-nav">
-        <i class="bi bi-arrow-left"></i> KEMBALI
-    </a>
 @endsection
 
 @push('scripts')

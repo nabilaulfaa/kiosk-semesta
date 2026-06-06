@@ -1,86 +1,139 @@
 {
     "2025": {
         "statistik": {
-            "pendapatan": { "anggaran": 1000000000, "realisasi": 54000000,  "persentase": 5.4  },
-            "belanja":    { "anggaran": 44000000,   "realisasi": 44000000,  "persentase": 100  },
-            "pembiayaan": { "anggaran": 5000000,    "realisasi": 5000000,   "persentase": 100  },
-            "silpa":      { "realisasi": 15000000 }
+            "pendapatan": { "anggaran": 215000000, "realisasi": 198000000, "persentase": 92.1 },
+            "belanja":    { "anggaran": 198000000, "realisasi": 185500000, "persentase": 93.7 },
+            "pembiayaan": { "anggaran": 12500000,  "realisasi": 12500000,  "persentase": 100  },
+            "silpa":      { "realisasi": 25000000 }
         },
         "pembangunan": [
             {
                 "id": 1,
-                "judul": "Pembangunan Jalan Desa",
-                "keterangan": "Pembangunan Jalan Kelas C",
-                "sumber_dana": "Alokasi Dana Desa",
-                "pelaksana": "CV. Swastika Kartika",
-                "anggaran": 2300000000,
-                "lokasi": "Dusun 1",
-                "wilayah": { "dusun": "Dusun 1", "rw": "01", "rt": "001" }
+                "judul": "Perbaikan Drainase Lingkungan",
+                "keterangan": "Normalisasi saluran drainase warga padat permukiman",
+                "sumber_dana": "Dana Kelurahan (DAU)",
+                "pelaksana": "CV. Karya Mandiri Malang",
+                "anggaran": 85000000,
+                "lokasi": "RW 04",
+                "wilayah": { "rw": "04", "rt": "003" }
             },
             {
                 "id": 2,
-                "judul": "Perbaikan Balai Posyandu",
-                "keterangan": "Terusan pembangunan sebelumnya",
-                "sumber_dana": "Alokasi Dana Desa",
-                "pelaksana": "CV. Swastika Kartika",
-                "anggaran": 25000000,
-                "lokasi": "Dusun 1",
-                "wilayah": { "dusun": "Dusun 1", "rw": "01", "rt": "002" }
+                "judul": "Pengadaan Sarana Urban Farming",
+                "keterangan": "Pembangunan lahan percontohan budidaya sayur organik dan TOGA",
+                "sumber_dana": "Dana Kelurahan (DAU)",
+                "pelaksana": "Kelompok Tani Urban RW 06",
+                "anggaran": 45000000,
+                "lokasi": "RW 06",
+                "wilayah": { "rw": "06", "rt": "002" }
+            },
+            {
+                "id": 3,
+                "judul": "Rehab Posyandu RW 09",
+                "keterangan": "Renovasi ringan gedung posyandu dan pengadaan alat timbang",
+                "sumber_dana": "Dana Kelurahan (DAU)",
+                "pelaksana": "CV. Bangun Sejahtera",
+                "anggaran": 38500000,
+                "lokasi": "RW 09",
+                "wilayah": { "rw": "09", "rt": "001" }
             }
         ]
     },
     "2024": {
         "statistik": {
-            "pendapatan": { "anggaran": 10000000, "realisasi": 10000000, "persentase": 100 },
-            "belanja":    { "anggaran": 0,        "realisasi": 0,        "persentase": 0   },
-            "pembiayaan": { "anggaran": 0,        "realisasi": 0,        "persentase": 0   },
-            "silpa":      { "realisasi": 10000000 }
+            "pendapatan": { "anggaran": 205000000, "realisasi": 200500000, "persentase": 97.8 },
+            "belanja":    { "anggaran": 200500000, "realisasi": 194000000, "persentase": 96.8 },
+            "pembiayaan": { "anggaran": 6500000,   "realisasi": 6500000,   "persentase": 100  },
+            "silpa":      { "realisasi": 13000000 }
         },
         "pembangunan": [
             {
                 "id": 1,
-                "judul": "Perbaikan Jalan",
-                "keterangan": "Pembangunan Jalan Kelas C",
-                "sumber_dana": "Alokasi Dana Desa",
+                "judul": "Pengaspalan Jalan Lingkungan",
+                "keterangan": "Perbaikan jalan lingkungan RT padat permukiman",
+                "sumber_dana": "Dana Kelurahan (DAU)",
                 "pelaksana": "CV. Pratama Mandiri",
-                "anggaran": 100000000,
-                "lokasi": "Sepanjang Jalan Poros Desa",
-                "wilayah": { "dusun": null, "rw": null, "rt": null }
+                "anggaran": 92000000,
+                "lokasi": "RW 02",
+                "wilayah": { "rw": "02", "rt": "005" }
+            },
+            {
+                "id": 2,
+                "judul": "Pemberdayaan Kader Posyandu",
+                "keterangan": "Pelatihan kader posyandu dan pengadaan buku KIA",
+                "sumber_dana": "Dana Kelurahan (DAU)",
+                "pelaksana": "Puskesmas Jatimulyo",
+                "anggaran": 28000000,
+                "lokasi": "RW 05",
+                "wilayah": { "rw": "05", "rt": "002" }
             }
         ]
     },
     "2023": {
         "statistik": {
-            "pendapatan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "belanja":    { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "pembiayaan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "silpa":      { "realisasi": 0 }
+            "pendapatan": { "anggaran": 198000000, "realisasi": 192000000, "persentase": 96.9 },
+            "belanja":    { "anggaran": 192000000, "realisasi": 186000000, "persentase": 96.9 },
+            "pembiayaan": { "anggaran": 6000000,   "realisasi": 6000000,   "persentase": 100  },
+            "silpa":      { "realisasi": 12000000 }
         },
-        "pembangunan": []
+        "pembangunan": [
+            {
+                "id": 1,
+                "judul": "Penataan Taman RT",
+                "keterangan": "Penghijauan dan penataan ruang terbuka hijau skala RT",
+                "sumber_dana": "Dana Kelurahan (DAU)",
+                "pelaksana": "Karang Taruna Jatimulyo",
+                "anggaran": 32000000,
+                "lokasi": "RW 07",
+                "wilayah": { "rw": "07", "rt": "004" }
+            }
+        ]
     },
     "2022": {
         "statistik": {
-            "pendapatan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "belanja":    { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "pembiayaan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "silpa":      { "realisasi": 0 }
+            "pendapatan": { "anggaran": 190000000, "realisasi": 182000000, "persentase": 95.8 },
+            "belanja":    { "anggaran": 182000000, "realisasi": 174000000, "persentase": 95.6 },
+            "pembiayaan": { "anggaran": 8000000,   "realisasi": 8000000,   "persentase": 100  },
+            "silpa":      { "realisasi": 16000000 }
         },
-        "pembangunan": []
+        "pembangunan": [
+            {
+                "id": 1,
+                "judul": "Perbaikan Saluran Air Bersih",
+                "keterangan": "Penggantian pipa distribusi air bersih warga",
+                "sumber_dana": "Dana Kelurahan (DAU)",
+                "pelaksana": "CV. Tirta Bersama",
+                "anggaran": 55000000,
+                "lokasi": "RW 01",
+                "wilayah": { "rw": "01", "rt": "003" }
+            }
+        ]
     },
     "2021": {
         "statistik": {
-            "pendapatan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "belanja":    { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "pembiayaan": { "anggaran": 0, "realisasi": 0, "persentase": 0 },
-            "silpa":      { "realisasi": 0 }
+            "pendapatan": { "anggaran": 175000000, "realisasi": 162000000, "persentase": 92.6 },
+            "belanja":    { "anggaran": 162000000, "realisasi": 154000000, "persentase": 95.1 },
+            "pembiayaan": { "anggaran": 8000000,   "realisasi": 8000000,   "persentase": 100  },
+            "silpa":      { "realisasi": 16000000 }
         },
-        "pembangunan": []
+        "pembangunan": [
+            {
+                "id": 1,
+                "judul": "Pengadaan Masker & Alat Prokes",
+                "keterangan": "Penanganan COVID-19 tingkat kelurahan",
+                "sumber_dana": "Dana Kelurahan (DAU)",
+                "pelaksana": "Gugus Tugas COVID-19 Kelurahan",
+                "anggaran": 42000000,
+                "lokasi": "Seluruh RW",
+                "wilayah": { "rw": null, "rt": null }
+            }
+        ]
     },
     "periode": [
-        { "tahun": 2021, "pendapatan": { "realisasi": 0 },        "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 0 } },
-        { "tahun": 2022, "pendapatan": { "realisasi": 0 },        "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 0 } },
-        { "tahun": 2023, "pendapatan": { "realisasi": 0 },        "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 0 } },
-        { "tahun": 2024, "pendapatan": { "realisasi": 10000000 }, "belanja": { "realisasi": 0 },        "pembiayaan": { "realisasi": 0 },       "silpa": { "realisasi": 10000000 } },
-        { "tahun": 2025, "pendapatan": { "realisasi": 54000000 }, "belanja": { "realisasi": 44000000 }, "pembiayaan": { "realisasi": 5000000 }, "silpa": { "realisasi": 15000000 } }
+        { "tahun": 2021, "pendapatan": { "realisasi": 162000000 }, "belanja": { "realisasi": 154000000 }, "pembiayaan": { "realisasi": 8000000  }, "silpa": { "realisasi": 16000000 } },
+        { "tahun": 2022, "pendapatan": { "realisasi": 182000000 }, "belanja": { "realisasi": 174000000 }, "pembiayaan": { "realisasi": 8000000  }, "silpa": { "realisasi": 16000000 } },
+        { "tahun": 2023, "pendapatan": { "realisasi": 192000000 }, "belanja": { "realisasi": 186000000 }, "pembiayaan": { "realisasi": 6000000  }, "silpa": { "realisasi": 12000000 } },
+        { "tahun": 2024, "pendapatan": { "realisasi": 200500000 }, "belanja": { "realisasi": 194000000 }, "pembiayaan": { "realisasi": 6500000  }, "silpa": { "realisasi": 13000000 } },
+        { "tahun": 2025, "pendapatan": { "realisasi": 198000000 }, "belanja": { "realisasi": 185500000 }, "pembiayaan": { "realisasi": 12500000 }, "silpa": { "realisasi": 25000000 } }
     ]
 }

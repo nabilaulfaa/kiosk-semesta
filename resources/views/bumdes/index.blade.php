@@ -22,7 +22,15 @@
         <div class="col-6">
             <div class="card-pengurus" onclick="showDetailPengurus({{ $i }})">
                 <div class="photo-container">
-                    <img src="{{ asset($p['foto']) }}" alt="{{ $p['nama'] }}" class="photo-img">
+                    @php
+                    $avatarColors = ['#FCEBEB','#E6F1FB','#E1F5EE','#FAEEDA'];
+                    $iconColors   = ['#A32D2D','#185FA5','#0F6E56','#854F0B'];
+                    $bg  = $avatarColors[$i % 4];
+                    $clr = $iconColors[$i % 4];
+                    @endphp
+                    <div style="width:100%;height:100%;background:{{ $bg }};border-radius:inherit;display:flex;align-items:center;justify-content:center;">
+                        <i class="bi bi-person-circle" style="font-size:clamp(36px,5vw,60px);color:{{ $clr }};"></i>
+                    </div>
                 </div>
                 <div>
                     <div class="jabatan">{{ $p['jabatan'] }}</div>
@@ -38,25 +46,26 @@
     <div class="row g-3 mb-4">
         @foreach($unitUsaha as $key => $unit)
         @php
-        $warnaBg = ['blue'=>'#C5E1FF','red'=>'#F8B4B4','green'=>'#C1E1C1','yellow'=>'#FFE4B5'];
+        $warnaBg    = ['blue'=>'#C5E1FF','red'=>'#F8B4B4','green'=>'#C1E1C1','yellow'=>'#FFE4B5'];
         $warnaLabel = ['blue'=>'#007bff','red'=>'#ff4d4d','green'=>'#28a745','yellow'=>'#ffa500'];
-        $bg = $warnaBg[$unit['warna']] ?? '#eee';
+        $bg  = $warnaBg[$unit['warna']]    ?? '#eee';
         $lbl = $warnaLabel[$unit['warna']] ?? '#333';
         @endphp
         <div class="col-3">
-            <div style="background:{{ $bg }};border-radius:20px;overflow:hidden;text-align:center;padding-bottom:2vh;cursor:pointer;"
-                onclick="updateChartByUnit('{{ $key }}'); openModal('modalStatistik{{ ucfirst($key) }}')">
-                <div style="background:{{ $lbl }};color:white;padding:1.5vh;font-weight:800;font-size:clamp(13px,1.3vw,20px);margin-bottom:1vh;">
-                    {{ $unit['label'] }}
-                </div>
-                <div style="font-size:clamp(40px,6vw,80px);color:{{ $lbl }};padding:1vh 0;">
-                    <i class="bi {{ $unit['icon'] }}"></i>
-                </div>
-                <button class="btn-merah" style="background:white;color:#333;font-size:clamp(13px,1.2vw,20px);padding:0.8vh 3vw;border-radius:35px;">
-                    Detail
-                </button>
+        <div style="background:{{ $bg }};border-radius:20px;overflow:hidden;text-align:center;padding-bottom:2vh;cursor:pointer;"
+            onclick="updateChartByUnit('{{ $key }}')">
+            <div style="background:{{ $lbl }};color:white;padding:1.5vh;font-weight:800;font-size:clamp(13px,1.3vw,20px);margin-bottom:1vh;">
+                {{ $unit['label'] }}
             </div>
+            <div style="font-size:clamp(40px,6vw,80px);color:{{ $lbl }};padding:1vh 0;">
+                <i class="bi {{ $unit['icon'] }}"></i>
+            </div>
+            <button class="btn-merah" style="background:white;color:#333;font-size:clamp(13px,1.2vw,20px);padding:0.8vh 3vw;border-radius:35px;"
+                onclick="event.stopPropagation(); openModal('modalStatistik{{ ucfirst($key) }}'); setTimeout(() => updateStatistik('{{ $key }}'), 300)">
+                Detail
+            </button>
         </div>
+    </div>
         @endforeach
     </div>
 
@@ -90,8 +99,10 @@
         <div class="modal-body-kiosk">
             <div class="row g-3">
                 <div class="col-4 text-center">
-                    <div style="width:100%;height:clamp(140px,18vh,220px);background:#333;border-radius:15px;overflow:hidden;margin-bottom:1vh;">
-                        <img id="modalPengurusFoto" style="width:100%;height:100%;object-fit:cover;">
+                    <div id="modalPengurusAvatar"
+                        style="width:100%;height:clamp(140px,18vh,220px);border-radius:15px;overflow:hidden;margin-bottom:1vh;display:flex;align-items:center;justify-content:center;">
+                        <i class="bi bi-person-circle" id="modalPengurusIcon"
+                            style="font-size:clamp(80px,12vh,130px);"></i>
                     </div>
                     <div style="font-size:clamp(13px,1.2vw,18px);color:#333;line-height:1.4;">
                         <strong id="modalPengurusNama"></strong><br>
@@ -122,6 +133,8 @@
             <button class="btn-close-modal" onclick="closeModal('modalStatistik{{ ucfirst($key) }}')">×</button>
         </div>
         <div class="modal-body-kiosk">
+
+            {{-- Filter Tahun --}}
             <div style="margin-bottom:1.5vh;">
                 <select class="select-merah" id="filterTahun{{ ucfirst($key) }}"
                     onchange="updateStatistik('{{ $key }}')">
@@ -130,17 +143,22 @@
                     <option value="2024">Tahun 2024</option>
                 </select>
             </div>
+
+            {{-- Chart --}}
             <div style="height:clamp(160px,22vh,260px);background:#f5f5f5;border-radius:15px;padding:1vh;margin-bottom:1.5vh;">
                 <canvas id="chartStat{{ ucfirst($key) }}"></canvas>
             </div>
+
+            {{-- Info Keuangan --}}
             <div>
                 <b>Info Keuangan :</b>
                 <table class="detail-table" style="margin-top:1vh;width:clamp(200px,40%,380px);">
-                    <tr><td class="lbl">Income</td><td id="statIncome{{ ucfirst($key) }}"></td></tr>
+                    <tr><td class="lbl">Pendapatan</td><td id="statIncome{{ ucfirst($key) }}"></td></tr>
                     <tr><td class="lbl">Pengeluaran</td><td id="statExpense{{ ucfirst($key) }}"></td></tr>
                     <tr><td class="lbl">Keuntungan</td><td id="statProfit{{ ucfirst($key) }}"></td></tr>
                 </table>
             </div>
+
         </div>
     </div>
 </div>
@@ -148,24 +166,22 @@
 
 @endsection
 
-
 @push('scripts')
 <script>
 const pengurusData  = @json($pengurus);
 const statistikData = @json($statistik);
 const tahunanData   = @json($pendapatanTahunan);
-const colorsUnit = { air: '#007bff', ternak: '#ff4d4d', tani: '#28a745', sembako: '#ffa500' };
-const statCharts = {};
+const colorsUnit    = { air: '#007bff', ternak: '#ff4d4d', tani: '#28a745', Toko: '#ffa500' };
+const statCharts    = {};
 let mainChart;
 
-// Chart utama
 document.addEventListener('DOMContentLoaded', function () {
     mainChart = new Chart(document.getElementById('chartBumdes'), {
         type: 'bar',
         data: {
             labels: ['2023','2024','2025'],
             datasets: [{
-                label: 'Pendapatan (%)',
+                label: 'Pendapatan',
                 data: tahunanData.air,
                 backgroundColor: colorsUnit.air,
                 borderRadius: 12,
@@ -178,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
-                y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } },
+                y: { beginAtZero: true, ticks: { callback: v => v + ' JT' } },
                 x: { grid: { display: false } }
             }
         }
@@ -205,23 +221,26 @@ function updateChartData(key) {
 
 function showDetailPengurus(i) {
     const p = pengurusData[i];
-    document.getElementById('modalPengurusTitle').innerText = 'DETAIL ' + p.jabatan.toUpperCase();
-    document.getElementById('modalPengurusFoto').src        = '/' + p.foto;
-    document.getElementById('modalPengurusNama').innerText  = p.nama;
+    document.getElementById('modalPengurusTitle').innerText   = 'DETAIL ' + p.jabatan.toUpperCase();
+    const avatarBg  = ['#FCEBEB','#E6F1FB','#E1F5EE','#FAEEDA'];
+    const avatarClr = ['#A32D2D','#185FA5','#0F6E56','#854F0B'];
+    document.getElementById('modalPengurusAvatar').style.background = avatarBg[i % 4];
+    document.getElementById('modalPengurusIcon').style.color        = avatarClr[i % 4];
+    document.getElementById('modalPengurusNama').innerText    = p.nama;
     document.getElementById('modalPengurusJabatan').innerText = p.jabatan;
-    document.getElementById('dNama').innerText        = p.nama;
-    document.getElementById('dLahir').innerText       = p.lahir;
-    document.getElementById('dAgama').innerText       = p.agama;
-    document.getElementById('dPendidikan').innerText  = p.pendidikan;
-    document.getElementById('dPeriode').innerText     = p.periode;
-    document.getElementById('dSK').innerText          = p.sk;
+    document.getElementById('dNama').innerText       = p.nama;
+    document.getElementById('dLahir').innerText      = p.lahir;
+    document.getElementById('dAgama').innerText      = p.agama;
+    document.getElementById('dPendidikan').innerText = p.pendidikan;
+    document.getElementById('dPeriode').innerText    = p.periode;
+    document.getElementById('dSK').innerText         = p.sk;
     openModal('modalPengurus');
 }
 
 function updateStatistik(unit) {
-    const key    = unit.charAt(0).toUpperCase() + unit.slice(1);
-    const tahun  = document.getElementById('filterTahun' + key).value;
-    const data   = statistikData[unit][tahun];
+    const key   = unit.charAt(0).toUpperCase() + unit.slice(1);
+    const tahun = document.getElementById('filterTahun' + key).value;
+    const data  = statistikData[unit][tahun];
     if (!data) return;
 
     document.getElementById('statIncome'  + key).innerText = data.income;
@@ -230,26 +249,82 @@ function updateStatistik(unit) {
 
     if (statCharts[unit]) statCharts[unit].destroy();
 
+    const allVals = [...data.bulanan_income, ...data.bulanan_expense, ...data.bulanan_profit];
+    const maxVal  = Math.max(...allVals);
+    const niceMax = Math.ceil(maxVal / 5) * 5;
+
     statCharts[unit] = new Chart(document.getElementById('chartStat' + key), {
-        type: 'bar',
+        type: 'line',
         data: {
             labels: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'],
-            datasets: [{ data: data.bulanan, backgroundColor: colorsUnit[unit], borderRadius: 8 }]
+            datasets: [
+                {
+                    label: 'Pendapatan',
+                    data: data.bulanan_income,
+                    borderColor: '#16a34a',
+                    backgroundColor: 'rgba(22,163,74,0.15)',
+                    borderWidth: 2.5,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#16a34a',
+                    fill: true,
+                    tension: 0.3
+                },
+                {
+                    label: 'Pengeluaran',
+                    data: data.bulanan_expense,
+                    borderColor: '#E72128',
+                    backgroundColor: 'rgba(231,33,40,0.10)',
+                    borderWidth: 2.5,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#E72128',
+                    fill: true,
+                    tension: 0.3
+                },
+                {
+                    label: 'Keuntungan',
+                    data: data.bulanan_profit,
+                    borderColor: '#0771d5',
+                    backgroundColor: 'rgba(7,113,213,0.10)',
+                    borderWidth: 2.5,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#0771d5',
+                    fill: true,
+                    tension: 0.3
+                }
+            ]
         },
-        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 100 } } }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        font: { size: 12, weight: '700' },
+                        usePointStyle: true,
+                        pointStyleWidth: 16
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.parsed.y + ' JT';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: niceMax,
+                    ticks: { callback: v => v + ' JT' },
+                    grid: { color: 'rgba(0,0,0,0.06)' }
+                },
+                x: { grid: { display: false } }
+            }
+        }
     });
 }
-
-// Init statistik saat modal pertama dibuka
-@foreach($unitUsaha as $key => $unit)
-document.getElementById('modalStatistik{{ ucfirst($key) }}').addEventListener('click', function() {}, { once: false });
-// Auto-init chart saat modal show
-const obs{{ ucfirst($key) }} = new MutationObserver(function(muts) {
-    muts.forEach(m => {
-        if (m.target.classList.contains('show')) updateStatistik('{{ $key }}');
-    });
-});
-obs{{ ucfirst($key) }}.observe(document.getElementById('modalStatistik{{ ucfirst($key) }}'), { attributes: true, attributeFilter: ['class'] });
-@endforeach
 </script>
 @endpush

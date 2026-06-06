@@ -10,16 +10,17 @@
 
 <div class="modul-header">
     <div class="modul-icon"><i class="bi bi-award"></i></div>
-    <div class="modul-title">PROGRAM KADES</div>
+    <a href="{{ route('program.kades') }}" class="modul-title modul-title-link">PROGRAM KADES</a>
 </div>
 
 <div class="px-3">
 
-    <div class="section-title">Program Kerja</div>
+    <div class="section-title" style="font-size: clamp(18px, 2vw, 32px); margin: 2vh 0 1.5vh;">Program Kerja</div>
 
     <div class="progress-card">
-        <span class="pc-update">Update {{ $data['progress']['update'] }}</span>
-        <span class="pc-top-label">Progress Kerja</span>
+        <span class="pc-update" style="font-size: clamp(11px, 1vw, 16px);">Update {{ $data['progress']['update'] }}</span>
+        <span class="pc-top-label" style="font-size: clamp(14px, 1.4vw, 22px); font-weight: 700;">Progress Kerja</span>
+
 
         @php
             $berjalan = $data['progress']['berjalan'];
@@ -34,8 +35,8 @@
         @endphp
 
         <div class="pc-inner">
-            <div class="donut-wrap">
-                <svg width="80" height="80" viewBox="0 0 80 80">
+            <div class="donut-wrap" style="width: clamp(80px, 9vw, 140px); height: clamp(80px, 9vw, 140px);">
+                <svg width="100%" height="100%" viewBox="0 0 80 80">
                     <circle cx="40" cy="40" r="26" fill="none" stroke="#eee" stroke-width="14"/>
                     <circle cx="40" cy="40" r="26" fill="none" stroke="#00923F" stroke-width="14"
                         stroke-dasharray="{{ round($segBerjalan, 1) }} {{ round($circum - $segBerjalan, 1) }}"
@@ -47,49 +48,56 @@
                         stroke-dasharray="{{ round($segTertunda, 1) }} {{ round($circum - $segTertunda, 1) }}"
                         stroke-dashoffset="-{{ round($segBerjalan + $segSelesai, 1) }}"/>
                 </svg>
-                <div class="donut-center">{{ $data['progress']['persen'] }}%</div>
+                <div class="donut-center" style="font-size: clamp(14px, 1.6vw, 26px);">{{ $data['progress']['persen'] }}%</div>
             </div>
             <div class="pc-legend">
-                <div class="legend-bar bar-berjalan">Berjalan {{ $berjalan }}</div>
-                <div class="legend-bar bar-selesai">Selesai {{ $selesai }}</div>
-                <div class="legend-bar bar-tertunda">Tertunda {{ $tertunda }}</div>
+                <div class="legend-bar bar-berjalan" style="font-size: clamp(12px, 1.2vw, 20px); padding: clamp(8px, 1.2vh, 18px) 0;">Berjalan {{ $berjalan }}</div>
+                <div class="legend-bar bar-selesai"  style="font-size: clamp(12px, 1.2vw, 20px); padding: clamp(8px, 1.2vh, 18px) 0;">Selesai {{ $selesai }}</div>
+                <div class="legend-bar bar-tertunda" style="font-size: clamp(12px, 1.2vw, 20px); padding: clamp(8px, 1.2vh, 18px) 0;">Tertunda {{ $tertunda }}</div>
             </div>
         </div>
 
-        {{-- Ganti data-bs-toggle → openModal --}}
-        <button class="pc-detail-link" onclick="openModal('modalDetail')">
+        <button class="pc-detail-link" onclick="openModal('modalDetail')"
+            style="font-size: clamp(13px, 1.3vw, 20px); margin-top: 1.5vh;">
             Lihat Detail Program Kerja
         </button>
     </div>
 
-    <div class="section-title">Program Berjalan</div>
+    <div class="section-title" style="font-size: clamp(18px, 2vw, 32px); margin: 2vh 0 1.5vh;">Program Berjalan</div>
+
 
     <div class="program-list">
         @foreach(collect($data['semua_program'])->where('status', 'berjalan') as $p)
-        <div class="program-card">
-            <span class="badge-program berjalan">Berjalan</span>
-            <div class="pc-icon"><img src="{{ asset('images/proker.png') }}" alt="proker"></div>
-            <div class="pc-body">
+        <div class="program-card" style="min-height: clamp(60px, 8vh, 110px);">
+            <span class="badge-program berjalan" style="font-size: clamp(11px, 1vw, 16px);">Berjalan</span>
+            <div class="pc-icon" style="width: clamp(55px, 6vw, 90px);">
+                <img src="{{ asset('images/proker.png') }}" alt="proker" style="width: clamp(30px, 3.5vw, 55px); height: clamp(30px, 3.5vw, 55px);">
+            </div>
+            <div class="pc-body" style="padding: clamp(20px, 2.5vh, 36px) clamp(10px, 1.2vw, 18px) clamp(10px, 1.2vh, 16px);">
                 <div class="pc-info">
-                    <div class="pc-nama">{{ $p['nama'] }}</div>
-                    <div class="pc-tahun">{{ $p['tahun'] }}</div>
+                    <div class="pc-nama" style="font-size: clamp(14px, 1.5vw, 24px);">{{ $p['nama'] }}</div>
+                    <div class="pc-tahun" style="font-size: clamp(12px, 1.2vw, 18px);">{{ $p['tahun'] }}</div>
                 </div>
-                <div class="pc-right"><span class="pc-persen">{{ $p['persen'] }} %</span></div>
+                <div class="pc-right">
+                    <span class="pc-persen" style="font-size: clamp(20px, 2.5vw, 40px);">{{ $p['persen'] }} %</span>
+                </div>
             </div>
         </div>
         @endforeach
     </div>
 
     <div class="row g-2 mt-1 mb-3">
-        <div class="col-6">
-            <button class="btn-prog w-100" onclick="window.location.href='{{ route('program-baru') }}'">
-                Program Baru
-            </button>
-        </div>
-        <div class="col-6">
-            <button class="btn-prog w-100" onclick="window.location.href='{{ route('program-selesai') }}'">
-                Program Selesai
-            </button>
+    <div class="col-6">
+        <button class="btn-prog w-100" style="font-size: clamp(14px, 1.4vw, 22px); padding: clamp(12px, 1.6vh, 24px);"
+            onclick="window.location.href='{{ route('program-baru') }}'">
+            Program Baru
+        </button>
+    </div>
+    <div class="col-6">
+        <button class="btn-prog w-100" style="font-size: clamp(14px, 1.4vw, 22px); padding: clamp(12px, 1.6vh, 24px);"
+            onclick="window.location.href='{{ route('program-selesai') }}'">
+            Program Selesai
+        </button>
         </div>
     </div>
 
@@ -97,25 +105,19 @@
 
 @endsection
 
-@section('bottom_navigation')
-    <a href="javascript:history.back()" class="btn-nav">
-        <i class="bi bi-arrow-left"></i> KEMBALI
-    </a>
-@endsection
-
 @section('modal_content')
 
 {{-- Modal Detail Program --}}
 <div class="modal-overlay" id="modalDetail">
-    <div class="modal-box">
+    <div class="modal-box modal-box-fullscreen">
         <div class="modal-header-kiosk">
             <h2>Detail Program Kerja</h2>
             <button class="btn-close-modal" onclick="closeModal('modalDetail')">✕</button>
         </div>
-        <div class="modal-body-kiosk">
-            <ol style="margin:0; padding-left:20px; display:flex; flex-direction:column; gap:10px;">
+        <div class="modal-body-kiosk" style="padding: clamp(20px, 3vh, 40px) clamp(24px, 4vw, 60px);">
+            <ol style="margin:0; padding-left: clamp(20px, 2.5vw, 40px); display:flex; flex-direction:column; gap: clamp(10px, 1.5vh, 20px);">
                 @foreach($data['semua_program'] as $p)
-                <li style="font-size:clamp(12px,1.2vw,18px); font-weight:600; color:#111; line-height:1.4;">
+                <li style="font-size: clamp(16px, 1.6vw, 26px); font-weight: 600; color: #111; line-height: 1.5;">
                     {{ $p['nama'] }}
                 </li>
                 @endforeach

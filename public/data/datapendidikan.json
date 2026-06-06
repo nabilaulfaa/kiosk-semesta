@@ -1,65 +1,65 @@
 {
     "2026": {
-        "statistik": { "sd": 6, "smp": 4, "sma": 11, "pt": 1 },
+        "statistik": { "sd": 7, "smp": 1, "sma": 1, "pt": 1 },
         "tabel": [
-            { "tingkat": "SD/Sederajat",     "siswa_masuk": 335, "siswa_lulus": 312, "buta_aksara": 1 },
-            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 220, "siswa_lulus": 205, "buta_aksara": 0 },
-            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 195, "siswa_lulus": 182, "buta_aksara": 0 },
-            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 102, "siswa_lulus": 95,  "buta_aksara": 0 }
+            { "tingkat": "SD/Sederajat",     "siswa_masuk": 182, "siswa_lulus": 178, "buta_aksara": 0 },
+            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 124, "siswa_lulus": 121, "buta_aksara": 0 },
+            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 108, "siswa_lulus": 105, "buta_aksara": 0 },
+            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 890, "siswa_lulus": 820, "buta_aksara": 0 }
         ]
     },
     "2025": {
-        "statistik": { "sd": 6, "smp": 4, "sma": 11, "pt": 1 },
+        "statistik": { "sd": 7, "smp": 1, "sma": 1, "pt": 1 },
         "tabel": [
-            { "tingkat": "SD/Sederajat",     "siswa_masuk": 320, "siswa_lulus": 300, "buta_aksara": 2 },
-            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 210, "siswa_lulus": 198, "buta_aksara": 0 },
-            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 180, "siswa_lulus": 170, "buta_aksara": 0 },
-            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 95,  "siswa_lulus": 90,  "buta_aksara": 0 }
+            { "tingkat": "SD/Sederajat",     "siswa_masuk": 178, "siswa_lulus": 174, "buta_aksara": 0 },
+            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 120, "siswa_lulus": 117, "buta_aksara": 0 },
+            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 104, "siswa_lulus": 101, "buta_aksara": 0 },
+            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 875, "siswa_lulus": 800, "buta_aksara": 0 }
         ]
     },
     "2024": {
-        "statistik": { "sd": 6, "smp": 4, "sma": 10, "pt": 1 },
+        "statistik": { "sd": 7, "smp": 1, "sma": 1, "pt": 1 },
         "tabel": [
-            { "tingkat": "SD/Sederajat",     "siswa_masuk": 310, "siswa_lulus": 290, "buta_aksara": 3 },
-            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 200, "siswa_lulus": 188, "buta_aksara": 1 },
-            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 170, "siswa_lulus": 160, "buta_aksara": 0 },
-            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 88,  "siswa_lulus": 82,  "buta_aksara": 0 }
+            { "tingkat": "SD/Sederajat",     "siswa_masuk": 174, "siswa_lulus": 170, "buta_aksara": 1 },
+            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 116, "siswa_lulus": 113, "buta_aksara": 0 },
+            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 100, "siswa_lulus": 97,  "buta_aksara": 0 },
+            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 860, "siswa_lulus": 785, "buta_aksara": 0 }
         ]
     },
     "2023": {
-        "statistik": { "sd": 5, "smp": 4, "sma": 10, "pt": 1 },
+        "statistik": { "sd": 7, "smp": 1, "sma": 1, "pt": 1 },
         "tabel": [
-            { "tingkat": "SD/Sederajat",     "siswa_masuk": 298, "siswa_lulus": 275, "buta_aksara": 4 },
-            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 190, "siswa_lulus": 178, "buta_aksara": 1 },
-            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 162, "siswa_lulus": 150, "buta_aksara": 0 },
-            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 80,  "siswa_lulus": 74,  "buta_aksara": 0 }
+            { "tingkat": "SD/Sederajat",     "siswa_masuk": 170, "siswa_lulus": 166, "buta_aksara": 1 },
+            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 112, "siswa_lulus": 109, "buta_aksara": 0 },
+            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 96,  "siswa_lulus": 93,  "buta_aksara": 0 },
+            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 845, "siswa_lulus": 768, "buta_aksara": 0 }
         ]
     },
     "2022": {
-        "statistik": { "sd": 5, "smp": 3, "sma": 9, "pt": 1 },
+        "statistik": { "sd": 7, "smp": 1, "sma": 1, "pt": 1 },
         "tabel": [
-            { "tingkat": "SD/Sederajat",     "siswa_masuk": 280, "siswa_lulus": 260, "buta_aksara": 5 },
-            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 178, "siswa_lulus": 165, "buta_aksara": 2 },
-            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 150, "siswa_lulus": 140, "buta_aksara": 1 },
-            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 72,  "siswa_lulus": 65,  "buta_aksara": 0 }
+            { "tingkat": "SD/Sederajat",     "siswa_masuk": 165, "siswa_lulus": 160, "buta_aksara": 2 },
+            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 108, "siswa_lulus": 105, "buta_aksara": 0 },
+            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 92,  "siswa_lulus": 89,  "buta_aksara": 0 },
+            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 830, "siswa_lulus": 752, "buta_aksara": 0 }
         ]
     },
     "2021": {
-        "statistik": { "sd": 5, "smp": 3, "sma": 9, "pt": 0 },
+        "statistik": { "sd": 7, "smp": 1, "sma": 1, "pt": 1 },
         "tabel": [
-            { "tingkat": "SD/Sederajat",     "siswa_masuk": 265, "siswa_lulus": 245, "buta_aksara": 7 },
-            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 165, "siswa_lulus": 152, "buta_aksara": 3 },
-            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 140, "siswa_lulus": 128, "buta_aksara": 1 },
-            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 60,  "siswa_lulus": 54,  "buta_aksara": 0 }
+            { "tingkat": "SD/Sederajat",     "siswa_masuk": 158, "siswa_lulus": 152, "buta_aksara": 2 },
+            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 104, "siswa_lulus": 100, "buta_aksara": 1 },
+            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 88,  "siswa_lulus": 84,  "buta_aksara": 0 },
+            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 810, "siswa_lulus": 730, "buta_aksara": 0 }
         ]
     },
     "2020": {
-        "statistik": { "sd": 5, "smp": 3, "sma": 8, "pt": 0 },
+        "statistik": { "sd": 7, "smp": 1, "sma": 1, "pt": 1 },
         "tabel": [
-            { "tingkat": "SD/Sederajat",     "siswa_masuk": 250, "siswa_lulus": 230, "buta_aksara": 9 },
-            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 155, "siswa_lulus": 140, "buta_aksara": 4 },
-            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 128, "siswa_lulus": 115, "buta_aksara": 2 },
-            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 50,  "siswa_lulus": 44,  "buta_aksara": 0 }
+            { "tingkat": "SD/Sederajat",     "siswa_masuk": 150, "siswa_lulus": 144, "buta_aksara": 3 },
+            { "tingkat": "SMP/Sederajat",    "siswa_masuk": 98,  "siswa_lulus": 94,  "buta_aksara": 1 },
+            { "tingkat": "SMA/Sederajat",    "siswa_masuk": 82,  "siswa_lulus": 78,  "buta_aksara": 0 },
+            { "tingkat": "Perguruan Tinggi", "siswa_masuk": 790, "siswa_lulus": 710, "buta_aksara": 0 }
         ]
     }
 }

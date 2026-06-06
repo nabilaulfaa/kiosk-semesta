@@ -2,40 +2,45 @@
   "pertanian": [
     {
       "image": "sda 1.png",
-      "label": "Analisis Hasil Panen",
-      "value": "Potensi hasil panen tinggi"
+      "label": "Urban Farming Sayuran",
+      "value": "Aktif di 3 RW kelurahan",
+      "deskripsi": "Warga memanfaatkan pekarangan sempit dengan sistem vertikultur untuk menanam sayuran organik seperti kangkung, bayam, dan cabai. Program ini aktif terutama di RW 04 dan RW 06 dengan pendampingan dari Dinas Pertanian Kota Malang, mendukung ketahanan pangan tingkat rumah tangga."
     },
     {
       "image": "sda 2.png",
-      "label": "Indeks Kualitas Tanah",
-      "value": "Ideal untuk Menanam biji-bijian"
+      "label": "Tanaman Obat Keluarga (TOGA)",
+      "value": "Dibudidayakan di tiap RT",
+      "deskripsi": "Hampir setiap RT memiliki tanaman TOGA seperti jahe, kunyit, kencur, dan temulawak yang ditanam di pot atau lahan sempit. Hasilnya digunakan untuk kebutuhan obat keluarga sekaligus dijual sebagai bahan jamu oleh pelaku UMKM di kelurahan."
     }
   ],
   "perkebunan": [
     {
       "image": "sda 3.png",
-      "label": "Analisis Hasil Panen",
-      "value": "Potensi hasil panen tinggi"
+      "label": "Kebun Warga & Tanaman Produktif",
+      "value": "Tersebar di pekarangan rumah",
+      "deskripsi": "Warga memanfaatkan sisa lahan pekarangan untuk menanam tanaman buah dalam pot (tabulampot) seperti jeruk, cabai, dan tomat. Kegiatan ini bagian dari program urban farming Pemkot Malang yang mendorong konsep satu rumah satu tanaman produktif untuk menunjang ketahanan pangan keluarga."
     }
   ],
   "perikanan": [
     {
       "image": "sda 5.png",
-      "label": "Indeks Keanekaragaman Hayati Laut",
-      "value": "Kehidupan laut yang kaya"
+      "label": "Budidaya Ikan Kolam Terpal",
+      "value": "±15 unit kolam aktif warga",
+      "deskripsi": "Sejumlah warga mengembangkan budidaya ikan lele dan nila menggunakan kolam terpal di lahan terbatas. Dengan rata-rata luas kolam 14–15 m² per unit, hasil panen digunakan untuk konsumsi keluarga dan dijual langsung ke tetangga sekitar, selaras dengan program urban farming Dinas Pertanian Kota Malang."
     }
   ],
   "wisata": [
     {
       "image": "sda 7.png",
-      "label": "Indeks Daya Tarik Wisata",
-      "value": "Minat pengunjung tinggi"
+      "label": "Wisata Edukasi & Kampung Tematik",
+      "value": "Potensi kampung tematik urban",
+      "deskripsi": "Kelurahan Jatimulyo memiliki potensi pengembangan kampung tematik berbasis urban farming dan edukasi lingkungan, memanfaatkan kedekatan dengan lingkungan akademik Universitas Brawijaya dan Universitas Negeri Malang. Potensi ini dapat menarik kunjungan mahasiswa dan masyarakat untuk kegiatan edukasi pertanian kota."
     }
   ],
   "sumber_daya": {
-    "lahan_pertanian": "5000 Hektar",
-    "kehutanan": "3000 Hektar",
-    "perikanan": "1500 Ton",
-    "wisatawan": "2000 Per Tahun"
+    "lahan_pertanian": "±0,5 Hektar (pekarangan aktif)",
+    "kehutanan": "Tidak tersedia",
+    "perikanan": "±2 Ton/Tahun (kolam terpal warga)",
+    "wisatawan": "Belum terdata (potensi berkembang)"
   }
 }

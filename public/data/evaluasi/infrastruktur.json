@@ -3,12 +3,12 @@
         {
             "id": 1,
             "judul": "Pembangunan Jalan Desa",
-            "lokasi": "Dusun 1",
+            "lokasi": "RW 1",
             "status": "Selesai",
             "tahun": 2025,
             "progress": 100,
             "anggaran": 20000000,
-            "deskripsi": "Pembangunan jalan sepanjang 1,7 km untuk menghubungkan Dusun 1 dengan pusat desa.",
+            "deskripsi": "Pembangunan jalan sepanjang 1,7 km untuk menghubungkan RW 1 dengan pusat desa.",
             "gambar": {
                 "utama":   "infrastruktur/jalan_utama.jpg",
                 "awal":    "infrastruktur/jalan_awal.jpg",
@@ -19,7 +19,7 @@
         {
             "id": 2,
             "judul": "Pembangunan Balai Desa",
-            "lokasi": "Dusun 2",
+            "lokasi": "RW 2",
             "status": "Proses",
             "tahun": 2025,
             "progress": 60,
@@ -35,7 +35,7 @@
         {
             "id": 3,
             "judul": "Pembangunan Drainase",
-            "lokasi": "Dusun 3",
+            "lokasi": "RW 3",
             "status": "Proses",
             "tahun": 2024,
             "progress": 40,
@@ -51,7 +51,7 @@
         {
             "id": 4,
             "judul": "Pembangunan Taman Desa",
-            "lokasi": "Dusun 4",
+            "lokasi": "RW 4",
             "status": "Belum",
             "tahun": 2025,
             "progress": 10,
@@ -67,7 +67,7 @@
         {
             "id": 5,
             "judul": "Perbaikan Jembatan Desa",
-            "lokasi": "Dusun 5",
+            "lokasi": "RW 5",
             "status": "Selesai",
             "tahun": 2024,
             "progress": 100,

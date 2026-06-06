@@ -4,7 +4,6 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/kiosk-semesta.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    {{-- ✅ FIX: Leaflet CSS wajib ada agar peta bisa render --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 @endpush
 
@@ -17,57 +16,93 @@
         <div class="modul-title">PETA WILAYAH</div>
     </div>
 
-    <div class="map-wrap">
+    {{-- PETA --}}
+    <div class="map-wrap" style="margin: 0 clamp(10px, 2vw, 24px);">
         <div class="map-spinner" id="mapSpinner">
             <div class="spinner-ring"></div>
-            <span>Memuat peta…</span>
+            <span style="font-size: clamp(13px, 1.3vw, 20px);">Memuat peta…</span>
         </div>
-        <div id="map"></div>
+        <div id="map" style="height: clamp(280px, 45vh, 600px);"></div>
     </div>
 
-    <div class="d-flex align-items-center justify-content-between px-3 mt-2 mb-1">
-        <span class="fw-semibold" style="font-size:11px;color:#666;">Tampilkan di peta :</span>
+    {{-- Toolbar — Semua | Hapus | Refresh sejajar --}}
+    <div class="d-flex align-items-center justify-content-between mt-2 mb-1"
+        style="padding: 0 clamp(10px, 2vw, 24px);">
+        <span style="font-size: clamp(13px, 1.3vw, 20px); font-weight: 700; color: #555;">
+            Tampilkan di peta :
+        </span>
         <div class="d-flex gap-2">
-            <button class="toggle-btn" onclick="checkAll(true)">Semua</button>
-            <button class="toggle-btn" onclick="checkAll(false)">Hapus</button>
+            <button class="toggle-btn" onclick="checkAll(true)"
+                style="font-size: clamp(12px, 1.2vw, 18px); padding: clamp(6px, 0.8vh, 12px) clamp(14px, 1.5vw, 24px); border-radius: 8px;">
+                Semua
+            </button>
+            <button class="toggle-btn" onclick="checkAll(false)"
+                style="font-size: clamp(12px, 1.2vw, 18px); padding: clamp(6px, 0.8vh, 12px) clamp(14px, 1.5vw, 24px); border-radius: 8px;">
+                Hapus
+            </button>
+            {{-- REVISI 2: Tombol Refresh dipindah ke sini --}}
+            <button class="toggle-btn" onclick="refreshAll()"
+                style="font-size: clamp(12px, 1.2vw, 18px); padding: clamp(6px, 0.8vh, 12px) clamp(14px, 1.5vw, 24px); border-radius: 8px; background: var(--merah-tua); color: white; border-color: var(--merah-tua);">
+                <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
         </div>
     </div>
 
-    <div class="legend-wrap">
-        <div class="legend-head">Legenda</div>
+    {{-- LEGENDA --}}
+    <div class="legend-wrap" style="margin: 0 clamp(10px, 2vw, 24px) clamp(10px, 1.5vh, 20px);">
+        <div class="legend-head" style="font-size: clamp(13px, 1.3vw, 20px); padding: clamp(8px, 1.2vh, 16px);">
+            Legenda
+        </div>
         <div class="legend-grid">
 
-            <div class="legend-col">
-                <div class="legend-col-ttl">Informasi Tanah</div>
-                <label class="chk-item">
+            {{-- REVISI 1: Kolom Informasi Tanah — Tanah Warga dihapus --}}
+            <div class="legend-col" style="padding: clamp(10px, 1.4vh, 20px) clamp(10px, 1.2vw, 18px);">
+                <div class="legend-col-ttl" style="font-size: clamp(11px, 1.1vw, 17px); margin-bottom: clamp(8px, 1vh, 14px);">
+                    Informasi Tanah
+                </div>
+                <label class="chk-item" style="margin-bottom: clamp(6px, 0.9vh, 12px);">
                     <input type="checkbox" class="layer-chk" data-layer="wilayah" checked>
-                    <span class="chk-box" style="background:var(--merah);"></span>
-                    <span class="chk-label">Batas Wilayah</span>
-                </label>
-                <label class="chk-item">
-                    <input type="checkbox" class="infra-chk" data-kategori="Tanah Warga" checked>
-                    <span class="chk-infra-box" style="background:#795548;border-color:#795548;"></span>
-                    <span class="chk-label">Tanah Warga</span>
+                    <span class="chk-box" style="background: var(--merah); width: clamp(14px, 1.4vw, 22px); height: clamp(14px, 1.4vw, 22px);"></span>
+                    <span class="chk-label" style="font-size: clamp(12px, 1.2vw, 18px);">Batas Wilayah</span>
                 </label>
                 <div id="legendDusun"></div>
             </div>
 
-            <div class="legend-col">
-                <div class="legend-col-ttl">Infrastruktur</div>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Kantor Desa" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-landmark"></i></span><span class="chk-label">Kantor Desa</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Masjid/Mushola" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-mosque"></i></span><span class="chk-label">Masjid/Mushola</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Gereja" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-church"></i></span><span class="chk-label">Gereja</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Pura" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-torii-gate"></i></span><span class="chk-label">Pura</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Makam" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-cross"></i></span><span class="chk-label">Makam</span></label>
+            <div class="legend-col" style="padding: clamp(10px, 1.4vh, 20px) clamp(10px, 1.2vw, 18px);">
+                <div class="legend-col-ttl" style="font-size: clamp(11px, 1.1vw, 17px); margin-bottom: clamp(8px, 1vh, 14px);">
+                    Infrastruktur
+                </div>
+                @foreach([
+                    ['kategori' => 'Kantor Desa',    'icon' => 'fa-solid fa-landmark'],
+                    ['kategori' => 'Masjid/Mushola', 'icon' => 'fa-solid fa-mosque'],
+                    ['kategori' => 'Makam',          'icon' => 'fa-solid fa-monument'],
+                ] as $item)
+                <label class="chk-item" style="margin-bottom: clamp(6px, 0.9vh, 12px);">
+                    <input type="checkbox" class="infra-chk" data-kategori="{{ $item['kategori'] }}" checked>
+                    <span class="chk-infra-box" style="width: clamp(14px, 1.4vw, 22px); height: clamp(14px, 1.4vw, 22px);"></span>
+                    <span class="chk-icon" style="font-size: clamp(13px, 1.3vw, 20px);"><i class="{{ $item['icon'] }}"></i></span>
+                    <span class="chk-label" style="font-size: clamp(12px, 1.2vw, 18px);">{{ $item['kategori'] }}</span>
+                </label>
+                @endforeach
             </div>
-
-            <div class="legend-col">
-                <div class="legend-col-ttl">Infrastruktur</div>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Pendidikan" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-school"></i></span><span class="chk-label">Pendidikan</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Pasar" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-store"></i></span><span class="chk-label">Pasar</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Kesehatan" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-hospital"></i></span><span class="chk-label">Kesehatan</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Restoran/Cafe" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-utensils"></i></span><span class="chk-label">Restoran/Cafe</span></label>
-                <label class="chk-item"><input type="checkbox" class="infra-chk" data-kategori="Stadion/Lapangan" checked><span class="chk-infra-box"></span><span class="chk-icon"><i class="fa-solid fa-futbol"></i></span><span class="chk-label">Stadion/Lapangan</span></label>
+            
+            <div class="legend-col" style="padding: clamp(10px, 1.4vh, 20px) clamp(10px, 1.2vw, 18px);">
+                <div class="legend-col-ttl" style="font-size: clamp(11px, 1.1vw, 17px); margin-bottom: clamp(8px, 1vh, 14px);">
+                    Infrastruktur
+                </div>
+                @foreach([
+                    ['kategori' => 'Pendidikan',       'icon' => 'fa-solid fa-school'],
+                    ['kategori' => 'Kesehatan',        'icon' => 'fa-solid fa-hospital'],
+                    ['kategori' => 'Restoran/Cafe',    'icon' => 'fa-solid fa-utensils'],
+                    ['kategori' => 'Stadion/Lapangan', 'icon' => 'fa-solid fa-map'],
+                ] as $item)
+                <label class="chk-item" style="margin-bottom: clamp(6px, 0.9vh, 12px);">
+                    <input type="checkbox" class="infra-chk" data-kategori="{{ $item['kategori'] }}" checked>
+                    <span class="chk-infra-box" style="width: clamp(14px, 1.4vw, 22px); height: clamp(14px, 1.4vw, 22px);"></span>
+                    <span class="chk-icon" style="font-size: clamp(13px, 1.3vw, 20px);"><i class="{{ $item['icon'] }}"></i></span>
+                    <span class="chk-label" style="font-size: clamp(12px, 1.2vw, 18px);">{{ $item['kategori'] }}</span>
+                </label>
+                @endforeach
             </div>
 
         </div>
@@ -77,23 +112,13 @@
 
 @endsection
 
-{{-- Override footer nav --}}
+{{-- REVISI 2: Tombol Refresh di footer section dihapus / diganti tombol Beranda saja --}}
 @section('bottom_navigation')
-<div class="d-flex gap-3 w-100" style="padding: 0 4vw;">
-    <a href="{{ route('beranda') }}" class="btn-nav" style="flex:1;">
-        <i class="bi bi-house-door-fill"></i>
-        BERANDA
-    </a>
-    <button class="btn-nav" onclick="refreshAll()" style="flex:1;border:none;cursor:pointer;">
-        <i class="bi bi-arrow-clockwise"></i>
-        REFRESH
-    </button>
-</div>
+{{-- Kosong: tombol Refresh sudah dipindah ke toolbar di atas --}}
 @endsection
 
 @push('scripts')
 <script>
-    {{-- Variabel ini harus didefinisikan sebelum kiosk-semesta.js di-load --}}
     const API = {
         geojson:       '{{ route("peta.geojson") }}',
         infrastruktur: '{{ route("peta.infrastruktur") }}',
@@ -102,7 +127,6 @@
     const MAP_CENTER = [-7.9435, 112.6295];
     const MAP_ZOOM   = 15;
 </script>
-
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="{{ asset('js/kiosk-semesta.js') }}"></script>
 @endpush

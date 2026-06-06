@@ -1,21 +1,21 @@
 {
     "jadwal": {
         "2026": [
-            { "nama": "Posyandu Melati 1", "tanggal": "03 Jan 2026", "lokasi": "RT 01 Dusun 1" },
-            { "nama": "Posyandu Melati 2", "tanggal": "10 Jan 2026", "lokasi": "RT 04 Dusun 2" },
-            { "nama": "Posyandu Mawar",    "tanggal": "17 Jan 2026", "lokasi": "RT 07 Dusun 3" },
-            { "nama": "Posyandu Anggrek",  "tanggal": "24 Jan 2026", "lokasi": "RT 10 Dusun 4" },
-            { "nama": "Posyandu Kenanga",  "tanggal": "31 Jan 2026", "lokasi": "RT 13 Dusun 5" },
-            { "nama": "Posyandu Melati 1", "tanggal": "07 Feb 2026", "lokasi": "RT 01 Dusun 1" }
+            { "nama": "Posyandu Melati 1", "tanggal": "03 Jan 2026", "lokasi": "RW 01 " },
+            { "nama": "Posyandu Melati 2", "tanggal": "10 Jan 2026", "lokasi": "RW 04 " },
+            { "nama": "Posyandu Mawar",    "tanggal": "17 Jan 2026", "lokasi": "RW 07 " },
+            { "nama": "Posyandu Anggrek",  "tanggal": "24 Jan 2026", "lokasi": "RW 10 " },
+            { "nama": "Posyandu Kenanga",  "tanggal": "31 Jan 2026", "lokasi": "RW 13 " },
+            { "nama": "Posyandu Melati 1", "tanggal": "07 Feb 2026", "lokasi": "RW 01 " }
         ],
         "2025": [
-            { "nama": "Posyandu Melati 1", "tanggal": "05 Jan 2025", "lokasi": "RT 01 Dusun 1" },
-            { "nama": "Posyandu Mawar",    "tanggal": "12 Jan 2025", "lokasi": "RT 07 Dusun 3" },
-            { "nama": "Posyandu Anggrek",  "tanggal": "19 Jan 2025", "lokasi": "RT 10 Dusun 4" }
+            { "nama": "Posyandu Melati 1", "tanggal": "05 Jan 2025", "lokasi": "RW 01 " },
+            { "nama": "Posyandu Mawar",    "tanggal": "12 Jan 2025", "lokasi": "RW 07 " },
+            { "nama": "Posyandu Anggrek",  "tanggal": "19 Jan 2025", "lokasi": "RW 10 " }
         ],
         "2024": [
-            { "nama": "Posyandu Melati 2", "tanggal": "08 Jan 2024", "lokasi": "RT 04 Dusun 2" },
-            { "nama": "Posyandu Kenanga",  "tanggal": "15 Jan 2024", "lokasi": "RT 13 Dusun 5" }
+            { "nama": "Posyandu Melati 2", "tanggal": "08 Jan 2024", "lokasi": "RW 04 " },
+            { "nama": "Posyandu Kenanga",  "tanggal": "15 Jan 2024", "lokasi": "RW 13 " }
         ]
     },
 

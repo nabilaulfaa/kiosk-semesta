@@ -10,41 +10,38 @@
 
 <div class="modul-header">
     <div class="modul-icon"><i class="bi bi-award"></i></div>
-    <div class="modul-title">PROGRAM KADES</div>
+    <a href="{{ route('program.kades') }}" class="modul-title modul-title-link">PROGRAM KADES</a>
 </div>
 
 <div class="px-3">
 
-    <p class="fw-bold mb-2 mt-1" style="font-size:14px;">Program Baru</p>
+    <div class="section-title" style="font-size: clamp(18px, 2vw, 32px); margin: 2vh 0 1.5vh;">Program Baru</div>
 
-    <div class="d-flex flex-column gap-2 mb-3">
+    <div class="program-list">
         @forelse($programs as $p)
-        <div class="program-card">
-            {{-- Ganti .badge-status.badge-baru → .badge-program.baru --}}
-            <span class="badge-program baru">Baru</span>
-            <div class="pc-icon"><img src="{{ asset('images/proker.png') }}" alt="proker"></div>
-            <div class="pc-body">
+        <div class="program-card" style="min-height: clamp(60px, 8vh, 110px);">
+            <span class="badge-program baru" style="font-size: clamp(11px, 1vw, 16px);">Baru</span>
+            <div class="pc-icon" style="width: clamp(55px, 6vw, 90px);">
+                <img src="{{ asset('images/proker.png') }}" alt="proker"
+                    style="width: clamp(30px, 3.5vw, 55px); height: clamp(30px, 3.5vw, 55px);">
+            </div>
+            <div class="pc-body" style="padding: clamp(20px, 2.5vh, 36px) clamp(10px, 1.2vw, 18px) clamp(10px, 1.2vh, 16px);">
                 <div class="pc-info">
-                    <div class="pc-nama">{{ $p['nama'] }}</div>
-                    <div class="pc-tahun">{{ $p['tahun'] }}</div>
+                    <div class="pc-nama" style="font-size: clamp(14px, 1.5vw, 24px);">{{ $p['nama'] }}</div>
+                    <div class="pc-tahun" style="font-size: clamp(12px, 1.2vw, 18px);">{{ $p['tahun'] }}</div>
                 </div>
-                <div class="flex-shrink-0">
-                    <span class="pc-persen">{{ $p['persen'] }} %</span>
+                <div class="pc-right">
+                    <span class="pc-persen" style="font-size: clamp(20px, 2.5vw, 40px);">{{ $p['persen'] }} %</span>
                 </div>
             </div>
         </div>
         @empty
-        <p class="text-center text-muted" style="font-size:13px;">Tidak ada program baru.</p>
+        <p class="text-center text-muted" style="font-size: clamp(14px, 1.4vw, 22px); padding: 3vh 0;">
+            Tidak ada program baru.
+        </p>
         @endforelse
     </div>
 
-
 </div>
 
-@endsection
-
-@section('bottom_navigation')
-    <a href="javascript:history.back()" class="btn-nav">
-        <i class="bi bi-arrow-left"></i> KEMBALI
-    </a>
 @endsection

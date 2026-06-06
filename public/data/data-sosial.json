@@ -1,35 +1,35 @@
 {
     "statistik": {
-        "fasilitas_ibadah": 32,
-        "organisasi": 32,
-        "kegiatan_sosial": 32
+        "fasilitas_ibadah": 5,
+        "organisasi": 3,
+        "kegiatan_sosial": 5
     },
 
     "fasilitas_ibadah": [
         {
-            "nama": "Masjid",
+            "nama": "Masjid Raya An-Nur Polinema",
             "gambar": "images/masjid.png",
-            "keterangan": "Jemaat : 100"
+            "keterangan": "Kapasitas : 500 Jamaah"
         },
         {
-            "nama": "Gereja",
-            "gambar": "images/gereja.png",
-            "keterangan": "Jemaat : 100"
+            "nama": "Masjid Baabul Jannah",
+            "gambar": "images/masjid.png",
+            "keterangan": "Kapasitas : 300 Jamaah"
         },
         {
-            "nama": "Vihara",
-            "gambar": "images/vihara.png",
-            "keterangan": "Jemaat : 100"
+            "nama": "Masjid Nuruttaqwa",
+            "gambar": "images/masjid.png",
+            "keterangan": "Kapasitas : 200 Jamaah"
         },
         {
-            "nama": "Pura",
-            "gambar": "images/pura.jpg",
-            "keterangan": "Jemaat : 100"
+            "nama": "Masjid Baitul Chasanah",
+            "gambar": "images/masjid.png",
+            "keterangan": "Kapasitas : 150 Jamaah"
         },
         {
-            "nama": "Klenteng",
-            "gambar": "images/klenteng.jpg",
-            "keterangan": "Jemaat : 100"
+            "nama": "Masjid Al-Huda",
+            "gambar": "images/masjid.png",
+            "keterangan": "Kapasitas : 100 Jamaah"
         }
     ],
 
@@ -37,17 +37,47 @@
         {
             "nama": "Karang Taruna",
             "gambar": "images/karang taruna.png",
-            "keterangan": "Anggota : 35"
+            "keterangan": "Dusun Jatimulyo | Anggota : 35"
         },
         {
-            "nama": "LinMas",
-            "gambar": "images/linmas.png",
-            "keterangan": "Anggota : 45"
+            "nama": "Karang Taruna",
+            "gambar": "images/karang taruna.png",
+            "keterangan": "Dusun Lowokwaru | Anggota : 28"
+        },
+        {
+            "nama": "Karang Taruna",
+            "gambar": "images/karang taruna.png",
+            "keterangan": "Dusun Merjosari | Anggota : 31"
         },
         {
             "nama": "PKK",
             "gambar": "images/pkk.png",
-            "keterangan": "Anggota : 65"
+            "keterangan": "Dusun Jatimulyo | Anggota : 42"
+        },
+        {
+            "nama": "PKK",
+            "gambar": "images/pkk.png",
+            "keterangan": "Dusun Lowokwaru | Anggota : 38"
+        },
+        {
+            "nama": "PKK",
+            "gambar": "images/pkk.png",
+            "keterangan": "Dusun Merjosari | Anggota : 45"
+        },
+        {
+            "nama": "LinMas",
+            "gambar": "images/linmas.png",
+            "keterangan": "Anggota : 20"
+        },
+        {
+            "nama": "LinMas",
+            "gambar": "images/linmas.png",
+            "keterangan": "Anggota : 18"
+        },
+        {
+            "nama": "LinMas",
+            "gambar": "images/linmas.png",
+            "keterangan": "Anggota : 22"
         }
     ],
 

@@ -46,37 +46,97 @@
         "air":     { "label": "AIR BERSIH", "icon": "bi-droplet-fill",  "warna": "blue"   },
         "ternak":  { "label": "PETERNAKAN", "icon": "bi-tencent-qq",    "warna": "red"    },
         "tani":    { "label": "PERTANIAN",  "icon": "bi-tree-fill",     "warna": "green"  },
-        "sembako": { "label": "SEMBAKO",    "icon": "bi-basket2-fill",  "warna": "yellow" }
+        "Toko": { "label": "TOKO",    "icon": "bi-basket2-fill",  "warna": "yellow" }
     },
 
     "statistik": {
         "air": {
-            "2026": { "bulanan": [20,40,60,80,70,90,50,60,75,85,95,100], "income": "25 JT", "expense": "10 JT", "profit": "15 JT" },
-            "2025": { "bulanan": [15,30,50,70,60,75,45,55,65,70,80,85],  "income": "20 JT", "expense": "8 JT",  "profit": "12 JT" },
-            "2024": { "bulanan": [10,20,30,40,50,60,40,30,20,50,60,70],  "income": "15 JT", "expense": "5 JT",  "profit": "10 JT" }
+            "2026": {
+                "bulanan_income":  [3, 3, 4, 4, 4, 5, 4, 4, 4, 5, 5, 5],
+                "bulanan_expense": [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                "bulanan_profit":  [2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 3, 3],
+                "income": "50 JT", "expense": "22 JT", "profit": "28 JT"
+            },
+            "2025": {
+                "bulanan_income":  [2, 3, 3, 3, 4, 4, 3, 3, 4, 4, 4, 5],
+                "bulanan_expense": [1, 1, 1, 1, 2, 2, 1, 1, 2, 2, 2, 2],
+                "bulanan_profit":  [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3],
+                "income": "42 JT", "expense": "18 JT", "profit": "24 JT"
+            },
+            "2024": {
+                "bulanan_income":  [2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 4],
+                "bulanan_expense": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2],
+                "bulanan_profit":  [1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2],
+                "income": "34 JT", "expense": "14 JT", "profit": "20 JT"
+            }
         },
         "ternak": {
-            "2026": { "bulanan": [10,25,40,60,75,85,65,70,80,85,90,95], "income": "40 JT", "expense": "15 JT", "profit": "25 JT" },
-            "2025": { "bulanan": [8,15,20,30,40,50,45,50,55,60,70,80],  "income": "30 JT", "expense": "10 JT", "profit": "20 JT" },
-            "2024": { "bulanan": [5,10,15,20,25,30,20,25,30,40,50,60],  "income": "20 JT", "expense": "8 JT",  "profit": "12 JT" }
+            "2026": {
+                "bulanan_income":  [5, 6, 6, 7, 7, 8, 7, 7, 8, 8, 8, 9],
+                "bulanan_expense": [2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+                "bulanan_profit":  [3, 4, 4, 4, 4, 5, 4, 4, 5, 5, 5, 6],
+                "income": "86 JT", "expense": "33 JT", "profit": "53 JT"
+            },
+            "2025": {
+                "bulanan_income":  [4, 4, 5, 5, 6, 6, 5, 6, 6, 6, 7, 7],
+                "bulanan_expense": [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3],
+                "bulanan_profit":  [3, 2, 3, 3, 4, 4, 3, 4, 4, 4, 4, 4],
+                "income": "67 JT", "expense": "25 JT", "profit": "42 JT"
+            },
+            "2024": {
+                "bulanan_income":  [3, 3, 4, 4, 4, 5, 4, 4, 5, 5, 5, 6],
+                "bulanan_expense": [1, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2],
+                "bulanan_profit":  [2, 2, 3, 2, 2, 3, 3, 2, 3, 3, 3, 4],
+                "income": "52 JT", "expense": "20 JT", "profit": "32 JT"
+            }
         },
         "tani": {
-            "2026": { "bulanan": [5,20,35,55,70,80,60,65,75,85,90,100], "income": "30 JT", "expense": "12 JT", "profit": "18 JT" },
-            "2025": { "bulanan": [10,15,25,40,50,60,55,60,65,70,75,80], "income": "25 JT", "expense": "10 JT", "profit": "15 JT" },
-            "2024": { "bulanan": [5,10,20,30,40,50,45,40,35,45,50,55],  "income": "15 JT", "expense": "7 JT",  "profit": "8 JT"  }
+            "2026": {
+                "bulanan_income":  [3, 4, 5, 6, 7, 7, 6, 6, 6, 7, 7, 8],
+                "bulanan_expense": [1, 2, 2, 2, 3, 3, 2, 2, 2, 3, 3, 3],
+                "bulanan_profit":  [2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5],
+                "income": "72 JT", "expense": "28 JT", "profit": "44 JT"
+            },
+            "2025": {
+                "bulanan_income":  [2, 3, 4, 4, 5, 6, 5, 5, 6, 6, 6, 7],
+                "bulanan_expense": [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3],
+                "bulanan_profit":  [1, 2, 2, 2, 3, 4, 3, 3, 4, 4, 4, 4],
+                "income": "59 JT", "expense": "23 JT", "profit": "36 JT"
+            },
+            "2024": {
+                "bulanan_income":  [2, 2, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5],
+                "bulanan_expense": [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2],
+                "bulanan_profit":  [1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3],
+                "income": "45 JT", "expense": "20 JT", "profit": "25 JT"
+            }
         },
-        "sembako": {
-            "2026": { "bulanan": [30,45,60,75,80,85,75,80,90,95,100,100], "income": "50 JT", "expense": "20 JT", "profit": "30 JT" },
-            "2025": { "bulanan": [25,35,45,55,65,70,60,65,70,80,85,90],   "income": "45 JT", "expense": "18 JT", "profit": "27 JT" },
-            "2024": { "bulanan": [20,30,40,50,55,60,50,55,60,65,70,75],   "income": "35 JT", "expense": "15 JT", "profit": "20 JT" }
+        "Toko": {
+            "2026": {
+                "bulanan_income":  [7, 8, 8, 9, 9, 10, 9, 9, 10, 10, 10, 11],
+                "bulanan_expense": [3, 3, 3, 3, 4,  4, 3, 3,  4,  4,  4,  4],
+                "bulanan_profit":  [4, 5, 5, 6, 5,  6, 6, 6,  6,  6,  6,  7],
+                "income": "110 JT", "expense": "42 JT", "profit": "68 JT"
+            },
+            "2025": {
+                "bulanan_income":  [6, 6, 7, 7, 8, 8, 7, 8, 8, 9, 9, 10],
+                "bulanan_expense": [2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3,  4],
+                "bulanan_profit":  [4, 4, 4, 4, 5, 5, 4, 5, 5, 6, 6,  6],
+                "income": "93 JT", "expense": "35 JT", "profit": "58 JT"
+            },
+            "2024": {
+                "bulanan_income":  [4, 5, 5, 6, 6, 7, 6, 6, 7, 7, 8, 8],
+                "bulanan_expense": [2, 2, 2, 2, 2, 3, 2, 2, 3, 3, 3, 3],
+                "bulanan_profit":  [2, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5],
+                "income": "75 JT", "expense": "29 JT", "profit": "46 JT"
+            }
         }
     },
 
     "pendapatan_tahunan": {
-        "labels": ["2023", "2024", "2025"],
-        "air":     [30, 65, 95],
-        "ternak":  [45, 40, 70],
-        "tani":    [20, 55, 80],
-        "sembako": [60, 75, 90]
+        "labels": ["2024", "2025", "2026"],
+        "air":     [34, 42, 50],
+        "ternak":  [52, 67, 86],
+        "tani":    [45, 59, 72],
+        "Toko": [75, 93, 110]
     }
 }

@@ -1,74 +1,46 @@
 {
-    
-     "2026": {
+    "2026": {
         "kode_desa": "3507132001",
         "data": [
-            {
-                "nama_dusun": "Dusun Krajan",
-                "jumlah_kk": 190,
-                "jumlah_rt": 1,
-                "jumlah_rw": 1
-            },
-            {
-                "nama_dusun": "Dusun Sumberrejo",
-                "jumlah_kk": 100,
-                "jumlah_rt": 2,
-                "jumlah_rw": 3
-            }
+            { "nama_dusun": "Dusun Krajan", "jumlah_kk": 190, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sumberrejo", "jumlah_kk": 100, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Kebonsari", "jumlah_kk": 145, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Rejoagung", "jumlah_kk": 87, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Ngemplak", "jumlah_kk": 112, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sidorejo", "jumlah_kk": 76, "jumlah_rt": 2, "jumlah_rw": 1 }
         ]
     },
-
     "2025": {
         "kode_desa": "3507132001",
         "data": [
-            {
-                "nama_dusun": "Dusun Krajan",
-                "jumlah_kk": 120,
-                "jumlah_rt": 5,
-                "jumlah_rw": 2
-            },
-            {
-                "nama_dusun": "Dusun Sumberrejo",
-                "jumlah_kk": 98,
-                "jumlah_rt": 4,
-                "jumlah_rw": 2
-            }
+            { "nama_dusun": "Dusun Krajan", "jumlah_kk": 120, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sumberrejo", "jumlah_kk": 98, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Kebonsari", "jumlah_kk": 138, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Rejoagung", "jumlah_kk": 82, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Ngemplak", "jumlah_kk": 105, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sidorejo", "jumlah_kk": 71, "jumlah_rt": 2, "jumlah_rw": 1 }
         ]
     },
-
     "2024": {
         "kode_desa": "3507132001",
         "data": [
-            {
-                "nama_dusun": "Dusun Krajan",
-                "jumlah_kk": 115,
-                "jumlah_rt": 5,
-                "jumlah_rw": 2
-            },
-            {
-                "nama_dusun": "Dusun Sumberrejo",
-                "jumlah_kk": 90,
-                "jumlah_rt": 4,
-                "jumlah_rw": 2
-            }
+            { "nama_dusun": "Dusun Krajan", "jumlah_kk": 115, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sumberrejo", "jumlah_kk": 90, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Kebonsari", "jumlah_kk": 130, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Rejoagung", "jumlah_kk": 78, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Ngemplak", "jumlah_kk": 99, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sidorejo", "jumlah_kk": 65, "jumlah_rt": 1, "jumlah_rw": 1 }
         ]
     },
-
     "2023": {
         "kode_desa": "3507132001",
         "data": [
-            {
-                "nama_dusun": "Dusun Krajan",
-                "jumlah_kk": 100,
-                "jumlah_rt": 4,
-                "jumlah_rw": 2
-            },
-            {
-                "nama_dusun": "Dusun Sumberrejo",
-                "jumlah_kk": 80,
-                "jumlah_rt": 3,
-                "jumlah_rw": 1
-            }
+            { "nama_dusun": "Dusun Krajan", "jumlah_kk": 100, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sumberrejo", "jumlah_kk": 80, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Kebonsari", "jumlah_kk": 122, "jumlah_rt": 3, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Rejoagung", "jumlah_kk": 74, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Ngemplak", "jumlah_kk": 91, "jumlah_rt": 2, "jumlah_rw": 1 },
+            { "nama_dusun": "Dusun Sidorejo", "jumlah_kk": 60, "jumlah_rt": 1, "jumlah_rw": 1 }
         ]
     }
 }

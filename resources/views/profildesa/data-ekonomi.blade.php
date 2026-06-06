@@ -2,22 +2,12 @@
 
 @section('title', 'Data Ekonomi')
 
-@php
-    $max = max($data['umkm'], $data['petani'], $data['pedagang']);
-    $lines = 5;
-    $step = ceil($max / ($lines - 1) / 1000) * 1000;
-    $top = $step * ($lines - 1);
-    $chartHeight = 200;
-    $scale = $top > 0 ? $chartHeight / $top : 1;
-@endphp
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@endpush
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/kiosk-semesta.css') }}">
-    <style>
-        .bar1 { height: {{ round($data['umkm'] * $scale) }}px; background: #ef9a9a; }
-        .bar2 { height: {{ round($data['petani'] * $scale) }}px; background: #e53935; }
-        .bar3 { height: {{ round($data['pedagang'] * $scale) }}px; background: #7f0000; }
-    </style>
 @endpush
 
 @section('content')
@@ -25,79 +15,111 @@
 <div class="modul-header">
     <div class="d-flex align-items-center gap-2">
         <div class="modul-icon"><i class="bi bi-houses"></i></div>
-        <span class="modul-title">PROFIL DESA</span>
+        <a href="{{ route('profil.desa') }}" class="modul-title modul-title-link">PROFIL DESA</a>
     </div>
 </div>
 
-<div class="subtitle-left">Data Ekonomi</div>
-
-<div class="top-info">
-    <div></div>
-    @include('layouts.partials.year-picker', ['tahun' => $tahun])
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2vh;padding: 0 5vw;">
+    <div class="page-title" style="padding:0;">DATA EKONOMI</div>
+    <select id="filterTahun" class="select-merah">
+        @foreach(array_keys($ekonomi) as $th)
+        <option value="{{ $th }}" {{ $th == 2026 ? 'selected' : '' }}>Tahun {{ $th }}</option>
+        @endforeach
+    </select>
 </div>
 
-<div class="container-fluid px-3">
-    <div class="row g-2">
+<div style="padding: 0 5vw;">
+
+    {{-- Summary Cards --}}
+    <div class="row g-3 mb-3">
         <div class="col-6">
-            <div class="rounded-3 overflow-hidden" style="background:#e0e0e0;box-shadow:0 3px 0 #bdbdbd;">
-                <div class="text-white text-center fw-bold py-2" style="background:var(--merah-tua);font-size:12px;">Jumlah UMKM</div>
-                <div class="text-center fw-bold py-2" style="font-size:18px;">{{ $data['umkm'] }}</div>
+            <div class="kiosk-card">
+                <div style="font-size:clamp(13px,1.2vw,20px);font-weight:600;color:#333;margin-bottom:0.5vh;">Pendapatan Desa Tahun ini</div>
+                <div id="pendapatanCard" style="font-size:clamp(16px,1.8vw,30px);font-weight:800;color:var(--merah-tua);">-</div>
             </div>
         </div>
         <div class="col-6">
-            <div class="rounded-3 overflow-hidden" style="background:#e0e0e0;box-shadow:0 3px 0 #bdbdbd;">
-                <div class="text-white text-center fw-bold py-2" style="background:var(--merah-tua);font-size:12px;">Sektor Unggulan</div>
-                <div class="text-center fw-bold py-2" style="font-size:18px;">Agribisnis</div>
+            <div class="kiosk-card">
+                <div style="font-size:clamp(13px,1.2vw,20px);font-weight:600;color:#333;margin-bottom:0.5vh;">Pengeluaran Anggaran Tahun ini</div>
+                <div id="pengeluaranCard" style="font-size:clamp(16px,1.8vw,30px);font-weight:800;color:var(--merah-tua);">-</div>
             </div>
         </div>
         <div class="col-6">
-            <div class="rounded-3 overflow-hidden" style="background:#e0e0e0;box-shadow:0 3px 0 #bdbdbd;">
-                <div class="text-white text-center fw-bold py-2" style="background:var(--merah-tua);font-size:12px;">Jumlah Petani</div>
-                <div class="text-center fw-bold py-2" style="font-size:18px;">{{ $data['petani'] }}</div>
+            <div class="kiosk-card">
+                <div style="font-size:clamp(13px,1.2vw,20px);font-weight:600;color:#333;margin-bottom:0.5vh;">Jumlah Pengusaha Desa</div>
+                <div id="pengusahaCard" style="font-size:clamp(16px,1.8vw,30px);font-weight:800;color:var(--merah-tua);">-</div>
             </div>
         </div>
         <div class="col-6">
-            <div class="rounded-3 overflow-hidden" style="background:#e0e0e0;box-shadow:0 3px 0 #bdbdbd;">
-                <div class="text-white text-center fw-bold py-2" style="background:var(--merah-tua);font-size:12px;">Jumlah Pedagang</div>
-                <div class="text-center fw-bold py-2" style="font-size:18px;">{{ $data['pedagang'] }}</div>
+            <div class="kiosk-card">
+                <div style="font-size:clamp(13px,1.2vw,20px);font-weight:600;color:#333;margin-bottom:0.5vh;">Program Ekonomi Desa</div>
+                <div id="programCard" style="font-size:clamp(16px,1.8vw,30px);font-weight:800;color:var(--merah-tua);">-</div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="mx-3 mt-3 bg-white rounded-4 shadow-sm" style="padding:20px 50px 40px 60px; margin-top:16px !important; position:relative;">
-    <div class="chart">
-        <div class="y-axis">
-            @for($i = 0; $i < $lines; $i++)
-                <div style="bottom: {{ $i * ($chartHeight / ($lines - 1)) }}px">{{ $i * $step }}</div>
-            @endfor
-        </div>
-        <div class="bar-group">
-            <div class="bar bar1"></div>
-            <div class="bar-label">UMKM</div>
-        </div>
-        <div class="bar-group">
-            <div class="bar bar2"></div>
-            <div class="bar-label">PETANI</div>
-        </div>
-        <div class="bar-group">
-            <div class="bar bar3"></div>
-            <div class="bar-label">PEDAGANG</div>
-        </div>
+    {{-- Charts --}}
+    <div class="chart-box mb-3">
+        <div class="chart-title">Pendapatan vs Pengeluaran</div>
+        <canvas id="chartKeuangan"></canvas>
     </div>
+
+    <div class="chart-box mb-4">
+        <div class="chart-title">Perkembangan Jumlah Pengusaha</div>
+        <canvas id="chartPengusaha"></canvas>
+    </div>
+
 </div>
 
-@endsection
-
-@section('bottom_navigation')
-    <a href="{{ route('profil.desa') }}" class="btn-nav">
-        <i class="bi bi-arrow-left"></i> KEMBALI
-    </a>
 @endsection
 
 @push('scripts')
-<script>
-    window.__yearRoute = '{{ route('ekonomi') }}';
-</script>
 <script src="{{ asset('js/kiosk-semesta.js') }}"></script>
+<script>
+const ekonomiData = @json($ekonomi);
+const bulanLabels = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+let chart1, chart2;
+
+function formatRupiah(num) {
+    return 'Rp ' + Number(num).toLocaleString('id-ID');
+}
+
+function loadData() {
+    const tahun = document.getElementById('filterTahun').value;
+    const data  = ekonomiData[tahun];
+    if (!data) return;
+
+    document.getElementById('pendapatanCard').innerText  = formatRupiah(data.summary.pendapatan);
+    document.getElementById('pengeluaranCard').innerText = formatRupiah(data.summary.pengeluaran);
+    document.getElementById('pengusahaCard').innerText   = data.summary.pengusaha + ' UMKM';
+    document.getElementById('programCard').innerText     = data.summary.program + ' Program';
+
+    if (chart1) chart1.destroy();
+    if (chart2) chart2.destroy();
+
+    chart1 = new Chart(document.getElementById('chartKeuangan'), {
+        type: 'line',
+        data: {
+            labels: bulanLabels,
+            datasets: [
+                { label: 'Pendapatan',  data: data.bulanan.pendapatan,  borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.2)', fill: true, borderWidth: 3, tension: 0.1 },
+                { label: 'Pengeluaran', data: data.bulanan.pengeluaran, borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.2)', fill: true, borderWidth: 2, borderDash: [5,5], tension: 0.1 }
+            ]
+        },
+        options: { responsive: true, maintainAspectRatio: false, devicePixelRatio: 2, scales: { y: { beginAtZero: true } } }
+    });
+
+    chart2 = new Chart(document.getElementById('chartPengusaha'), {
+        type: 'bar',
+        data: {
+            labels: bulanLabels,
+            datasets: [{ label: 'Jumlah UMKM', data: data.bulanan.pengusaha, backgroundColor: '#3b82f6' }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, devicePixelRatio: 2, scales: { y: { beginAtZero: true } } }
+    });
+}
+
+document.getElementById('filterTahun').addEventListener('change', loadData);
+loadData();
+</script>
 @endpush

@@ -9,7 +9,7 @@
 
 {{-- Header --}}
 <div class="modul-header" style="flex-direction: row-reverse; justify-content: flex-start;">
-    <div class="modul-title">LAYANAN SURAT</div>
+    <a href="{{ route('layanan.surat') }}" class="modul-title modul-title-link">LAYANAN SURAT</a>
     <div class="modul-icon"><i class="bi bi-envelope-paper"></i></div>
 </div>
 
@@ -28,10 +28,10 @@
     @endif
 
     {{-- Form Cek Status --}}
-    <label class="form-label-surat">Masukkan NIK atau No Surat Anda</label>
-    <input type="text" id="inputCek" class="input-kiosk">
+    <label class="form-label-surat">Masukkan Kode Pengajuan Surat Anda</label>
+    <input type="text" id="inputCek" class="input-kiosk" placeholder="">
     <div style="font-size:clamp(11px,1vw,15px);color:#888;margin-bottom:2vh;margin-top:-1.5vh;">
-        Sentuh kolom di atas untuk mulai mengetik
+        Kode pengajuan diberikan saat pertama kali mengajukan surat
     </div>
 
     <button id="btnCek" class="btn-cek" disabled>
@@ -116,12 +116,6 @@
 
     </div>
 </div>
-@endsection
-
-@section('bottom_navigation')
-<a href="{{ route('layanan.surat') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
 @endsection
 
 @push('scripts')

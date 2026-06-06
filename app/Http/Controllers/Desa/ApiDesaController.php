@@ -41,7 +41,6 @@ class ApiDesaController extends Controller
     }
 
     //PROFIL DESA
-
     public function getProfil(): JsonResponse
     {
         $data = $this->readJson(public_path('data/profil-desa.json'));
@@ -110,8 +109,8 @@ class ApiDesaController extends Controller
         ]);
     }
 
-    //APBDes
 
+    //APBDes
     public function getApbdesStatistik(Request $request): JsonResponse
     {
         $tahun = (string) $request->input('tahun', 2025);
@@ -141,16 +140,16 @@ class ApiDesaController extends Controller
         return response()->json(['data' => $all[$tahun]['pembangunan'] ?? []]);
     }
 
-    //Bumdes
 
+    //Bumdes
     public function getBumdes(): JsonResponse
     {
         $data = $this->readJson(public_path('data/bumdes.json'));
         return response()->json($data);
     }
 
-    //Evaluasi
 
+    //Evaluasi
     public function getEvaluasiInfrastruktur(): JsonResponse
     {
         $data = $this->readJson(public_path('data/evaluasi/infrastruktur.json'));
@@ -163,18 +162,13 @@ class ApiDesaController extends Controller
         return response()->json($data);
     }
 
-    public function getEvaluasiEkonomi(): JsonResponse
-    {
-        $data = $this->readJson(public_path('data/evaluasi/ekonomi.json'));
-        return response()->json($data);
-    }
-
     public function getEvaluasiSosial(): JsonResponse
     {
         $data = $this->readJson(public_path('data/evaluasi/sosial.json'));
         return response()->json($data);
     }
 
+    
     //Layanan Surat
     public function getLayananSurat(): JsonResponse
     {
@@ -182,8 +176,8 @@ class ApiDesaController extends Controller
         return response()->json($data);
     }
 
-    //Peta Wilayah
 
+    //Peta Wilayah
     public function getPetaGeojson(): JsonResponse
     {
         $data    = $this->readJson(public_path('data/peta.json'));
@@ -297,8 +291,8 @@ class ApiDesaController extends Controller
         ]);
     }
 
-    //pkk & posyandu
 
+    //pkk & posyandu
     public function getPkk(): JsonResponse
     {
         $data = $this->readJson(public_path('data/pkk-posyandu/pkk.json'));

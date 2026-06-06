@@ -11,15 +11,15 @@
 <div class="modul-header">
     <div class="d-flex align-items-center gap-2">
         <div class="modul-icon"><i class="bi bi-houses"></i></div>
-        <span class="modul-title">PROFIL DESA</span>
+        <a href="{{ route('profil.desa') }}" class="modul-title modul-title-link">PROFIL DESA</a>
     </div>
 </div>
 
-<div class="subtitle-left">Data Infrastruktur</div>
+<div class="page-title" style="padding-left: 15px;">Data Infrastruktur</div>
 
 <div class="infra-grid">
     <div class="infra-card">
-        <small>Total Jalan</small>
+        <small>Jalan Protokol</small>
         <b id="total-jalan">-</b>
     </div>
     <div class="infra-card">
@@ -31,29 +31,25 @@
         <b id="total-sekolah">-</b>
     </div>
     <div class="infra-card">
-        <small>Total Fasilitas Kesehatan</small>
+        <small>Fasilitas Kesehatan</small>
         <b id="total-faskes">-</b>
     </div>
 </div>
 
 <div class="section-title">Informasi Jalan</div>
-<div class="img-grid" id="jalan-container"></div>
+<div class="card-grid" id="jalan-container"></div>
 
-<div class="section-title">Informasi Jembatan</div>
-<div class="img-grid" id="jembatan-container"></div>
+<div id="jembatan-section" style="display:none;">
+    <div class="section-title">Informasi Jembatan</div>
+    <div class="card-grid" id="jembatan-container"></div>
+</div>
 
-<div class="section-title">Informasi Sekolah</div>
-<div class="img-grid" id="sekolah-container"></div>
+<div class="section-title">Informasi Sekolah & Pendidikan</div>
+<div class="card-grid" id="sekolah-container"></div>
 
 <div class="section-title">Informasi Fasilitas Kesehatan</div>
-<div class="img-grid" id="faskes-container"></div>
+<div class="card-grid" id="faskes-container"></div>
 
-@endsection
-
-@section('bottom_navigation')
-    <a href="{{ route('profil.desa') }}" class="btn-nav">
-        <i class="bi bi-arrow-left"></i> KEMBALI
-    </a>
 @endsection
 
 @push('scripts')
@@ -63,21 +59,30 @@ fetch('/api/desa/infrastruktur')
     .then(response => response.json())
     .then(data => {
         document.getElementById('total-jalan').innerText    = data.summary.total_jalan;
-        document.getElementById('total-jembatan').innerText = data.summary.total_jembatan;
+        document.getElementById('total-jembatan').innerText = data.summary.total_jembatan || 0;
         document.getElementById('total-sekolah').innerText  = data.summary.total_sekolah;
         document.getElementById('total-faskes').innerText   = data.summary.total_faskes;
 
-        renderInfra(data.jalan,    'jalan-container');
-        renderInfra(data.jembatan, 'jembatan-container');
-        renderInfra(data.sekolah,  'sekolah-container');
-        renderInfra(data.faskes,   'faskes-container');
+        renderInfra(data.jalan,   'jalan-container');
+        renderInfra(data.sekolah, 'sekolah-container');
+        renderInfra(data.faskes,  'faskes-container');
+
+        if (data.jembatan && data.jembatan.length > 0) {
+            document.getElementById('jembatan-section').style.display = 'block';
+            renderInfra(data.jembatan, 'jembatan-container');
+        }
     });
 
 function renderInfra(items, containerId) {
+    if (!items || items.length === 0) {
+        document.getElementById(containerId).innerHTML = '<p class="text-muted" style="font-size:13px;">Data belum tersedia.</p>';
+        return;
+    }
     document.getElementById(containerId).innerHTML = items.map(item => `
-        <div class="img-card">
-            <img src="${item.gambar}" alt="${item.nama}">
-            <div class="img-label">${item.nama}</div>
+        <div class="img-card sda-card" style="background-image:url('${item.gambar}')">
+            <div class="card-footer-sda">
+                <div class="label">${item.nama}</div>
+            </div>
         </div>
     `).join('');
 }

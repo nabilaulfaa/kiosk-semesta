@@ -1,22 +1,22 @@
 {
     "data_umum": {
         "2026": {
-            "total_anggota": 85,
+            "total_anggota": 125,
             "total_kader": 30,
             "dasawisma": 6,
-            "rt_aktif": 10
+            "rw_aktif": 10
         },
         "2025": {
-            "total_anggota": 75,
+            "total_anggota": 110,
             "total_kader": 25,
             "dasawisma": 5,
-            "rt_aktif": 8
+            "rw_aktif": 8
         },
         "2024": {
-            "total_anggota": 60,
+            "total_anggota": 95,
             "total_kader": 20,
             "dasawisma": 4,
-            "rt_aktif": 6
+            "rw_aktif": 6
         }
     },
 

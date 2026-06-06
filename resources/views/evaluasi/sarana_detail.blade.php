@@ -4,7 +4,7 @@
 
 <div class="modul-header">
     <div class="modul-icon"><i class="bi bi-search"></i></div>
-    <div class="modul-title">EVALUASI</div>
+    <a href="{{ route('evaluasi.sarana') }}" class="modul-title modul-title-link">SARANA</a>
 </div>
 <div class="page-title">{{ strtoupper($data['nama']) }}</div>
 
@@ -31,10 +31,4 @@
     @endif
 </div>
 
-@endsection
-
-@section('bottom_navigation')
-<a href="{{ route('evaluasi.sarana') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
 @endsection

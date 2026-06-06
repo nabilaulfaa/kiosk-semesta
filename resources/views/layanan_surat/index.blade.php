@@ -2,7 +2,6 @@
 
 @section('content')
 
-{{-- Header --}}
 <div class="modul-header" style="flex-direction: row-reverse; justify-content: flex-start;">
     <div class="modul-title">LAYANAN SURAT</div>
     <div class="modul-icon"><i class="bi bi-envelope-paper"></i></div>

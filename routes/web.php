@@ -10,7 +10,7 @@ Route::get('/', function () {
 })->name('beranda');
 
 // GRUP KIOSK
-Route::prefix('kiosk')->group(function () {
+Route::prefix('kiosk')->middleware('cache.api')->group(function () {
 
     // BUMDES
     Route::get('/bumdes', [DesaController::class, 'bumdes'])->name('bumdes');
@@ -30,8 +30,6 @@ Route::prefix('kiosk')->group(function () {
         Route::get('/infrastruktur', [DesaController::class, 'evaluasiInfrastruktur'])->name('evaluasi.infrastruktur');
         Route::get('/sarana',        [DesaController::class, 'evaluasiSarana'])->name('evaluasi.sarana');
         Route::get('/sarana/{slug}', [DesaController::class, 'evaluasiSaranaDetail'])->name('evaluasi.sarana.detail');
-        Route::get('/ekonomi',       [DesaController::class, 'evaluasiEkonomi'])->name('evaluasi.ekonomi');
-        Route::get('/sosial',        [DesaController::class, 'evaluasiSosial'])->name('evaluasi.sosial');
     });
 
     // PROFIL DESA & DATA DESA
@@ -105,8 +103,6 @@ Route::prefix('api/desa')->group(function () {
     //Evaluasi
     Route::get('/evaluasi-infrastruktur', [ApiDesaController::class, 'getEvaluasiInfrastruktur']);
     Route::get('/evaluasi-sarana',        [ApiDesaController::class, 'getEvaluasiSarana']);
-    Route::get('/evaluasi-ekonomi',       [ApiDesaController::class, 'getEvaluasiEkonomi']);
-    Route::get('/evaluasi-sosial',        [ApiDesaController::class, 'getEvaluasiSosial']);
 
     // Layanan Surat
     Route::get('/layanan-surat', [ApiDesaController::class, 'getLayananSurat']);

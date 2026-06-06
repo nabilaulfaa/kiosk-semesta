@@ -3,46 +3,34 @@
 namespace App\Http\Controllers\Desa;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\CacheApiMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 
 class DesaController extends Controller
 {
-    // Shared Helpers
-
-    /**
-     * Baca file JSON dari public/data/
-     */
     private function readJson(string $filename): array
     {
         $path = public_path("data/{$filename}");
-
         if (!file_exists($path)) {
             abort(404, "File {$filename} tidak ditemukan");
         }
-
         return json_decode(file_get_contents($path), true) ?? [];
     }
 
-    /**
-     * Return file JSON sebagai response JSON langsung
-     */
     private function apiJson(string $filename)
     {
         $path = public_path("data/{$filename}");
-
         if (!file_exists($path)) {
             return response()->json(['message' => 'File tidak ditemukan'], 404);
         }
-
         return response(file_get_contents($path), 200)
             ->header('Content-Type', 'application/json');
     }
 
 
-    //BERANDA
-
+    // BERANDA
     public function beranda()
     {
         return view('beranda.index');
@@ -50,71 +38,64 @@ class DesaController extends Controller
 
 
     // APBDes
-
     public function apbdes(Request $request)
     {
         $tahunAktif = (int) $request->input('tahun', 2025);
         $listTahun  = [2025, 2024, 2023, 2022, 2021];
-        return view('apbdes.apbdes', compact('tahunAktif', 'listTahun'));
+
+        $statistik   = CacheApiMiddleware::fetch('apbdes', 'apbdes-' . $tahunAktif, ['tahun' => $tahunAktif]);
+        $periode     = CacheApiMiddleware::fetch('apbdes-periode', 'apbdes-periode');
+        $pembangunan = CacheApiMiddleware::fetch('pembangunan', 'pembangunan-' . $tahunAktif, ['tahun' => $tahunAktif]);
+
+        return view('apbdes.apbdes', compact('tahunAktif', 'listTahun', 'statistik', 'periode', 'pembangunan'));
     }
 
     public function apbdesStatistik(Request $request)
     {
         $tahun = $request->input('tahun', 2025);
-
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/apbdes', [
-            'tahun' => $tahun,
-        ]);
-
-        if ($response->failed()) {
-            return response()->json(['message' => 'Data tidak ditemukan'], 404);
-        }
-
-        return response()->json($response->json());
+        $data  = CacheApiMiddleware::fetch(
+            'apbdes',
+            'apbdes-' . $tahun,
+            ['tahun' => $tahun]
+        );
+        if (!$data) return response()->json(['message' => 'Data tidak ditemukan'], 404);
+        return response()->json($data);
     }
 
     public function apbdesPeriode()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/apbdes-periode');
+        $data = CacheApiMiddleware::fetch(
+            'apbdes-periode',
+            'apbdes-periode'
+        );
 
-        if ($response->failed()) {
-            return response()->json(['data' => []]);
-        }
-
-        return response()->json($response->json());
+        return response()->json($data ?? ['data' => []]);
     }
 
     public function apbdesPembangunanJson(Request $request)
     {
         $tahun = $request->input('tahun', 2025);
-
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/pembangunan', [
-            'tahun' => $tahun,
-        ]);
-
-        if ($response->failed()) {
-            return response()->json(['data' => []]);
-        }
-
-        return response()->json($response->json());
+        $data  = CacheApiMiddleware::fetch(
+            'pembangunan',
+            'pembangunan-' . $tahun,
+            ['tahun' => $tahun]
+        );
+        return response()->json($data ?? ['data' => []]);
     }
 
 
-
     // BUMDes
-
     private function getBumdesData(): array
     {
-        return json_decode(
-            file_get_contents(public_path('data/bumdes.json')),
-            true
-        );
+        return json_decode(file_get_contents(public_path('data/bumdes.json')), true);
     }
 
     public function bumdes()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/bumdes');
-        $d = $response->json();
+        $d = CacheApiMiddleware::fetch(
+            'bumdes',
+            'bumdes'
+        );
 
         $pengurus          = $d['pengurus'];
         $unitUsaha         = $d['unit_usaha'];
@@ -126,13 +107,9 @@ class DesaController extends Controller
 
 
     // Evaluasi
-
     private function loadEvaluasi(string $file): array
     {
-        return json_decode(
-            file_get_contents(public_path("data/evaluasi/{$file}.json")),
-            true
-        );
+        return json_decode(file_get_contents(public_path("data/evaluasi/{$file}.json")), true);
     }
 
     public function evaluasi()
@@ -142,22 +119,29 @@ class DesaController extends Controller
 
     public function evaluasiInfrastruktur()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/evaluasi-infrastruktur');
-        $infrastruktur = $response->json()['proyek'] ?? [];
+        $data          = CacheApiMiddleware::fetch(
+            'evaluasi-infrastruktur',
+            'evaluasi-infrastruktur'
+        );
+        $infrastruktur = $data['proyek'] ?? [];
         return view('evaluasi.infrastruktur', compact('infrastruktur'));
     }
 
     public function evaluasiSarana()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/evaluasi-sarana');
-        $sarana = $response->json();
+        $sarana = CacheApiMiddleware::fetch(
+            'evaluasi-sarana',
+            'evaluasi-sarana'
+        );
         return view('evaluasi.sarana', compact('sarana'));
     }
 
     public function evaluasiSaranaDetail(string $slug)
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/evaluasi-sarana');
-        $sarana = $response->json();
+        $sarana = CacheApiMiddleware::fetch(
+            'evaluasi-sarana',
+            'evaluasi-sarana'
+        );
 
         $item = null;
         foreach ($sarana as $kategori => $list) {
@@ -181,53 +165,52 @@ class DesaController extends Controller
 
     public function evaluasiEkonomi()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/evaluasi-ekonomi');
-        $ekonomi = $response->json();
+        $ekonomi = CacheApiMiddleware::fetch(
+            'evaluasi-ekonomi',
+            'evaluasi-ekonomi'
+        );
         return view('evaluasi.ekonomi', compact('ekonomi'));
     }
 
     public function evaluasiSosial()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/evaluasi-sosial');
-        $sosial = $response->json();
+        $sosial = CacheApiMiddleware::fetch(
+            'evaluasi-sosial',
+            'evaluasi-sosial'
+        );
         return view('evaluasi.sosial', compact('sosial'));
     }
 
 
     // Layanan Surat
-
     private function getLayananSuratData(): array
     {
-        return json_decode(
-            file_get_contents(public_path('data/layanan_surat.json')),
-            true
-        );
+        return json_decode(file_get_contents(public_path('data/layanan_surat.json')), true);
     }
 
     public function layananSurat()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/layanan-surat');
-        $data = $response->json();
+        $data = CacheApiMiddleware::fetch(
+            'layanan-surat',
+            'layanan-surat'
+        );
         return view('layanan_surat.index', compact('data'));
     }
 
     public function layananSuratCek(Request $request)
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/layanan-surat');
-        $data  = $response->json();
+        $data  = $this->getLayananSuratData();
         $jenis = $request->query('jenis', '');
         return view('layanan_surat.cek_surat', compact('data', 'jenis'));
     }
 
     public function layananSuratApi()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/layanan-surat');
-        return response()->json($response->json());
+        return response()->json($this->getLayananSuratData());
     }
-    
+
 
     // Peta Wilayah
-
     public function petaWilayah()
     {
         return view('peta-wilayah.index');
@@ -235,103 +218,119 @@ class DesaController extends Controller
 
     public function petaGeojson()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/peta-geojson');
-        return response()->json($response->json());
+        $data = CacheApiMiddleware::fetch(
+            'peta-geojson',
+            'peta-geojson'
+        );
+        return response()->json($data);
     }
 
     public function petaDusun()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/peta-dusun');
-        return response()->json($response->json());
+        $data = CacheApiMiddleware::fetch(
+            'peta-dusun',
+            'peta-dusun'
+        );
+        return response()->json($data);
     }
 
     public function petaInfrastruktur()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/peta-infra');
-        return response()->json($response->json());
+        $data = CacheApiMiddleware::fetch(
+            'peta-infra',
+            'peta-infra'
+        );
+        return response()->json($data);
     }
 
 
     // PKK & Posyandu
-
     public function pkkPosyandu()
     {
         return view('pkk_posyandu.index');
     }
 
     public function pkk()
-{
-    $tahun = request('tahun', '2026');
-    $d     = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/pkk')->json();
+    {
+        $tahun = request('tahun', '2026');
+        $d     = CacheApiMiddleware::fetch(
+            'pkk',
+            'pkk'
+        );
 
-    $tahunTersedia = array_keys($d['kegiatan']);
+        $tahunTersedia = array_keys($d['kegiatan']);
 
-    if ($tahun === 'all') {
-        $kegiatanPkk = array_merge(...array_values($d['kegiatan']));
-    } else {
-        $kegiatanPkk = $d['kegiatan'][$tahun] ?? [];
+        if ($tahun === 'all') {
+            $kegiatanPkk = array_merge(...array_values($d['kegiatan']));
+        } else {
+            $kegiatanPkk = $d['kegiatan'][$tahun] ?? [];
+        }
+
+        if ($tahun === 'all') {
+            $statistikKegiatan = [
+                'total'     => array_sum(array_column($d['statistik_kegiatan'], 'total')),
+                'pelatihan' => array_sum(array_column($d['statistik_kegiatan'], 'pelatihan')),
+                'pertemuan' => array_sum(array_column($d['statistik_kegiatan'], 'pertemuan')),
+                'bulanan'   => array_map(
+                    fn(...$vals) => array_sum($vals),
+                    ...array_column($d['statistik_kegiatan'], 'bulanan')
+                ),
+            ];
+        } else {
+            $statistikKegiatan = $d['statistik_kegiatan'][$tahun]
+                ?? ['total' => 0, 'pelatihan' => 0, 'pertemuan' => 0, 'bulanan' => array_fill(0, 12, 0)];
+        }
+
+        $dataUmum        = $d['data_umum'][$tahun]        ?? $d['data_umum']['2026'];
+        $distribusiPokja = $d['distribusi_pokja'][$tahun] ?? $d['distribusi_pokja']['2026'];
+
+        return view('pkk_posyandu.pkk', compact(
+            'tahun', 'kegiatanPkk', 'dataUmum',
+            'statistikKegiatan', 'distribusiPokja', 'tahunTersedia'
+        ));
     }
 
-    if ($tahun === 'all') {
-        $statistikKegiatan = [
-            'total'     => array_sum(array_column($d['statistik_kegiatan'], 'total')),
-            'pelatihan' => array_sum(array_column($d['statistik_kegiatan'], 'pelatihan')),
-            'pertemuan' => array_sum(array_column($d['statistik_kegiatan'], 'pertemuan')),
-            'bulanan'   => array_map(
-                fn(...$vals) => array_sum($vals),
-                ...array_column($d['statistik_kegiatan'], 'bulanan')
-            ),
-        ];
-    } else {
-        $statistikKegiatan = $d['statistik_kegiatan'][$tahun]
-            ?? ['total' => 0, 'pelatihan' => 0, 'pertemuan' => 0, 'bulanan' => array_fill(0, 12, 0)];
+    public function posyandu()
+    {
+        $tahun = request('tahun', '2026');
+        $d     = CacheApiMiddleware::fetch(
+            'posyandu',
+            'posyandu'
+        );
+        
+        //return response()->json($d);
+
+        $tahunTersedia = array_keys($d['jadwal']);
+
+        if ($tahun === 'all') {
+            $jadwalPosyandu = array_merge(...array_values($d['jadwal']));
+        } else {
+            $jadwalPosyandu = $d['jadwal'][$tahun] ?? [];
+        }
+
+        $dataPerTahun      = $d['data'][$tahun] ?? $d['data']['2026'];
+        $rincianPengunjung = $dataPerTahun['rincian_pengunjung'];
+        $dataKelahiran     = $dataPerTahun['data_kelahiran'];
+        $dataKematian      = $dataPerTahun['data_kematian'];
+        $statPengunjung    = $dataPerTahun['statistik_pengunjung'];
+        $imunisasiBulanan  = $dataPerTahun['imunisasi_bulanan'];
+        $giziBalita        = $dataPerTahun['gizi_balita'];
+        
+        return view('pkk_posyandu.posyandu', compact(
+            'tahun', 'jadwalPosyandu', 'rincianPengunjung',
+            'dataKelahiran', 'dataKematian', 'tahunTersedia',
+            'statPengunjung', 'imunisasiBulanan', 'giziBalita'
+        ));
     }
 
-    $dataUmum        = $d['data_umum'][$tahun]        ?? $d['data_umum']['2026'];
-    $distribusiPokja = $d['distribusi_pokja'][$tahun] ?? $d['distribusi_pokja']['2026'];
-
-    return view('pkk_posyandu.pkk', compact(
-        'tahun', 'kegiatanPkk', 'dataUmum',
-        'statistikKegiatan', 'distribusiPokja', 'tahunTersedia'
-    ));
-}
-
-public function posyandu()
-{
-    $tahun = request('tahun', '2026');
-    $d     = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/posyandu')->json();
-
-    $tahunTersedia = array_keys($d['jadwal']);
-
-    if ($tahun === 'all') {
-        $jadwalPosyandu = array_merge(...array_values($d['jadwal']));
-    } else {
-        $jadwalPosyandu = $d['jadwal'][$tahun] ?? [];
-    }
-
-    $dataPerTahun      = $d['data'][$tahun] ?? $d['data']['2026'];
-    $rincianPengunjung = $dataPerTahun['rincian_pengunjung'];
-    $dataKelahiran     = $dataPerTahun['data_kelahiran'];
-    $dataKematian      = $dataPerTahun['data_kematian'];
-    $statPengunjung    = $dataPerTahun['statistik_pengunjung'];
-    $imunisasiBulanan  = $dataPerTahun['imunisasi_bulanan'];
-    $giziBalita        = $dataPerTahun['gizi_balita'];
-
-    return view('pkk_posyandu.posyandu', compact(
-        'tahun', 'jadwalPosyandu', 'rincianPengunjung',
-        'dataKelahiran', 'dataKematian', 'tahunTersedia',
-        'statPengunjung', 'imunisasiBulanan', 'giziBalita'
-    ));
-}
 
     // Profil Desa
-
     public function profilDesa()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/profil');
-        $data = $response->json();
-        
-        //return $data; 
+        $data = CacheApiMiddleware::fetch(
+            'profil',
+            'profil'
+        );
         return view('profildesa.profil-desa', compact('data'));
     }
 
@@ -342,10 +341,10 @@ public function posyandu()
 
     public function geografis()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/geografis');
-        $data = $response->json();
-        
-        //return $data; 
+        $data = CacheApiMiddleware::fetch(
+            'geografis',
+            'geografis'
+        );
         return view('profildesa.data-geografis', compact('data'));
     }
 
@@ -356,10 +355,10 @@ public function posyandu()
 
     public function infrastruktur()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/infrastruktur');
-        $data     = $response->json();
-
-        //return $data; 
+        $data = CacheApiMiddleware::fetch(
+            'infrastruktur',
+            'infrastruktur'
+        );
         return view('profildesa.data-infrastruktur', compact('data'));
     }
 
@@ -370,10 +369,10 @@ public function posyandu()
 
     public function kependudukan()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/kependudukan');
-        $data = $response->json();
-        
-        //return $data; 
+        $data = CacheApiMiddleware::fetch(
+            'kependudukan',
+            'kependudukan'
+        );
         return view('profildesa.data-kependudukan', compact('data'));
     }
 
@@ -384,10 +383,10 @@ public function posyandu()
 
     public function kesehatan()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/kesehatan');
-        $data = $response->json();
-        
-        //return $data; 
+        $data = CacheApiMiddleware::fetch(
+            'kesehatan',
+            'kesehatan'
+        );
         return view('profildesa.data-kesehatan', compact('data'));
     }
 
@@ -401,22 +400,23 @@ public function posyandu()
         $tahun     = (int) $request->input('tahun', 2025);
         $listTahun = [2026, 2025, 2024, 2023, 2022, 2021, 2020];
 
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/pendidikan?tahun=' . $tahun);
-        $result   = $response->json();
+        $result = CacheApiMiddleware::fetch(
+            'pendidikan',
+            'pendidikan-' . $tahun,
+            ['tahun' => $tahun]
+        );
 
-        // return $result; 
-
-        $data = $result['data'] ?? null; 
+        $data = $result['data'] ?? null;
 
         return view('profildesa.data-pendidikan', compact('tahun', 'data', 'listTahun'));
     }
 
     public function sda()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/sda');
-        $data = $response->json();
-        
-        //return $data; 
+        $data = CacheApiMiddleware::fetch(
+            'sda',
+            'sda'
+        );
         return view('profildesa.data-sda', compact('data'));
     }
 
@@ -427,10 +427,10 @@ public function posyandu()
 
     public function sosial()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/sosial');
-        $data = $response->json();
-        
-        //return $data; 
+        $data = CacheApiMiddleware::fetch(
+            'sosial',
+            'sosial'
+        );
         return view('profildesa.data-sosial', compact('data'));
     }
 
@@ -441,18 +441,18 @@ public function posyandu()
 
     public function umum(Request $request)
     {
-        $response  = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/umum');
-        $all       = $response->json();
+        $all = CacheApiMiddleware::fetch(
+            'umum',
+            'umum'
+        );
 
-        //return $all;
-        
         $listTahun = array_keys($all);
         $tahun     = (string) $request->input('tahun', $listTahun[0]);
 
         if (!isset($all[$tahun])) {
             $tahun = $listTahun[0];
         }
-        
+
         return view('profildesa.data-umum', [
             'tahun'     => $tahun,
             'listTahun' => $listTahun,
@@ -463,29 +463,15 @@ public function posyandu()
 
     public function ekonomi(Request $request)
     {
-        $response  = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/ekonomi');
-        $all       = $response->json();
-
-        //return $all;
-
-        $listTahun = array_keys($all);
-        $tahun     = (string) $request->input('tahun', $listTahun[0] ?? '2025');
-
-        if (!isset($all[$tahun])) {
-            $tahun = $listTahun[0] ?? '2025';
-        }
-
-        $data = $all[$tahun] ?? [
-            'umkm' => 0, 'petani' => 0,
-            'pedagang' => 0, 'sektor_unggulan' => '-'
-        ];
-
-        return view('profildesa.data-ekonomi', compact('tahun', 'data', 'listTahun'));
+        $ekonomi = CacheApiMiddleware::fetch(
+            'ekonomi',
+            'ekonomi'
+        );
+        return view('profildesa.data-ekonomi', compact('ekonomi'));
     }
 
 
     // Program Kades
-
     private function getProgramKadesData(): array
     {
         $path = public_path('data/programkades.json');
@@ -513,39 +499,38 @@ public function posyandu()
 
     public function programKades()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/program-kades-data');
-        $data = $response->json();
-        
-        //return $data; 
-        return view('program-kades.index', compact('data')); 
+        $data = CacheApiMiddleware::fetch(
+            'program-kades-data',
+            'program-kades-data'
+        );
+        return view('program-kades.index', compact('data'));
     }
 
     public function programKerja()
     {
-
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/program-kades');
-        $data     = $response->json();
-
-        //return $data;
+        $data = CacheApiMiddleware::fetch(
+            'program-kades',
+            'program-kades'
+        );
         return view('program-kades.program-kerja', compact('data'));
     }
 
     public function programBaru()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/program-kades');
-        $data     = $response->json();
-
-        //return $data;
+        $data     = CacheApiMiddleware::fetch(
+            'program-kades',
+            'program-kades'
+        );
         $programs = collect($data['semua_program'])->where('status', 'baru')->values()->all();
         return view('program-kades.program-baru', compact('programs'));
     }
 
     public function programSelesai()
     {
-        $response = Http::get('https://nakulasadewa.com/apisidesa/public/api/desa/program-kades');
-        $data     = $response->json();
-
-        //return $data;
+        $data     = CacheApiMiddleware::fetch(
+            'program-kades',
+            'program-kades'
+        );
         $programs = collect($data['semua_program'])->where('status', 'selesai')->values()->all();
         return view('program-kades.program-selesai', compact('programs'));
     }

@@ -6,10 +6,9 @@
 
 @section('content')
 
-{{-- Header --}}
 <div class="modul-header">
     <div class="modul-icon"><i class="bi bi-search"></i></div>
-    <div class="modul-title">EVALUASI</div>
+    <a href="{{ route('evaluasi') }}" class="modul-title modul-title-link">EVALUASI</a>
 </div>
 <div class="page-title">PEMBANGUNAN INFRASTRUKTUR</div>
 
@@ -65,9 +64,9 @@
         data-img-utama="{{ asset($item['gambar']['utama']) }}"
         data-img-awal="{{ asset($item['gambar']['awal']) }}"
         data-img-proses="{{ asset($item['gambar']['proses']) }}"
-        data-img-selesai="{{ asset($item['gambar']['selesai']) }}"
-    >
+        data-img-selesai="{{ asset($item['gambar']['selesai']) }}">
         <img src="{{ asset($item['gambar']['utama']) }}"
+            onerror="this.style.display='none'"
             style="width:clamp(150px,16vw,250px);height:clamp(100px,12vh,180px);object-fit:cover;border-radius:15px;flex-shrink:0;">
         <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
             <div>
@@ -114,8 +113,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Timeline --}}
             <div style="background:#F8F9FA;padding:2vh 2vw;border-radius:20px;margin-top:2vh;">
                 <div style="display:flex;justify-content:space-between;font-size:clamp(14px,1.3vw,22px);font-weight:800;">
                     <span>Progress Pengerjaan</span>
@@ -127,8 +124,13 @@
                     </div>
                     @foreach([['id'=>'step1','label'=>'Mulai','sub'=>'Januari'],['id'=>'step2','label'=>'Proses','sub'=>'Juni'],['id'=>'step3','label'=>'Selesai','sub'=>'Desember']] as $step)
                     <div class="step-item" id="{{ $step['id'] }}" style="display:flex;flex-direction:column;align-items:center;text-align:center;z-index:2;flex:1;position:relative;">
-                        <div style="width:clamp(60px,8vw,100px);height:clamp(45px,6vh,70px);margin-bottom:1.5vh;overflow:hidden;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);background:#eee;">
-                            <img id="m-img-{{ $step['id'] }}" style="width:100%;height:100%;object-fit:cover;">
+                        <div style="width:clamp(60px,8vw,100px);height:clamp(45px,6vh,70px);margin-bottom:1.5vh;overflow:hidden;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1);background:#eee;position:relative;">
+                            <img id="m-img-{{ $step['id'] }}" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div id="m-img-{{ $step['id'] }}-placeholder"
+                                style="display:none;width:100%;height:100%;position:absolute;top:0;left:0;flex-direction:column;align-items:center;justify-content:center;background:#f0f0f0;gap:4px;">
+                                <i class="bi bi-image" style="font-size:22px;color:#bbb;"></i>
+                                <span style="font-size:10px;color:#bbb;">No Image</span>
+                            </div>
                         </div>
                         <div style="width:clamp(20px,2vw,30px);height:clamp(20px,2vw,30px);border:4px solid var(--merah-tua);border-radius:50%;background:#fff;" class="step-circle"></div>
                         <div style="font-size:clamp(11px,1vw,16px);font-weight:800;margin-top:0.5vh;">{{ $step['label'] }}<br><small>{{ $step['sub'] }}</small></div>
@@ -141,16 +143,27 @@
 </div>
 @endsection
 
-@section('bottom_navigation')
-<a href="{{ route('evaluasi') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
-@endsection
-
 @push('scripts')
 <script>
 let myChart;
 let allCards;
+
+function setStepImg(id, src) {
+    const img         = document.getElementById(id);
+    const placeholder = document.getElementById(id + '-placeholder');
+    if (!src || src === '') {
+        img.style.display         = 'none';
+        placeholder.style.display = 'flex';
+        return;
+    }
+    img.src                   = src;
+    img.style.display         = 'block';
+    placeholder.style.display = 'none';
+    img.onerror = function () {
+        img.style.display         = 'none';
+        placeholder.style.display = 'flex';
+    };
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     allCards = document.querySelectorAll('.project-card');
@@ -163,37 +176,29 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
     });
-
     applyFilter();
-
     document.getElementById('statusFilter').addEventListener('change', applyFilter);
     document.getElementById('tahunFilter').addEventListener('change', applyFilter);
-
     document.querySelectorAll('.btn-detail-card').forEach(btn => {
         btn.addEventListener('click', function () {
-            const card = this.closest('.project-card');
+            const card     = this.closest('.project-card');
             const progress = parseInt(card.dataset.progress);
-
-            let targetImg = card.dataset.imgUtama;
-
-            document.getElementById('m-title').innerText = card.dataset.judul;
-            document.getElementById('m-loc').innerText   = 'Lokasi : ' + card.dataset.lokasi;
-            document.getElementById('m-img').src         = targetImg;
-            document.getElementById('m-desc').innerText  = card.dataset.desc;
-            document.getElementById('m-budget').innerText= 'Rp ' + card.dataset.anggaran;
-            document.getElementById('m-perc').innerText  = card.dataset.progress + '%';
-
-            document.getElementById('m-img-step1').src = card.dataset.imgAwal;
-            document.getElementById('m-img-step2').src = progress >= 50  ? card.dataset.imgProses  : '';
-            document.getElementById('m-img-step3').src = progress >= 100 ? card.dataset.imgSelesai : '';
-
+            document.getElementById('m-title').innerText  = card.dataset.judul;
+            document.getElementById('m-loc').innerText    = 'Lokasi : ' + card.dataset.lokasi;
+            document.getElementById('m-img').src          = card.dataset.imgUtama;
+            document.getElementById('m-desc').innerText   = card.dataset.desc;
+            document.getElementById('m-budget').innerText = 'Rp ' + card.dataset.anggaran;
+            document.getElementById('m-perc').innerText   = card.dataset.progress + '%';
+            setStepImg('m-img-step1', card.dataset.imgAwal);
+            setStepImg('m-img-step2', progress >= 50  ? card.dataset.imgProses  : '');
+            setStepImg('m-img-step3', progress >= 100 ? card.dataset.imgSelesai : '');
             ['step1','step2','step3'].forEach(id => {
                 document.getElementById(id).querySelector('.step-circle').style.background = '#fff';
             });
             if (progress >= 1)   document.getElementById('step1').querySelector('.step-circle').style.background = 'var(--merah-tua)';
             if (progress >= 50)  document.getElementById('step2').querySelector('.step-circle').style.background = 'var(--merah-tua)';
             if (progress >= 100) document.getElementById('step3').querySelector('.step-circle').style.background = 'var(--merah-tua)';
-
+            document.getElementById('m-bar').style.width = '0%';
             openModal('modalDetail');
             setTimeout(() => { document.getElementById('m-bar').style.width = progress + '%'; }, 300);
         });
@@ -204,24 +209,20 @@ function applyFilter() {
     const status = document.getElementById('statusFilter').value;
     const tahun  = document.getElementById('tahunFilter').value;
     let selesai = 0, proses = 0, belum = 0;
-
     allCards.forEach(card => {
-        const s = card.dataset.status;
-        const t = card.dataset.tahun;
+        const s    = card.dataset.status;
+        const t    = card.dataset.tahun;
         const show = (status === 'all' || s === status) && (tahun === 'all' || t === tahun);
-        
         if (show) {
             card.classList.remove('d-none');
-            if (s === 'Selesai') selesai++;
-            else if (s === 'Proses') proses++;
-            else belum++;
+            if (s === 'Selesai')      selesai++;
+            else if (s === 'Proses')  proses++;
+            else                      belum++;
         } else {
             card.classList.add('d-none');
         }
     });
-
     if (myChart) { myChart.data.datasets[0].data = [selesai, proses, belum]; myChart.update(); }
-
     document.getElementById('statsNumbers').innerHTML =
         `Total Program : ${selesai+proses+belum}<br>Selesai : ${selesai}<br>Proses : ${proses}<br>Belum : ${belum}`;
 }

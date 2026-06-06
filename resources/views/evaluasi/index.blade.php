@@ -23,9 +23,7 @@
     @php
     $kategori = [
         ['route' => 'evaluasi.infrastruktur', 'icon' => 'bi-bar-chart',  'label' => 'PEMBANGUNAN INFRASTRUKTUR'],
-        ['route' => 'evaluasi.sarana',        'icon' => 'bi-building',   'label' => 'SARANA DAN PRASARANA'],
-        ['route' => 'evaluasi.ekonomi',       'icon' => 'bi-cash-coin',  'label' => 'EKONOMI'],
-        ['route' => 'evaluasi.sosial',        'icon' => 'bi-people',     'label' => 'SOSIAL'],
+        ['route' => 'evaluasi.sarana',        'icon' => 'bi-building',   'label' => 'SARANA DAN PRASARANA'],    
     ];
     @endphp
 

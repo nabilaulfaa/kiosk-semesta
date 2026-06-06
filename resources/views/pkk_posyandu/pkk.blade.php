@@ -10,7 +10,7 @@
 
     <div class="modul-header" style="padding: 3vh 0 1vh;">
         <div class="modul-icon"><i class="bi bi-people"></i></div>
-        <div class="modul-title">PKK POSYANDU</div>
+        <a href="{{ route('pkk.posyandu') }}" class="modul-title modul-title-link">PKK POSYANDU</a>
     </div>
 
     <div style="font-size:clamp(18px,2vw,32px);font-weight:800;margin-bottom:2vh;">MENU PKK</div>
@@ -68,7 +68,7 @@
             ['label' => 'Total Anggota PKK',   'value' => $dataUmum['total_anggota'], 'dot' => 'orange'],
             ['label' => 'Total Kader PKK',     'value' => $dataUmum['total_kader'],   'dot' => '#007bff'],
             ['label' => 'Kelompok Dasawisma',  'value' => $dataUmum['dasawisma'],     'dot' => 'green'],
-            ['label' => 'RT Aktif',            'value' => $dataUmum['rt_aktif'],      'dot' => 'red'],
+            ['label' => 'RW Aktif',            'value' => $dataUmum['rw_aktif'],      'dot' => 'red'],
         ];
         @endphp
         @foreach($cards as $card)
@@ -109,7 +109,7 @@
         </div>
     </div>
 
-    {{-- Statistik Kegiatan PKK - tanpa filter, ikut filter atas --}}
+    {{-- Statistik Kegiatan PKK --}}
     <div style="margin-bottom:1.5vh;">
         <div style="color:var(--merah-tua);font-size:clamp(16px,1.8vw,30px);font-weight:800;">STATISTIK KEGIATAN PKK</div>
     </div>
@@ -168,11 +168,7 @@
 
 @endsection
 
-@section('bottom_navigation')
-<a href="{{ route('pkk.posyandu') }}" class="btn-nav">
-    <i class="bi bi-arrow-left"></i> KEMBALI
-</a>
-@endsection
+
 
 @push('scripts')
 <script>

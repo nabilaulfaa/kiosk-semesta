@@ -24,21 +24,21 @@
         { "jabatan": "Staf Administrasi Kecamatan",  "instansi": "Pemkot Malang", "tahun_mulai": "2000", "tahun_selesai": "2005" }
     ],
     "semua_program": [
-        {
-            "id": 1,
-            "nama": "Program Desa Mandiri BPJS",
-            "tahun": "2024 – 2025",
-            "status": "selesai",
-            "persen": 100,
-            "anggaran": "Rp 80.000.000",
-            "updated_at": "2024-02-12",
-            "laporan": {
-                "tanggal": "12 Februari 2024",
-                "hasil": "Program selesai 100%",
-                "kendala": "Kurangnya kesadaran warga",
-                "rekomendasi": "Perlu sosialisasi berkala",
-                "deskripsi": "Program Desa Mandiri BPJS telah berhasil diselesaikan. Seluruh warga desa kini terdaftar dalam program BPJS Kesehatan."
-            }
+            {
+                "id": 1,
+                "nama": "Program Bank Sampah Desa",
+                "tahun": "2024 – 2025",
+                "status": "selesai",
+                "persen": 100,
+                "anggaran": "Rp 80.000.000",
+                "updated_at": "2024-02-12",
+                "laporan": {
+                    "tanggal": "12 Februari 2024",
+                    "hasil": "Program selesai 100%",
+                    "kendala": "Kurangnya partisipasi warga di awal program",
+                    "rekomendasi": "Perlu edukasi dan sosialisasi rutin tentang pemilahan sampah",
+                    "deskripsi": "Program Bank Sampah Desa telah berhasil diselesaikan. Warga kini dapat menukarkan sampah anorganik yang telah dipilah dengan uang tunai atau tabungan. Bank sampah beroperasi setiap minggu dan dikelola oleh kader lingkungan setempat."
+                }
         },
         {
             "id": 2,

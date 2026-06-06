@@ -11,11 +11,11 @@
 <div class="modul-header">
     <div class="d-flex align-items-center gap-2">
         <div class="modul-icon"><i class="bi bi-houses"></i></div>
-        <span class="modul-title">PROFIL DESA</span>
+        <a href="{{ route('profil.desa') }}" class="modul-title modul-title-link">PROFIL DESA</a>
     </div>
 </div>
 
-<div class="subtitle-left">Data Kependudukan</div>
+<div class="page-title" style="padding-left: 15px;">Data Kependudukan</div>
 
 <div class="card-group">
     <div class="kep-card">
@@ -77,10 +77,10 @@
 </div>
 
 <div class="bar-section">
-    <div class="bar-title">Dinamika Penduduk Per Tahun</div>
+    <div class="bar-title">Statistik Penduduk Per Tahun</div>
     <div class="bar-box">
         <div class="bar-legend">
-            <div><span class="bar-dot" style="background:#000"></span>Kematian</div>
+            <div><span class="bar-dot" style="background:#ffed29"></span>Kematian</div>
             <div><span class="bar-dot" style="background:#ef9aa5"></span>Penduduk Masuk</div>
             <div><span class="bar-dot" style="background:#c62828"></span>Penduduk Keluar</div>
             <div><span class="bar-dot" style="background:#1b8f3a"></span>Kelahiran</div>
@@ -117,12 +117,6 @@
     </div>
 </div>
 
-@endsection
-
-@section('bottom_navigation')
-    <a href="{{ route('profil.desa') }}" class="btn-nav">
-        <i class="bi bi-arrow-left"></i> KEMBALI
-    </a>
 @endsection
 
 @push('scripts')

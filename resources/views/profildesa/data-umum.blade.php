@@ -11,15 +11,12 @@
 <div class="modul-header">
     <div class="d-flex align-items-center gap-2">
         <div class="modul-icon"><i class="bi bi-houses"></i></div>
-        <span class="modul-title">PROFIL DESA</span>
+        <a href="{{ route('profil.desa') }}" class="modul-title modul-title-link">PROFIL DESA</a>
     </div>
 </div>
 
-<div class="subtitle-left">Data Umum</div>
+<div class="page-title" style="padding-left: 15px;">Data Umum</div>
 
-<div class="center-img">
-    <img src="{{ asset('images/Diverse-Team Streamline Milano (dataumum).png') }}" alt="Data Umum">
-</div>
 
 <div class="top-info">
     <div><b>Kode Desa :</b> {{ $kode_desa ?? '-' }}</div>
@@ -29,7 +26,7 @@
 <div class="table-wrap">
     <div class="table-header">
         <div>Nama Dusun</div>
-        <div>Jumlah KK Per Dusun</div>
+        <div>Jumlah KK</div>
         <div>Jumlah RT</div>
         <div>Jumlah RW</div>
     </div>
@@ -43,12 +40,6 @@
     @endforeach
 </div>
 
-@endsection
-
-@section('bottom_navigation')
-    <a href="{{ route('profil.desa') }}" class="btn-nav">
-        <i class="bi bi-arrow-left"></i> KEMBALI
-    </a>
 @endsection
 
 @push('scripts')

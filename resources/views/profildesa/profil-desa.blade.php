@@ -13,12 +13,12 @@
     <div class="modul-title">PROFIL DESA</div>
 </div>
 
-<div class="text-center mt-2 center-image">
-    <img src="{{ asset('images/Add-Comment-2 Streamline Milano (profildesa).png') }}"
-         onerror="this.style.display='none'" alt="Profil Desa">
+<div class="hero-wrapper">
+    <div class="hero-accent"></div>
+    <img src="{{ asset('images/profil-desa.png') }}" class="hero-img" alt="profildesa">
 </div>
 
-<div class="px-3 mt-2">
+<div class="px-3" style="margin-top: 5vh;">
     <table class="data-table">
         <tr>
             <td class="td-label">Desa</td>
@@ -40,8 +40,8 @@
 </div>
 
 <div class="px-3 mt-3">
-    <div class="alamat-title">Alamat Kantor Desa</div>
-    <div class="alamat-box">{{ $data['alamat'] ?? '-' }}</div>
+    <div class="luas-title">Alamat Kantor Desa</div>
+    <div class="luas-value">{{ $data['alamat'] ?? '-' }}</div>
 </div>
 
 <div class="px-3 mt-3 mb-3">
@@ -77,12 +77,11 @@
 
 @endsection
 
-
-
 @section('modal_content')
 
+{{-- Modal Visi & Misi --}}
 <div class="modal-overlay" id="modalVisiMisi">
-    <div class="modal-box">
+    <div class="modal-box" style="width:100vw; height:100vh; max-width:100%; max-height:100%; border-radius:0;">
         <div class="modal-header-kiosk">
             <h2>VISI &amp; MISI</h2>
             <button class="btn-close-modal" onclick="closeModal('modalVisiMisi')">✕</button>
@@ -101,8 +100,9 @@
     </div>
 </div>
 
+{{-- Modal Struktur Desa --}}
 <div class="modal-overlay" id="modalStruktur">
-    <div class="modal-box" style="max-width:700px;">
+    <div class="modal-box" style="width:100vw; height:100vh; max-width:100%; max-height:100%; border-radius:0;">
         <div class="modal-header-kiosk">
             <h2>STRUKTUR DESA</h2>
             <button class="btn-close-modal" onclick="closeModal('modalStruktur')">✕</button>
@@ -110,11 +110,11 @@
         <div class="modal-body-kiosk text-center">
             <img src="{{ asset($data['struktur'] ?? '') }}"
                  class="img-fluid w-100"
-                 style="max-height:65vh;object-fit:contain;"
+                 style="max-height:calc(100vh - 80px); object-fit:contain;"
                  id="strukturImg"
                  onclick="toggleZoom(this)"
                  alt="Struktur Desa">
-            <p class="text-muted mt-2 mb-0" style="font-size:11px;">Klik gambar untuk zoom</p>
+            <p class="text-muted mt-2 mb-0 fw-bold" style="font-size:25px;">Klik gambar untuk zoom</p>
         </div>
     </div>
 </div>

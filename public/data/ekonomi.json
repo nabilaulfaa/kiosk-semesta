@@ -1,9 +1,41 @@
 {
-    "2026": { "umkm": 1280, "petani": 2600, "pedagang": 890, "sektor_unggulan": "Agribisnis" },
-    "2025": { "umkm": 1200, "petani": 2500, "pedagang": 850, "sektor_unggulan": "Agribisnis" },
-    "2024": { "umkm": 1100, "petani": 2300, "pedagang": 790, "sektor_unggulan": "Agribisnis" },
-    "2023": { "umkm": 980,  "petani": 2150, "pedagang": 720, "sektor_unggulan": "Agribisnis" },
-    "2022": { "umkm": 870,  "petani": 2000, "pedagang": 650, "sektor_unggulan": "Pertanian"  },
-    "2021": { "umkm": 750,  "petani": 1900, "pedagang": 580, "sektor_unggulan": "Pertanian"  },
-    "2020": { "umkm": 640,  "petani": 1800, "pedagang": 510, "sektor_unggulan": "Pertanian"  }
+    "2026": {
+        "summary": {
+            "pendapatan":  1500000000,
+            "pengeluaran": 900000000,
+            "pengusaha":   60,
+            "program":     10
+        },
+        "bulanan": {
+            "pendapatan":  [100,150,200,250,300,350,400,450,500,550,600,700],
+            "pengeluaran": [80,100,120,150,180,200,220,250,280,300,320,350],
+            "pengusaha":   [40,42,45,48,50,52,53,55,57,58,59,60]
+        }
+    },
+    "2025": {
+        "summary": {
+            "pendapatan":  900000000,
+            "pengeluaran": 850000000,
+            "pengusaha":   38,
+            "program":     6
+        },
+        "bulanan": {
+            "pendapatan":  [300,280,350,200,400,150,300,250,450,200,350,400],
+            "pengeluaran": [250,240,300,180,350,130,280,220,400,180,320,380],
+            "pengusaha":   [20,25,22,28,24,30,26,32,28,35,30,38]
+        }
+    },
+    "2024": {
+        "summary": {
+            "pendapatan":  500000000,
+            "pengeluaran": 400000000,
+            "pengusaha":   20,
+            "program":     4
+        },
+        "bulanan": {
+            "pendapatan":  [50,60,55,70,65,80,75,90,85,100,95,110],
+            "pengeluaran": [40,45,42,50,48,60,55,70,65,80,75,90],
+            "pengusaha":   [5,7,8,10,12,13,15,16,17,18,19,20]
+        }
+    }
 }

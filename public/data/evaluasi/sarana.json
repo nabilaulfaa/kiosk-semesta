@@ -3,26 +3,62 @@
         {
             "slug": "tk",
             "nama": "Taman Kanak-Kanak (TK)",
-            "jumlah": 4,
+            "jumlah": 6,
             "kondisi": "baik",
             "gambar": "sarana/tk_default.jpg",
             "detail": [
                 { "nama": "TK Al Islam",  "kondisi": "baik",  "gambar": "sarana/tk_al_islam.jpg",  "deskripsi": "TK memiliki fasilitas bermain yang aman dan ruang belajar yang nyaman." },
                 { "nama": "TK Al Ikhlas", "kondisi": "baik",  "gambar": "sarana/tk_al_ikhlas.jpg", "deskripsi": "Kondisi bangunan sangat baik dan terawat secara rutin." },
                 { "nama": "TK Pertiwi",   "kondisi": "cukup", "gambar": "sarana/tk_pertiwi.jpg",   "deskripsi": "Perlu peremajaan beberapa fasilitas bermain." },
-                { "nama": "TK Muslimat",  "kondisi": "baik",  "gambar": "sarana/tk_muslimat.jpg",  "deskripsi": "Baru direnovasi tahun 2024, kondisi sangat baik." }
+                { "nama": "TK Muslimat",  "kondisi": "baik",  "gambar": "sarana/tk_muslimat.jpg",  "deskripsi": "Baru direnovasi tahun 2024, kondisi sangat baik." },
+                { "nama": "TK Dharma Wanita", "kondisi": "baik", "gambar": "sarana/tk_dharma_wanita.jpg", "deskripsi": "Kondisi bangunan baik dan terawat." },
+                { "nama": "TK Aisyiyah", "kondisi": "cukup", "gambar": "sarana/tk_aisyiyah.jpg", "deskripsi": "Perlu penambahan alat permainan edukatif." }
             ]
         },
         {
             "slug": "sd",
             "nama": "Sekolah Dasar (SD)",
-            "jumlah": 3,
+            "jumlah": 7,
             "kondisi": "baik",
             "gambar": "sarana/sd_default.jpg",
             "detail": [
                 { "nama": "SDN 1 Jatimulyo", "kondisi": "baik",  "gambar": "sarana/sdn1.jpg", "deskripsi": "Kondisi bangunan sangat baik dan terawat secara rutin." },
                 { "nama": "SDN 2 Jatimulyo", "kondisi": "baik",  "gambar": "sarana/sdn2.jpg", "deskripsi": "Kondisi bangunan sangat baik dan terawat secara rutin." },
-                { "nama": "SDN 3 Jatimulyo", "kondisi": "cukup", "gambar": "sarana/sdn3.jpg", "deskripsi": "Perlu perbaikan atap dan pengecatan ulang." }
+                { "nama": "SDN 3 Jatimulyo", "kondisi": "cukup", "gambar": "sarana/sdn3.jpg", "deskripsi": "Perlu perbaikan atap dan pengecatan ulang." },
+                { "nama": "SDN 4 Jatimulyo", "kondisi": "baik",  "gambar": "sarana/sdn4.jpg", "deskripsi": "Kondisi bangunan baik, dilengkapi ruang komputer." },
+                { "nama": "SDN 5 Jatimulyo", "kondisi": "baik",  "gambar": "sarana/sdn5.jpg", "deskripsi": "Baru direnovasi, kondisi sangat baik." },
+                { "nama": "MI Al Islam",     "kondisi": "baik",  "gambar": "sarana/mi_al_islam.jpg", "deskripsi": "Madrasah Ibtidaiyah dengan kondisi bangunan baik." },
+                { "nama": "MI Nurul Huda",   "kondisi": "cukup", "gambar": "sarana/mi_nurul_huda.jpg", "deskripsi": "Perlu penambahan ruang kelas." }
+            ]
+        },
+        {
+            "slug": "smp",
+            "nama": "Sekolah Menengah Pertama (SMP)",
+            "jumlah": 1,
+            "kondisi": "baik",
+            "gambar": "sarana/smp_default.jpg",
+            "detail": [
+                { "nama": "SMPN 1 Jatimulyo", "kondisi": "baik", "gambar": "sarana/smpn1.jpg", "deskripsi": "Kondisi bangunan baik, dilengkapi laboratorium IPA dan komputer." }
+            ]
+        },
+        {
+            "slug": "sma",
+            "nama": "Sekolah Menengah Atas (SMA)",
+            "jumlah": 1,
+            "kondisi": "baik",
+            "gambar": "sarana/sma_default.jpg",
+            "detail": [
+                { "nama": "SMAN 1 Jatimulyo", "kondisi": "baik", "gambar": "sarana/sman1.jpg", "deskripsi": "Kondisi bangunan baik, memiliki fasilitas lengkap termasuk aula dan lapangan olahraga." }
+            ]
+        },
+        {
+            "slug": "perguruan-tinggi",
+            "nama": "Perguruan Tinggi",
+            "jumlah": 1,
+            "kondisi": "baik",
+            "gambar": "sarana/pt_default.jpg",
+            "detail": [
+                { "nama": "Politeknik Negeri Malang (Polinema)", "kondisi": "baik", "gambar": "sarana/polinema.jpg", "deskripsi": "Perguruan tinggi negeri dengan fasilitas modern dan lengkap." }
             ]
         }
     ],
@@ -30,82 +66,51 @@
         {
             "slug": "puskesmas",
             "nama": "Puskesmas",
-            "jumlah": 1,
+            "jumlah": 2,
             "kondisi": "cukup",
             "gambar": "sarana/puskesmas.jpg",
             "detail": [
-                { "nama": "Puskesmas Jatimulyo", "kondisi": "cukup", "gambar": "sarana/puskesmas_detail.jpg", "deskripsi": "Perlu penambahan peralatan medis dan ruang periksa." }
+                { "nama": "Puskesmas Jatimulyo",  "kondisi": "cukup", "gambar": "sarana/puskesmas_detail.jpg",  "deskripsi": "Perlu penambahan peralatan medis dan ruang periksa." },
+                { "nama": "Puskesmas Pembantu Lowokwaru", "kondisi": "cukup", "gambar": "sarana/puskesmas_pembantu.jpg", "deskripsi": "Melayani warga di wilayah barat desa, perlu penambahan tenaga medis." }
+            ]
+        },
+        {
+            "slug": "rumah-sakit",
+            "nama": "Rumah Sakit",
+            "jumlah": 1,
+            "kondisi": "baik",
+            "gambar": "sarana/rs_default.jpg",
+            "detail": [
+                { "nama": "RS Universitas Brawijaya", "kondisi": "baik", "gambar": "sarana/rs_ub.jpg", "deskripsi": "Rumah sakit pendidikan dengan fasilitas lengkap dan tenaga medis profesional." }
             ]
         }
     ],
     "umum": [
         {
-            "slug": "balai-desa",
-            "nama": "Balai Desa",
-            "jumlah": 1,
-            "kondisi": "baik",
-            "gambar": "sarana/balai_desa.jpg",
-            "detail": [
-                { "nama": "Balai Desa Jatimulyo", "kondisi": "baik", "gambar": "sarana/balai_desa_detail.jpg", "deskripsi": "Baru selesai direnovasi, kondisi sangat baik." }
-            ]
-        },
-        {
             "slug": "lapangan",
             "nama": "Lapangan",
-            "jumlah": 3,
+            "jumlah": 2,
             "kondisi": "baik",
             "gambar": "sarana/lapangan.jpg",
-            "detail": []
+            "detail": [
+                { "nama": "Lapangan Dusun Jatimulyo",  "kondisi": "baik", "gambar": "sarana/lapangan_jatimulyo.jpg",  "deskripsi": "Lapangan multifungsi, digunakan untuk olahraga dan kegiatan warga." },
+                { "nama": "Lapangan Dusun Lowokwaru", "kondisi": "baik", "gambar": "sarana/lapangan_lowokwaru.jpg", "deskripsi": "Lapangan sepak bola dan voli, kondisi baik dan terawat." }
+            ]
         }
     ],
     "lingkungan": [
-    {
-        "slug": "tps",
-        "nama": "Tempat Pembuangan Sampah",
-        "jumlah": 3,
-        "kondisi": "cukup",
-        "gambar": "sarana/tps_default.jpg",
-        "detail": [
-            {
-                "nama": "TPS RW 01",
-                "kondisi": "cukup",
-                "gambar": "sarana/tps_rw01.jpg",
-                "deskripsi": "Perlu penambahan kontainer sampah organik."
-            },
-            {
-                "nama": "TPS RW 03",
-                "kondisi": "baik",
-                "gambar": "sarana/tps_rw03.jpg",
-                "deskripsi": "Sudah dilengkapi pemilahan sampah 3 kategori."
-            },
-            {
-                "nama": "TPS RW 05",
-                "kondisi": "buruk",
-                "gambar": "sarana/tps_rw05.jpg",
-                "deskripsi": "Perlu renovasi total, kapasitas tidak mencukupi."
-            }
-        ]
-    },
-    {
-        "slug": "drainase-lingkungan",
-        "nama": "Drainase Lingkungan",
-        "jumlah": 5,
-        "kondisi": "cukup",
-        "gambar": "sarana/drainase_default.jpg",
-        "detail": [
-            {
-                "nama": "Drainase Dusun 1",
-                "kondisi": "baik",
-                "gambar": "sarana/drainase_dusun1.jpg",
-                "deskripsi": "Kondisi baik, air mengalir lancar."
-            },
-            {
-                "nama": "Drainase Dusun 2",
-                "kondisi": "cukup",
-                "gambar": "sarana/drainase_dusun2.jpg",
-                "deskripsi": "Perlu pembersihan berkala dari sedimentasi."
-            }
-        ]
-    }
-]
+        {
+            "slug": "tps",
+            "nama": "Tempat Pembuangan Sampah",
+            "jumlah": 4,
+            "kondisi": "cukup",
+            "gambar": "sarana/tps_default.jpg",
+            "detail": [
+                { "nama": "TPS RW 01", "kondisi": "cukup", "gambar": "sarana/tps_rw01.jpg", "deskripsi": "Perlu penambahan kontainer sampah organik." },
+                { "nama": "TPS RW 03", "kondisi": "baik",  "gambar": "sarana/tps_rw03.jpg", "deskripsi": "Sudah dilengkapi pemilahan sampah 3 kategori." },
+                { "nama": "TPS RW 05", "kondisi": "buruk", "gambar": "sarana/tps_rw05.jpg", "deskripsi": "Perlu renovasi total, kapasitas tidak mencukupi." },
+                { "nama": "TPS RW 07", "kondisi": "cukup", "gambar": "sarana/tps_rw07.jpg", "deskripsi": "Kapasitas mulai tidak mencukupi, perlu penambahan kontainer." }
+            ]
+        }
+    ]
 }

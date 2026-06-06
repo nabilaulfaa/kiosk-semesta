@@ -1,67 +1,70 @@
 {
   "summary": {
-    "total_jalan": "200 km",
-    "total_jembatan": 10,
-    "total_sekolah": 15,
-    "total_faskes": 5
+    "total_jalan": "1 Ruas Jalan Protokol",
+    "total_jembatan": 0,
+    "total_sekolah": 10,
+    "total_faskes": 3
   },
 
   "jalan": [
     {
       "nama": "Jalan Soekarno Hatta",
       "gambar": "/images/jl suhat.jpg"
-    },
-    {
-      "nama": "Jalan Pisan Kipas",
-      "gambar": "/images/jl suhat.jpg"
-    },
-    {
-      "nama": "Jalan Senggani",
-      "gambar": "/images/jl suhat.jpg"
     }
   ],
 
-  "jembatan": [
-    {
-      "nama": "Jembatan Soekarno Hatta",
-      "gambar": "/images/jembatan.jpg"
-    },
-    {
-      "nama": "Jembatan Mbioro",
-      "gambar": "/images/jembatan.jpg"
-    },
-    {
-      "nama": "Jembatan KH. A Fattah",
-      "gambar": "/images/jembatan.jpg"
-    }
-  ],
+  "jembatan": [],
 
   "sekolah": [
     {
-      "nama": "SD Insan Amanah",
+      "nama": "SDN Jatimulyo 1 Malang",
       "gambar": "/images/sekolah.jpg"
     },
     {
-      "nama": "Gracia Nusantara School",
+      "nama": "SDN Jatimulyo 3 Malang",
       "gambar": "/images/sekolah.jpg"
     },
     {
-      "nama": "SMP Kertanegara Malang",
+      "nama": "SDN Jatimulyo 4 Malang",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "SDN Jatimulyo 5 Malang",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "SDN Jatimulyo 6 Malang",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "SDN Jatimulyo 7 Malang",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "SMPN 1 Jatimulyo Malang",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "SMAN 1 Jatimulyo Malang",
+      "gambar": "/images/sekolah.jpg"
+    },
+    {
+      "nama": "Politeknik Negeri Malang",
       "gambar": "/images/sekolah.jpg"
     }
   ],
 
   "faskes": [
     {
-      "nama": "Klinik Universitas Brawijaya",
+      "nama": "Puskesmas Jatimulyo",
       "gambar": "/images/faskes.jpg"
     },
     {
-      "nama": "Puskesmas Kendalsari",
+    "nama": "Puskesmas Jatimulyo",
       "gambar": "/images/faskes.jpg"
     },
     {
-      "nama": "Medicalkes Smart Malang",
+      "nama": "Rumah Sakit Universitas Brawijaya",
       "gambar": "/images/faskes.jpg"
     }
   ]

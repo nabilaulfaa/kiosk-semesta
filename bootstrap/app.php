@@ -12,8 +12,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'cache.api' => \App\Http\Middleware\CacheApiMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
-    })->create();
+    $exceptions->render(function (\App\Exceptions\ApiConnectionException $e, $request) {
+        return response()->view('errors.503', [], 503);
+    });
+})->create();
